@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 使用MyBatis实现简单的查询在设计查询的抽象方法时：  返回值类型使用所期望的类型； 其它部分的设计与增/删/改相同； 如果查询的是某1条数据记录，如果有匹配的数据，则返回正确的查询结果，如果没有匹配的数据，将返回null。  例如：根据用户id查询用户数据详情时：1User findById(Integer id); 在配置该方法的XML映射时，使用的&amp;lt;select&amp;gt;节点必">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis-2">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Mybatis-2/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="1. 使用MyBatis实现简单的查询在设计查询的抽象方法时：  返回值类型使用所期望的类型； 其它部分的设计与增/删/改相同； 如果查询的是某1条数据记录，如果有匹配的数据，则返回正确的查询结果，如果没有匹配的数据，将返回null。  例如：根据用户id查询用户数据详情时：1User findById(Integer id); 在配置该方法的XML映射时，使用的&amp;lt;select&amp;gt;节点必">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.333Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mybatis-2">
+<meta name="twitter:description" content="1. 使用MyBatis实现简单的查询在设计查询的抽象方法时：  返回值类型使用所期望的类型； 其它部分的设计与增/删/改相同； 如果查询的是某1条数据记录，如果有匹配的数据，则返回正确的查询结果，如果没有匹配的数据，将返回null。  例如：根据用户id查询用户数据详情时：1User findById(Integer id); 在配置该方法的XML映射时，使用的&amp;lt;select&amp;gt;节点必">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/25/Mybatis-2/">
+
+
+
+
+
+  <title>Mybatis-2 | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/25/Mybatis-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mybatis-2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-25T20:15:46+08:00">
+                2019-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-使用MyBatis实现简单的查询"><a href="#1-使用MyBatis实现简单的查询" class="headerlink" title="1. 使用MyBatis实现简单的查询"></a>1. 使用MyBatis实现简单的查询</h3><p>在设计查询的抽象方法时：</p>
+<ol>
+<li>返回值类型使用所期望的类型；</li>
+<li>其它部分的设计与增/删/改相同；</li>
+<li>如果查询的是某1条数据记录，如果有匹配的数据，则返回正确的查询结果，如果没有匹配的数据，将返回<code>null</code>。</li>
+</ol>
+<p>例如：根据用户id查询用户数据详情时：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">User <span class="title">findById</span><span class="params">(Integer id)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>在配置该方法的XML映射时，使用的<code>&lt;select&gt;</code>节点必须配置<code>resultType</code>或者<code>resultMap</code>属性中的某一个：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">resultType</span>=<span class="string">"cn.tedu.mybatis.User"</span>&gt;</span></span><br><span class="line">    SELECT * FROM t_user WHERE id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>例如：获取当前数据表用户数据的数量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer count();</span><br></pre></td></tr></table></figure></p>
+<p>映射配置为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"count"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">resultType</span>=<span class="string">"java.lang.Integer"</span>&gt;</span></span><br><span class="line">    SELECT COUNT(*) FROM t_user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>例如：查询所有用户数据时：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List<span class="tag">&lt;<span class="name">User</span>&gt;</span> findAll();</span><br></pre></td></tr></table></figure></p>
+<p>配置的映射：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">resultType</span>=<span class="string">"cn.tedu.mybatis.User"</span>&gt;</span></span><br><span class="line">    SELECT * FROM t_user ORDER BY id ASC</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-使用多个参数"><a href="#2-使用多个参数" class="headerlink" title="2. 使用多个参数"></a>2. 使用多个参数</h3><p>假设需要实现：将id=?的用户的密码修改为?，则抽象方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Integer <span class="title">updatePasswordById</span><span class="params">(Integer id, String newPassword)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>配置xml中的映射：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updatePasswordById"</span>&gt;</span></span><br><span class="line">    UPDATE t_user SET password=#&#123;newPassword&#125; where id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如果直接执行以上代码，会报告错误：</p>
+<ul>
+<li>根本原因是MyBatis框架只能识别1个参数，无论这个参数是什么，都会直接被使用，而多余的参数是不可识别的！</li>
+</ul>
+<p>可以在抽象方法的每一个参数之前添加<code>@Param</code>注解，MyBatis框架在处理时，会将这些参数封装成1个Map，依然能满足“只能识别1个参数”的需求，后续在配置XML映射时，使用的<code>#{}</code>占位符中的名称就必须是注解中配置的名称，表示的是MyBatis自动封装的Map中的Key：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Integer <span class="title">updatePasswordById</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        @Param(<span class="string">"id"</span>)</span> Integer arg0, </span></span><br><span class="line"><span class="function">        @<span class="title">Param</span><span class="params">(<span class="string">"password"</span>)</span> String arg1)</span>;</span><br></pre></td></tr></table></figure></p>
+<p>配置的XML映射：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updatePasswordById"</span>&gt;</span></span><br><span class="line">    UPDATE t_user SET password=#&#123;password&#125; where id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>小结：如果涉及的抽象方法的参数达到2个甚至更多，则每个参数之前都必须添加@Param注解，并在注解中指定名称，后续配置XML映射时，使用的#{}中的名称也是注解中配置的名称！</strong></p>
+</blockquote>
+<h3 id="3-动态SQL-foreach"><a href="#3-动态SQL-foreach" class="headerlink" title="3. 动态SQL-foreach"></a>3. 动态SQL-foreach</h3><p>MyBatis中的动态SQL指的是根据参数不同，动态的生成不同的SQL语句。</p>
+<p>例如：根据若干个id删除用户数据，设计的抽象方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Integer <span class="title">deleteByIds</span><span class="params">(List&lt;Integer&gt; ids)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>配置映射：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteByIds"</span>&gt;</span></span><br><span class="line">    DELETE FROM </span><br><span class="line">        t_user </span><br><span class="line">    WHERE </span><br><span class="line">        id </span><br><span class="line">    IN </span><br><span class="line">        (</span><br><span class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">item</span>=<span class="string">"id"</span> <span class="attr">separator</span>=<span class="string">","</span>&gt;</span></span><br><span class="line">            #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">        )</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在配置<code>&lt;foreach&gt;</code>节点时：</p>
+<ul>
+<li><code>collection</code>：被遍历的参数对象，首先，如果对应的抽象方法的参数只有1个时，如果参数是<code>List</code>集合类型的，取值为<code>list</code>，如果参数是数组类型的，取值为<code>array</code>，另外，如果对应的抽象方法的参数有多个，则每个参数肯定都添加了<code>@Param</code>注解，此处需要配置的值就是注解中配置的名称；</li>
+<li><code>item</code>：遍历过程中获取到的数据的名称，相当于增强for循环的语法中，括号中的第2个部分，在<code>&lt;foreach&gt;</code>节点的子级可以使用<code>#{}</code>占位符，占位符中的名称就是<code>item</code>属性的值；</li>
+<li><code>separator</code>：遍历过程中各元素使用的分隔符；</li>
+<li><code>open</code>和<code>close</code>：遍历产生的代码的最左侧字符和最右侧字符。</li>
+</ul>
+<h3 id="4-动态SQL-if"><a href="#4-动态SQL-if" class="headerlink" title="4. 动态SQL-if"></a>4. 动态SQL-if</h3><p>假设存在抽象方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">List&lt;User&gt; <span class="title">find</span><span class="params">(String where, String orderBy, Integer offset, Integer count)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>在配置SQL语句时，可以使用if标签进行对参数的判断，从而产生不同的SQL语句的某个部分，例如：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"xx"</span> <span class="attr">resultType</span>=<span class="string">"xx.xx.xx.User"</span>&gt;</span></span><br><span class="line">    SELECT</span><br><span class="line">        *</span><br><span class="line">    FROM</span><br><span class="line">        t_user</span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"where != null"</span>&gt;</span></span><br><span class="line">    WHERE</span><br><span class="line">        #&#123;where&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"orderBy != null"</span>&gt;</span></span><br><span class="line">    ORDER BY</span><br><span class="line">        #&#123;orderBy&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"offset != null"</span>&gt;</span></span><br><span class="line">    LIMIT</span><br><span class="line">        #&#123;offset&#125;, #&#123;count&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>以上配置是错误的，并不能所有位置都使用<code>#{}</code>占位符，有几处需要使用<code>${}</code>格式的占位符：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"find"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">resultType</span>=<span class="string">"cn.tedu.mybatis.User"</span>&gt;</span></span><br><span class="line">    SELECT</span><br><span class="line">        *</span><br><span class="line">    FROM</span><br><span class="line">        t_user</span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"where != null"</span>&gt;</span></span><br><span class="line">    WHERE</span><br><span class="line">        $&#123;where&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"orderBy != null"</span>&gt;</span></span><br><span class="line">    ORDER BY</span><br><span class="line">        $&#123;orderBy&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"offset != null"</span>&gt;</span></span><br><span class="line">    LIMIT</span><br><span class="line">        #&#123;offset&#125;, #&#123;count&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="5-MyBatis中的占位符"><a href="#5-MyBatis中的占位符" class="headerlink" title="5. MyBatis中的占位符"></a>5. MyBatis中的占位符</h3><p>在MyBatis中，编写XML中的SQL语句时，可以使用<code>#{}</code>格式的占位符，还可以使用<code>${}</code>格式的占位符！</p>
+<p>MyBatis在处理有占位符的SQL时，如果是<code>${}</code>格式的占位符，会先通过字符串拼接的方式把变量值替换并拼接出SQL语句，然后尝试编译该SQL语句，如果是<code>#{}</code>格式的占位符，会使用<code>?</code>进行占位并尝试编译，编译过后再使用值进行替换。</p>
+<blockquote>
+<p>使用JDBC时，可以使用<code>?</code>表示的部分，都应该使用<code>#{}</code>，也可以理解为只有“值”才可以使用<code>#{}</code>，这种做法是预编译的，否则，如果要对SQL语句中的某个子句或者其他语句的某个部分，甚至是WHERE子句中的表达式，使用<code>${}</code>，这种做法并不会预编译。</p>
+</blockquote>
+<h3 id="6-当字段名与属性名不完全相同时的查询"><a href="#6-当字段名与属性名不完全相同时的查询" class="headerlink" title="6. 当字段名与属性名不完全相同时的查询"></a>6. 当字段名与属性名不完全相同时的查询</h3><p>修改<code>t_user</code>表结构，添加名为<code>is_delete</code>的字段：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> t_user <span class="keyword">add</span> <span class="keyword">column</span> is_delete <span class="built_in">int</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">update</span> t_user <span class="keyword">set</span> is_delete=<span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
+<p>对应的<code>User</code>类中也需要添加对应的属性，在Java中，不推荐在变量名中使用<code>_</code>符号，所以，添加属性为<code>·isDelete</code>。</p>
+<blockquote>
+<p>由于名称不是完全相同了，所以，此前的查询功能就无法查询出数据的<code>is_delete</code>字段的值！</p>
+</blockquote>
+<p>MyBatis封装查询结果的标准就是“将查询到的数据封装到与列名完全相同的属性中”，所以，如果字段名与属性名不一致，就会导致默认的列名与属性名不一致，可以在查询时，为列名自定义别名，以保持名称一致，所以，解决方案可以是：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT </span><br><span class="line">    id, username,</span><br><span class="line">    password, age,</span><br><span class="line">    phone, email,</span><br><span class="line">    is_delete AS isDelete</span><br><span class="line">FROM </span><br><span class="line">    t_user </span><br><span class="line">ORDER BY </span><br><span class="line">    id ASC</span><br></pre></td></tr></table></figure></p>
+<p>如果在查询时，使用<code>*</code>表示要查询的字段列表，MyBatis就无法自动封装那些名称不一致的数据，可以在XML文件配置<code>&lt;resultMap&gt;</code>节点，并且在查询的<code>&lt;select&gt;</code>节点中，使用<code>resultMap</code>属性取代<code>resultType</code>属性：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- resultMap节点：指导MyBatis如何封装查询结果 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- id：自定义名称 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- column：查询结果中的列名 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- property：type对应的类中的属性名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"UserEntityMap"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">type</span>=<span class="string">"cn.tedu.mybatis.User"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"username"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"password"</span> <span class="attr">property</span>=<span class="string">"password"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"age"</span> <span class="attr">property</span>=<span class="string">"age"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"phone"</span> <span class="attr">property</span>=<span class="string">"phone"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"email"</span> <span class="attr">property</span>=<span class="string">"email"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"is_delete"</span> <span class="attr">property</span>=<span class="string">"isDelete"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">resultMap</span>=<span class="string">"UserEntityMap"</span>&gt;</span></span><br><span class="line">    SELECT </span><br><span class="line">        *</span><br><span class="line">    FROM </span><br><span class="line">        t_user </span><br><span class="line">    ORDER BY </span><br><span class="line">        id ASC</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>小结：无论是取别名，还是配置<code>&lt;resultMap&gt;</code>，只要能保证MyBatis知道如何封装名称不一致的数据，就可以正确查询到所需要的结果！如果查询时不用<code>/*</code>表示字段列表，且名称不一致的字段较少，则可以优先考虑使用别名，如果使用<code>/*</code>查询，或者名称不一致的字段较多，则应该优先考虑配置<code>&lt;resultMap&gt;</code>。</strong></p>
+</blockquote>
+<h3 id="7-关联表查询"><a href="#7-关联表查询" class="headerlink" title="7. 关联表查询"></a>7. 关联表查询</h3><p>创建<code>t_department</code>部门信息表，要求表中存在<code>id</code>和<code>name</code>这2个字段，向表中插入3条数据：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t_department (</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">INT</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'部门id'</span>,</span><br><span class="line">    <span class="keyword">name</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span> <span class="keyword">COMMENT</span> <span class="string">'部门名称'</span>,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>)</span><br><span class="line">) <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=UTF8;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t_department (<span class="keyword">name</span>) <span class="keyword">VALUES</span> (<span class="string">'软件研发部'</span>), (<span class="string">'人力资源部'</span>), (<span class="string">'财务部'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>在<code>t_user</code>表中添加<code>department_id</code>字段，为每一个用户数据分配部门id：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t_user <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> department_id <span class="built_in">INT</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> t_user <span class="keyword">SET</span> department_id=<span class="number">1</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">IN</span> (<span class="number">2</span>,<span class="number">10</span>,<span class="number">17</span>);</span><br><span class="line"><span class="keyword">UPDATE</span> t_user <span class="keyword">SET</span> department_id=<span class="number">2</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">IN</span> (<span class="number">16</span>,<span class="number">14</span>,<span class="number">12</span>);</span><br><span class="line"><span class="keyword">UPDATE</span> t_user <span class="keyword">SET</span> department_id=<span class="number">3</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">IN</span> (<span class="number">4</span>,<span class="number">13</span>);</span><br></pre></td></tr></table></figure></p>
+<p>假设存在需求：根据id查询某用户详情，要求直接显示用户所在部门的名称。</p>
+<p>首先，直接查询<code>t_user</code>表是不足以得到完整答案的，为了保证数据表管理的规范，在<code>t_user</code>表中只会存储部门的<code>id</code>，并不会存储部门的<code>name</code>，所以，需要实现该需求，就必须使用关联查询：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SELECT </span><br><span class="line">    t_user.id, username,</span><br><span class="line">    phone, email,</span><br><span class="line">    password, age,</span><br><span class="line">    is_delete AS isDelete,</span><br><span class="line">    department_id AS departmentId,</span><br><span class="line">    name AS departmentName</span><br><span class="line">FROM </span><br><span class="line">    t_user </span><br><span class="line">LEFT JOIN</span><br><span class="line">    t_department </span><br><span class="line">ON </span><br><span class="line">    department_id=t_department.id</span><br><span class="line">WHERE</span><br><span class="line">    t_user.id=?</span><br></pre></td></tr></table></figure></p>
+<p>这样的查询可以符合当前需求，但是，在设计代码时，却没有任何一个实体类可以封装以上查询结果！因为实体类都是与数据表一一相对应的，所以就需要另外创建VO(Value Object)类，VO类的设计原则是根据查询结果来确定各属性的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserVO</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> Integer isDelete;</span><br><span class="line">    <span class="keyword">private</span> Integer departmentId;</span><br><span class="line">    <span class="keyword">private</span> String departmentName;</span><br><span class="line">    <span class="comment">// SET/GET/hashCode/equals/toString/Serializable</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实，VO类与实体类的设计方式是几乎一样的，只是定位不同，实体类与数据表对应，VO类与查询结果对应。</p>
+<p>设计的抽象方法的返回值就应该是<code>UserVO</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">UserVO <span class="title">findUserVOById</span><span class="params">(Integer id)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>配置映射时，需要注意自定义别名，或者配置<code>&lt;resultMap&gt;</code>，同时，注意：如果某个字段名在2张或者涉及的多张表中都存在，必须明确的指定表名，例如这2张表中都有<code>id</code>字段，每次涉及该字段都必须在左侧指定表名：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"findUserVOById"</span></span><br><span class="line">    resultType=<span class="string">"cn.tedu.mybatis.UserVO"</span>&gt;</span><br><span class="line">    SELECT </span><br><span class="line">        t_user.id, username,</span><br><span class="line">        phone, email,</span><br><span class="line">        password, age,</span><br><span class="line">        is_delete AS isDelete,</span><br><span class="line">        department_id AS departmentId,</span><br><span class="line">        name AS departmentName</span><br><span class="line">    FROM </span><br><span class="line">        t_user </span><br><span class="line">    LEFT JOIN</span><br><span class="line">        t_department </span><br><span class="line">    ON </span><br><span class="line">        department_id=t_department.id</span><br><span class="line">    WHERE</span><br><span class="line">        t_user.id=#&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/24/Mybatis-框架/" rel="next" title="Mybatis-框架">
+                <i class="fa fa-chevron-left"></i> Mybatis-框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/27/AJAX/" rel="prev" title="AJAX">
+                AJAX <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用MyBatis实现简单的查询"><span class="nav-number">1.</span> <span class="nav-text">1. 使用MyBatis实现简单的查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用多个参数"><span class="nav-number">2.</span> <span class="nav-text">2. 使用多个参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-动态SQL-foreach"><span class="nav-number">3.</span> <span class="nav-text">3. 动态SQL-foreach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-动态SQL-if"><span class="nav-number">4.</span> <span class="nav-text">4. 动态SQL-if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-MyBatis中的占位符"><span class="nav-number">5.</span> <span class="nav-text">5. MyBatis中的占位符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-当字段名与属性名不完全相同时的查询"><span class="nav-number">6.</span> <span class="nav-text">6. 当字段名与属性名不完全相同时的查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-关联表查询"><span class="nav-number">7.</span> <span class="nav-text">7. 关联表查询</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

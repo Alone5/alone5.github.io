@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="练习题 查询没有上级领导的员工的编号，姓名，工资 1select empno,ename,sal from emp where mgr is null;  查询emp表中没有奖金的员工的姓名，职位，工资，以及奖金 1select ename,job,sal,comm from emp where comm=0 or comm is null;  查询emp表中含有奖金的员工的编号，姓名，职位，以及">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL-(练习题)">
+<meta property="og:url" content="http://yoursite.com/2019/06/24/MySQL-case/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="练习题 查询没有上级领导的员工的编号，姓名，工资 1select empno,ename,sal from emp where mgr is null;  查询emp表中没有奖金的员工的姓名，职位，工资，以及奖金 1select ename,job,sal,comm from emp where comm=0 or comm is null;  查询emp表中含有奖金的员工的编号，姓名，职位，以及">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.330Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL-(练习题)">
+<meta name="twitter:description" content="练习题 查询没有上级领导的员工的编号，姓名，工资 1select empno,ename,sal from emp where mgr is null;  查询emp表中没有奖金的员工的姓名，职位，工资，以及奖金 1select ename,job,sal,comm from emp where comm=0 or comm is null;  查询emp表中含有奖金的员工的编号，姓名，职位，以及">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/24/MySQL-case/">
+
+
+
+
+
+  <title>MySQL-(练习题) | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/MySQL-case/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL-(练习题)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T19:05:42+08:00">
+                2019-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><ol>
+<li><p>查询没有上级领导的员工的编号，姓名，工资</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select empno,ename,sal from emp where mgr is null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中没有奖金的员工的姓名，职位，工资，以及奖金</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename,job,sal,comm from emp where comm=0 or comm is null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中含有奖金的员工的编号，姓名，职位，以及奖金</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select empno,ename,job,comm from emp where comm&gt;0;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询含有上级领导的员工的姓名，工资以及上级领导的编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename,sal,mgr from emp where mgr is not null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中名字以‘S’开头的所有员工的姓名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename from emp where ename like &apos;s%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中名字的最后一个字符是’S’的员工的姓名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename from emp where ename like &apos;%s&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询倒数的第2个字符是‘E’的员工的姓名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename from emp where ename like &apos;%e_&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中员工的倒数第3个字符是‘N’的员工姓名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename from emp where ename like &apos;%n__&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中员工的名字中包含‘A’的员工的姓名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename from emp where ename like &apos;%a%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中名字不是以’K’开头的员工的所有信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where ename not like &apos;k%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中名字中不包含‘A’的所有员工的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where ename not like &apos;%a%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>做文员的员工人数（job 中 含有 CLERK 的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from emp where job=&apos;clerk&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>销售人员 job: SALESMAN 的最高薪水</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(sal) from emp where job=&apos;SALESMAN&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最早和最晚入职时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select min(hiredate),max(hiredate) from emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询类别 163的商品总库存量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(num) from t_item where category_id=163;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询 类别 163 的商品</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t_item where category_id=163;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询商品价格不大于100的商品名称列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select title from t_item where price&lt;=100;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询品牌是联想,且价格在40000以上的商品名称和价格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select title,price from t_item where title like &apos;%联想%&apos; and price&gt;40000;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询品牌是三木,或价格在50以下的商品名称和价格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select title,price from t_item where title like &apos;%三木%&apos; or price&lt;50;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询品牌是三木、广博、齐心的商品名称和价格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select title,price from t_item where title like &apos;%三木%&apos; or title like &apos;%广博%&apos; or title like &apos;%齐心%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询品牌不是联想、戴尔的商品名称和价格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select title,price from t_item where title not like &apos;%联想%&apos; and title not like &apos;%戴尔%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找品牌是联想且价格大于10000的名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select title from t_item where title like &apos;%联想%&apos; and price&gt;10000;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询联想或戴尔的电脑名称列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select title from t_item where title like &apos;%联想%&apos; or title like &apos;%戴尔%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中员工的编号，姓名，职位，工资，并且工资在1000~2000之间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select empno,ename,job,sal from emp where sal between 1000 and 2000;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中员工在10号部门，并且含有上级领导的员工的姓名，职位，上级领导编号以及所属部门的编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename,job,mgr,deptno from emp where deptno=10 and mgr is not null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中名字中包含’E’，并且职位不是MANAGER的员工的编号，姓名，职位，以及工资。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select empno,ename,job,sal from emp where ename like &apos;%e%&apos; and job!=&apos;manager&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中10号部门或者20号部门中员工的编号，姓名，所属部门的编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select empno,ename,deptno from emp where deptno in(10,20);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中没有奖金或者名字的倒数第2个字母不是T的员工的编号，姓名，职位以及奖金</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select empno,ename,job,comm from emp where comm=0 or ename not like &apos;%t_&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询工资高于3000或者部门编号是30的员工的姓名，职位，工资，入职时间以及所属部门的编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename,job,sal,hiredate,deptno from emp where sal&gt;3000 or deptno=30;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询不是30号部门的员工的所有信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where deptno!=30;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询奖金不为空的员工的所有信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where comm is not null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中所有员工的编号，姓名，职位，根据员工的编号进行降序排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select empno,ename,job from emp order by empno desc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中部门编号是10号或者30号中，所有员工姓名，职务，工资，根据工资进行升序排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename,job,sal from emp where deptno in(10,30) order by sal;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中所有的数据，然后根据部门的编号进行升序排列，如果部门编号一致，根据员工的编号进行降序排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp order by deptno,empno desc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中工资高于1000或者没有上级领导的员工的编号，姓名，工资，所属部门的编号，以及上级领导的编号，根据部门编号进行降序排列，如果部门编号一致根据工资进行升序排列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select empno,ename,sal,deptno,mgr from emp where sal&gt;1000 or mgr isnull order by deptno desc,sal;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中名字中不包含S的员工的编号，姓名，工资，奖金，根据工资进行升序排列，如果工资一致，根据编号进行降序排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select empno,ename,sal,comm from emp where ename not like &apos;%s%&apos; order by sal,empno desc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计emp表中员工的总数量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计emp表中获得奖金的员工的数量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from emp where comm&gt;0;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求出emp表中所有的工资累加之和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(sal) from emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求出emp表中所有的奖金累加之和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(comm) from emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求出emp表中员工的平均工资</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(sal) from emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求出emp表中员工的平均奖金</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select avg(comm) from emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求出emp表中员工的最高工资</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(sal) from emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求出emp表中员工编号的最大值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(empno) from emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中员工的最低工资。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select min(sal) from emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中员工的人数，工资的总和，平均工资，奖金的最大值，奖金的最小值,并且对返回的列起别名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) 人数,sum(sal) 工资总和,avg(sal) 平均工资, max(comm) 奖最大, min(comm) 奖金最小 from emp;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h3><ol>
+<li><p>每个部门的人数，根据人数降序排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select deptno,count(*) c from emp group by deptno order by c desc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每个部门中，每个主管的手下人数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select deptno,mgr,count(*) from emp where mgr is not null group by deptno,mgr;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每种工作的平均工资</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select job,avg(sal) from emp group by job;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每年的入职人数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select extract(year from hiredate) y,count(*) from emp group by y;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>拿最低工资的员工信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where sal=(select min(sal) from emp);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>少于等于3个人的部门信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">不考虑40号部门	</span><br><span class="line">select deptno from emp group by deptno having count(*)&lt;=3;</span><br><span class="line">select * from dept where deptno in(上面一坨);</span><br><span class="line">考虑40号部门</span><br><span class="line">select d.*</span><br><span class="line">from emp e right join dept d</span><br><span class="line">on e.deptno=d.deptno</span><br><span class="line">group by d.deptno</span><br><span class="line">having count(e.ename)&lt;=3;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>只有一个下属的主管信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查询只有一个下属的主管编号</span><br><span class="line">select mgr from emp where mgr is not null group by mgr having count(*)=1;</span><br><span class="line">通过主管编号查询主管信息</span><br><span class="line">select * from emp where empno in(select mgr from emp where mgr is not null group by mgr having count(*)=1);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每月发工资最多的部门信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">得到最高的工资数</span><br><span class="line">select sum(sal) s from emp group by deptno order by s desc limit 0,1;</span><br><span class="line">通过最高工资获取部门编号</span><br><span class="line">select deptno from emp group by deptno having sum(sal)=(select sum(sal) s from emp group by deptno order by s desc limit 0,1);</span><br><span class="line">通过部门编号得到部门信息</span><br><span class="line">select * from dept where deptno in(上面一坨);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下属最多的人，查询其个人信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- 得到最多的人数</span><br><span class="line">	select count(*) from emp group by mgr order by count(*) desc limit 0,1;</span><br><span class="line">- 通过人数获取主管编号</span><br><span class="line">	select mgr from emp group by mgr having count(*)=(select count(*) from emp group by mgr order by count(*) desc limit 0,1);</span><br><span class="line">- 通过主管编号得到员工信息</span><br><span class="line">	select * from emp where empno in(上面一坨);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>拿最高工资员工的同事信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- 查询最高工资</span><br><span class="line">	select max(sal) from emp;</span><br><span class="line">- 查询最高工资员工的部门编号</span><br><span class="line">	select deptno from emp where sal=(select max(sal) from emp);</span><br><span class="line">- 通过部门编号查询员工信息</span><br><span class="line">	select * from emp where deptno=(select deptno from emp where sal=(select max(sal) from emp)) and sal!=(select max(sal) from emp);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>和最后入职的员工在同一部门的员工信息 实现流程和第十题一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- 得到时间最大值</span><br><span class="line">select max(hiredate) from emp;</span><br><span class="line">- 获取最后入职员工的部门编号</span><br><span class="line">select deptno from emp where hiredate=(select max(hiredate) from emp);</span><br><span class="line">- 通过部门编号获取员工信息</span><br><span class="line">select * from emp where deptno=(select deptno from emp where hiredate=(select max(hiredate) from emp)) and hiredate!=(select max(hiredate) from emp);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询平均工资高于20号平均工资的部门信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-20号部门的平均工资</span><br><span class="line">select avg(sal) from emp where deptno=20;</span><br><span class="line">- 查询高于20号部门平均工资的部门编号</span><br><span class="line">select deptno from emp group by deptno having avg(sal)&gt;(select avg(sal) from emp where deptno=20);</span><br><span class="line">- 通过部门编号查询部门信息</span><br><span class="line">select * from dept where deptno in(select deptno from emp group by deptno having avg(sal)&gt;(select avg(sal) from emp where deptno=20));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询员工信息和员工对应的部门名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select e.*,d.dname</span><br><span class="line">from emp e join dept d</span><br><span class="line">on e.deptno=d.deptno;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询员工信息，部门名称，所在城市</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select e.*,d.dname,d.loc</span><br><span class="line">from emp e join dept d</span><br><span class="line">on e.deptno=d.deptno;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询Dallas市所有的员工信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select e.*</span><br><span class="line">from emp e join dept d</span><br><span class="line">on e.deptno=d.deptno</span><br><span class="line">where d.loc=&apos;dallas&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算每个城市的员工数量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select d.loc,count(e.ename)</span><br><span class="line">from emp e right join dept d</span><br><span class="line">on e.deptno=d.deptno group by d.loc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询员工信息和他的主管姓名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 自关联查询时把一张表当成两张表 </span><br><span class="line">select e.ename,m.ename</span><br><span class="line">from emp e join emp m</span><br><span class="line">on e.mgr=m.empno;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>员工信息，员工主管名字，部门名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select e.*,m.ename,d.dname</span><br><span class="line">from emp e join emp m</span><br><span class="line">on e.mgr=m.empno</span><br><span class="line">join dept d</span><br><span class="line">on e.deptno=d.deptno;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>员工名和他所在部门名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select e.ename,d.dname</span><br><span class="line">from emp e join dept d</span><br><span class="line">on e.deptno=d.deptno;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中所有员工的姓名以及该员工上级领导的编号，姓名，职位，工资</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select e.ename,m.empno,m.ename,m.job,m.sal</span><br><span class="line">from emp e left join emp m</span><br><span class="line">on e.mgr=m.empno;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询emp表中名字中没有字母’K’的所有员工的编号，姓名，职位以及所在部门的编号，名称，地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select e.empno,e.ename,e.job,d.*</span><br><span class="line">from emp e join dept d</span><br><span class="line">on e.deptno=d.deptno</span><br><span class="line">where e.ename not like &apos;%k%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询dept表中所有的部门的所有的信息，以及与之关联的emp表中员工的编号，姓名，职位，工资</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select d.*,e.empno,e.ename,e.job,e.sal</span><br><span class="line">from emp e right join dept d</span><br><span class="line">on e.deptno=d.deptno;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/20/MySQL-define/" rel="next" title="MySQL-define">
+                <i class="fa fa-chevron-left"></i> MySQL-define
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/26/Java-JDBC/" rel="prev" title="Java-JDBC">
+                Java-JDBC <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#练习题"><span class="nav-number">1.</span> <span class="nav-text">练习题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联"><span class="nav-number">2.</span> <span class="nav-text">关联</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

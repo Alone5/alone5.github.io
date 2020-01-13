@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Socket 原理Socket 简介 socket起源于Unix，而Unix/Linux基本哲学之一就是：“一切即文件”，都可以用”打开open -&amp;gt; 读写write/read -&amp;gt; 关闭close”模式来操作。 简单来说socket就是该模式的一个实现，socket即是一种特殊的文件，一些socket函数就是对其进行的操作(读/写IO,关闭，打开)。 我们在传输数据的时候，可以只使用">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP通信">
+<meta property="og:url" content="http://yoursite.com/2019/05/18/TCP/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="Socket 原理Socket 简介 socket起源于Unix，而Unix/Linux基本哲学之一就是：“一切即文件”，都可以用”打开open -&amp;gt; 读写write/read -&amp;gt; 关闭close”模式来操作。 简单来说socket就是该模式的一个实现，socket即是一种特殊的文件，一些socket函数就是对其进行的操作(读/写IO,关闭，打开)。 我们在传输数据的时候，可以只使用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.355Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCP通信">
+<meta name="twitter:description" content="Socket 原理Socket 简介 socket起源于Unix，而Unix/Linux基本哲学之一就是：“一切即文件”，都可以用”打开open -&amp;gt; 读写write/read -&amp;gt; 关闭close”模式来操作。 简单来说socket就是该模式的一个实现，socket即是一种特殊的文件，一些socket函数就是对其进行的操作(读/写IO,关闭，打开)。 我们在传输数据的时候，可以只使用">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/18/TCP/">
+
+
+
+
+
+  <title>TCP通信 | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/18/TCP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCP通信</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-18T14:41:21+08:00">
+                2019-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Socket-原理"><a href="#Socket-原理" class="headerlink" title="Socket 原理"></a>Socket 原理</h3><h4 id="Socket-简介"><a href="#Socket-简介" class="headerlink" title="Socket 简介"></a>Socket 简介</h4><ul>
+<li><strong>socket起源于Unix，而Unix/Linux基本哲学之一就是：“一切即文件”，都可以用”打开open -&gt; 读写write/read -&gt; 关闭close”模式来操作。</strong></li>
+<li><strong>简单来说socket就是该模式的一个实现，socket即是一种特殊的文件，一些socket函数就是对其进行的操作(读/写IO,关闭，打开)。</strong></li>
+<li><strong>我们在传输数据的时候，可以只使用（传输层）TCP/IP协议，但是那样的话，如果没有应用层，便无法识别数据内容，如果想要使传输的数据有意义，则必须使用到应用成协议，应用层协议有很多，比如HTTP,FTP,TELNET等，也可以自己定义应用层协议。WEB协议使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP协议作传输层协议将它发到网络上。</strong></li>
+</ul>
+<h4 id="Socket概念"><a href="#Socket概念" class="headerlink" title="Socket概念"></a>Socket概念</h4><ul>
+<li><strong>Socket是一个针对TCP和UDP编程的接口，你可以借助它建立TCP/IP连接等等。而TCP和UDP协议属于传输层。而HTTP是个应用层的协议，它实际上也建立在 TCP协议之上.（HTTP是轿车，提供了封装或者是现实数据的具体形式；socket是发动机，提供了网络通信的能力)。</strong></li>
+<li><strong>socket称为”套接字”,适用于网络通信的方法。socket是对tcp/IP协议的封装，socket本身并不是协议，而是一个调用接口(api)。通过socket我们才能使用TCP/IP协议。Socket的出现只是使得程序员更方便地使用TCP/IP协议栈而已，是对TCP/IP协议的抽象，从而形成了我们知道的一些最基本的函数接口。</strong></li>
+</ul>
+<h4 id="获取本地地址和端口号"><a href="#获取本地地址和端口号" class="headerlink" title="获取本地地址和端口号"></a>获取本地地址和端口号</h4><ul>
+<li><strong>java.net.Socket为套接字类，通过Socke获取：</strong><ul>
+<li><strong>int getLocalPort() :</strong><ul>
+<li><strong>用获取本地使用的端口号</strong></li>
+</ul>
+</li>
+<li><strong>getLocalSocketAddress() </strong><ul>
+<li><strong>返回此套接字绑定的端点的地址，如果尚未绑定则返回 null。</strong></li>
+</ul>
+</li>
+<li><strong>IntAddress getLocalAddress() :</strong><ul>
+<li><strong>用于获取套接字绑定的本地地址</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>使用InetAddress获取本地的地址方法:</strong><ul>
+<li><strong>String getCanonicalHostName() :</strong><ul>
+<li><strong>获取此IP地址的完全限定域名</strong></li>
+</ul>
+</li>
+<li><strong>String getHostAddress() :</strong><ul>
+<li><strong>返回IP地址字符串（以文本表现形式）</strong></li>
+</ul>
+</li>
+<li><strong>String getCanonicalHostName() :</strong><ul>
+<li><strong>获取此 IP 地址的完全限定域名。</strong></li>
+</ul>
+</li>
+<li><strong>String getHostName() :</strong> <ul>
+<li><strong>获取此 IP 地址的主机名。</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="获取远端地址和端口号"><a href="#获取远端地址和端口号" class="headerlink" title="获取远端地址和端口号"></a>获取远端地址和端口号</h4><ul>
+<li><strong>通过Socket获取：</strong><ul>
+<li><strong>int getPort() :</strong><ul>
+<li><strong>用于获取远端使用的端口号</strong></li>
+</ul>
+</li>
+<li><strong>InetAddress .getInetAddress() :</strong><ul>
+<li><strong>用于获取套接字绑定的远端地址</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="获取网络输入流和网络输出流"><a href="#获取网络输入流和网络输出流" class="headerlink" title="获取网络输入流和网络输出流"></a>获取网络输入流和网络输出流</h4><ul>
+<li><p><strong>通过Socket获取输入流与输出流：</strong></p>
+<ul>
+<li><strong>InputStream getInputStream() :</strong><ul>
+<li><strong>用于返回套接字的输入流</strong></li>
+</ul>
+</li>
+<li><strong>OutputStream getOutputStream() :</strong><ul>
+<li><strong>用于返回套接字的输出流</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>close方法：当使用Socket进行通讯完毕后，要关闭Socket以释放系统资源。</strong></p>
+</li>
+<li><strong>void close() ：</strong><ul>
+<li><strong>关闭此套接字。当关闭了该套接字后也会同时关闭由此获取的输入流与输出流</strong></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/15/Exception/" rel="next" title="Exception">
+                <i class="fa fa-chevron-left"></i> Exception
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/20/Thread/" rel="prev" title="Thread-1">
+                Thread-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket-原理"><span class="nav-number">1.</span> <span class="nav-text">Socket 原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Socket-简介"><span class="nav-number">1.1.</span> <span class="nav-text">Socket 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Socket概念"><span class="nav-number">1.2.</span> <span class="nav-text">Socket概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取本地地址和端口号"><span class="nav-number">1.3.</span> <span class="nav-text">获取本地地址和端口号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取远端地址和端口号"><span class="nav-number">1.4.</span> <span class="nav-text">获取远端地址和端口号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取网络输入流和网络输出流"><span class="nav-number">1.5.</span> <span class="nav-text">获取网络输入流和网络输出流</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

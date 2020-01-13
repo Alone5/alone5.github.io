@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java 日期时间Java日期涉及几大类1. java.util.Date Date类负责时间的表示，在计算机中，时间的表示是一个较大的概念，现有的系统基本都是利用从1970.1.1 00:00:00 到当前时间的毫秒数进行计时，这个时间称为epoch。在后文中如果没有明确说明，毫秒数就是指从1970年到对应时间的毫秒数。在Java 的Date类内部其实也是一个毫秒数，对外表现为一个Date对象。">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-Date(一)">
+<meta property="og:url" content="http://yoursite.com/2019/05/30/Java-Date/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="Java 日期时间Java日期涉及几大类1. java.util.Date Date类负责时间的表示，在计算机中，时间的表示是一个较大的概念，现有的系统基本都是利用从1970.1.1 00:00:00 到当前时间的毫秒数进行计时，这个时间称为epoch。在后文中如果没有明确说明，毫秒数就是指从1970年到对应时间的毫秒数。在Java 的Date类内部其实也是一个毫秒数，对外表现为一个Date对象。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.316Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java-Date(一)">
+<meta name="twitter:description" content="Java 日期时间Java日期涉及几大类1. java.util.Date Date类负责时间的表示，在计算机中，时间的表示是一个较大的概念，现有的系统基本都是利用从1970.1.1 00:00:00 到当前时间的毫秒数进行计时，这个时间称为epoch。在后文中如果没有明确说明，毫秒数就是指从1970年到对应时间的毫秒数。在Java 的Date类内部其实也是一个毫秒数，对外表现为一个Date对象。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/30/Java-Date/">
+
+
+
+
+
+  <title>Java-Date(一) | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/Java-Date/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java-Date(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-30T13:52:06+08:00">
+                2019-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Java-日期时间"><a href="#Java-日期时间" class="headerlink" title="Java 日期时间"></a>Java 日期时间</h2><h3 id="Java日期涉及几大类"><a href="#Java日期涉及几大类" class="headerlink" title="Java日期涉及几大类"></a>Java日期涉及几大类</h3><h4 id="1-java-util-Date"><a href="#1-java-util-Date" class="headerlink" title="1. java.util.Date"></a>1. java.util.Date</h4><ul>
+<li>Date类负责时间的表示，在计算机中，时间的表示是一个较大的概念，现有的系统基本都是利用从1970.1.1 00:00:00 到当前时间的毫秒数进行计时，这个时间称为epoch。在后文中如果没有明确说明，毫秒数就是指从1970年到对应时间的毫秒数。在Java 的Date类内部其实也是一个毫秒数，对外表现为一个Date对象。<h5 id="Date类方法"><a href="#Date类方法" class="headerlink" title="Date类方法"></a>Date类方法</h5></li>
+<li><strong>Date()</strong><ul>
+<li>分配一个 Date对象，并初始化它，以便它代表它被分配的时间，测量到最近的毫秒。</li>
+</ul>
+</li>
+<li><strong>Date(long date)</strong><ul>
+<li>分配一个 Date对象，并将其初始化为表示自称为“时代”的标准基准时间以后的指定毫秒数，即1970年1月1日00:00:00 GMT。</li>
+</ul>
+</li>
+<li><strong>void  setTime(long date)</strong><ul>
+<li>使用给定的毫秒时间值设置现有的 Date对象。</li>
+</ul>
+</li>
+<li><strong>void  setTime(long time)</strong><ul>
+<li>设置此 Date对象以表示1970年1月1日00:00:00 GMT后的 time毫秒的时间点。</li>
+</ul>
+</li>
+<li><strong>Instant  toInstant()</strong><ul>
+<li>此方法总是引发UnsupportedOperationException，因为SQL Date值没有时间组件，所以不应该使用。</li>
+</ul>
+</li>
+<li><strong>LocalDate  toLocalDate()</strong><ul>
+<li>将此 Date对象转换为 LocalDate</li>
+</ul>
+</li>
+<li><strong>String  toString()</strong><ul>
+<li>格式化日期转义格式yyyy-mm-dd。</li>
+</ul>
+</li>
+<li><strong>static Date  valueOf(LocalDate date)</strong><ul>
+<li>从一个LocalDate对象获取一个Date的实例，具有与给定的LocalDate相同的年，月和日的月值。</li>
+</ul>
+</li>
+<li><strong>static Date  valueOf(String s)</strong><ul>
+<li>将JDBC日期转义格式的字符串转换为 Date值。</li>
+</ul>
+</li>
+<li><strong>boolean    after(Date when)</strong><ul>
+<li>测试此日期是否在指定日期之后。</li>
+</ul>
+</li>
+<li><strong>boolean    before(Date when)</strong><ul>
+<li>测试此日期是否在指定日期之前。</li>
+</ul>
+</li>
+<li><strong>Object    clone()</strong><ul>
+<li>返回此对象的副本。</li>
+</ul>
+</li>
+<li><strong>int    compareTo(Date anotherDate)</strong><ul>
+<li>比较两个日期进行订购。</li>
+</ul>
+</li>
+<li><strong>boolean    equals(Object obj)</strong><ul>
+<li>比较两个日期来平等。</li>
+</ul>
+</li>
+<li><strong>static Date    from(Instant instant)</strong><ul>
+<li>从 Instant对象获取一个 Date的实例。</li>
+</ul>
+</li>
+<li><strong>long    getTime()</strong><ul>
+<li>返回自1970年1月1日以来，由此 Date对象表示的00:00:00 GMT的毫秒 数 。</li>
+</ul>
+</li>
+<li><strong>int    hashCode()</strong><ul>
+<li>返回此对象的哈希码值。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常用几个方法使用</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//当前系统时间</span></span><br><span class="line">	Date date = <span class="keyword">new</span> Date();</span><br><span class="line">	System.out.println(date);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 获取Date内部维护的毫秒</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">long</span> time = date.getTime();</span><br><span class="line">	System.out.println(time);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 设置一个毫秒值，使得Date表示该日期</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	date.setTime(<span class="number">10</span>);</span><br><span class="line">	System.out.println(date);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * Date大部分方法被声明为过时的，新开发项目不要再使用这些方法。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	date.getYear();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-java-util-Calendar（抽象类）"><a href="#2-java-util-Calendar（抽象类）" class="headerlink" title="2.java.util.Calendar（抽象类）"></a>2.java.util.Calendar（抽象类）</h4><ul>
+<li>Calendar类说是一个工具类，其实它比工具类还是更深一步的，它更像是一个加强版的Date类。一般的工具类会提供一堆static方法，工具类本身并不存储对象。但是Calendar类不是像一般的工具类只提供一堆static方法，而是在其内部本身就有一个毫秒数，所以它不是对外部Date对象操作，而是对内部的毫秒数进行转化，所以说Calendar本身就包含了日期时间信息，像一个装饰者模式。</li>
+<li>Calendar本身是一个抽象类，不能直接实例化，但是Calendar类提供一个工厂方法，即getInstance来创建一个Calendar实例，通过setTime()设定一个Calendar内部的毫秒数，之后就可以对这个毫秒数进行分析，进而得到它的年月日信息。同时，我们也可以对Calendar直接设定年月日属性，从而获取对应的Date对象。</li>
+<li>GregorianCalendar 是 Calendar 的一个具体子类，提供了世界上大多数国家使用的标准日历系统。结合Calendar抽象类使用。</li>
+</ul>
+<h5 id="Calendar类对象字段类型"><a href="#Calendar类对象字段类型" class="headerlink" title="Calendar类对象字段类型"></a>Calendar类对象字段类型</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">常量</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Calendar.YEAR</td>
+<td style="text-align:left">年份</td>
+</tr>
+<tr>
+<td style="text-align:left">Calendar.MONTH</td>
+<td style="text-align:left">月份</td>
+</tr>
+<tr>
+<td style="text-align:left">Calendar.DATE</td>
+<td style="text-align:left">日期</td>
+</tr>
+<tr>
+<td style="text-align:left">Calendar.DAY_OF_MONTH</td>
+<td style="text-align:left">日期，和上面的字段意义完全相同</td>
+</tr>
+<tr>
+<td style="text-align:left">Calendar.HOUR</td>
+<td style="text-align:left">12小时制的小时</td>
+</tr>
+<tr>
+<td style="text-align:left">Calendar.HOUR_OF_DAY</td>
+<td style="text-align:left">24小时制的小时</td>
+</tr>
+<tr>
+<td style="text-align:left">Calendar.MINUTE</td>
+<td style="text-align:left">分钟</td>
+</tr>
+<tr>
+<td style="text-align:left">Calendar.SECOND</td>
+<td style="text-align:left">秒</td>
+</tr>
+<tr>
+<td style="text-align:left">Calendar.DAY_OF_WEEK</td>
+<td style="text-align:left">星期几</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Calendar中需要注意的：</strong></li>
+</ul>
+<ol>
+<li>Calendar的星期是从周日开始的，常量值为0。</li>
+<li>Calendar的月份是从一月开始的，常量值为0。</li>
+<li>Calendar的每个月的第一天值为1。</li>
+</ol>
+<ul>
+<li><strong>常用方法示例:</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * static Calendar getInstance()</span></span><br><span class="line"><span class="comment">	 * 根据当前系统所在地区获取一个适用的实现类</span></span><br><span class="line"><span class="comment">	 * 通常返回的就是GregorianCalendar</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Calendar calendar = Calendar.getInstance();</span><br><span class="line">	System.out.println(calendar);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * Date getTime()</span></span><br><span class="line"><span class="comment">	 * 将当前Calendar的表示的时间一个Date实例形式返回。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Date date = calendar.getTime();</span><br><span class="line">	System.out.println(date);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * void setTime()</span></span><br><span class="line"><span class="comment">	 * 调整当前calendar的时间为给定的Date所表示的时间。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	calendar.setTime(date);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> date;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * int get(int field)</span></span><br><span class="line"><span class="comment"> * 该方法可以获取指定的时间分量所对应的值。</span></span><br><span class="line"><span class="comment"> * 时间分量为一个int值，无需记住每个值得含义，</span></span><br><span class="line"><span class="comment"> * Calendar提供了大量的常量与之对应。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarDemo2</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Calendar c = Calendar.getInstance();</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 1：获取年</span></span><br><span class="line"><span class="comment">		 * 2：获取月</span></span><br><span class="line"><span class="comment">		 * 3：获取日</span></span><br><span class="line"><span class="comment">		 * 与"天"相关的时间分量</span></span><br><span class="line"><span class="comment">		 * DAY_OF_MONTH：月中的天(DATE)</span></span><br><span class="line"><span class="comment">		 * DAY_OF_WEEK：周中的天,星期几</span></span><br><span class="line"><span class="comment">		 * DAY_OF_YEAR：年中的天</span></span><br><span class="line"><span class="comment">		 * HOUR	12小时制的小时</span></span><br><span class="line"><span class="comment">		 * HOUR_OF_DAY	24小时制的小时</span></span><br><span class="line"><span class="comment">		 * MINUTE	分钟</span></span><br><span class="line"><span class="comment">		 * SECOND	秒</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="keyword">int</span> year = c.get(Calendar.YEAR);</span><br><span class="line">		<span class="keyword">int</span> month = c.get(Calendar.MONTH);</span><br><span class="line">		<span class="keyword">int</span> day = c.get(Calendar.DAY_OF_MONTH);</span><br><span class="line">		<span class="keyword">int</span> h = c.get(Calendar.HOUR_OF_DAY);</span><br><span class="line">		<span class="keyword">int</span> m = c.get(Calendar.MINUTE);</span><br><span class="line">		<span class="keyword">int</span> s = c.get(Calendar.SECOND);</span><br><span class="line">		System.out.println(year + <span class="string">"-"</span> + month + <span class="string">"-"</span> + day);</span><br><span class="line">		System.out.println(h + <span class="string">":"</span> + m + <span class="string">":"</span> + s);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> days = c.get(Calendar.DAY_OF_YEAR);</span><br><span class="line">		System.out.println(<span class="string">"今年的第"</span> + days + <span class="string">"天"</span>);</span><br><span class="line">		days = c.get(Calendar.DAY_OF_WEEK);</span><br><span class="line">		String[] data = &#123; <span class="string">"日"</span>, <span class="string">"一"</span>, <span class="string">"二"</span>, <span class="string">"三"</span>, <span class="string">"四"</span>, <span class="string">"五"</span>, <span class="string">"六"</span> &#125;;</span><br><span class="line">		System.out.println(<span class="string">"今天是周"</span> + data[days - <span class="number">1</span>]);</span><br><span class="line">		<span class="comment">// 获取指定时间分量所允许的最大值</span></span><br><span class="line">		days = c.getActualMaximum(Calendar.DAY_OF_YEAR);</span><br><span class="line">		System.out.println(<span class="string">"今年一共"</span> + days + <span class="string">"天"</span>);</span><br><span class="line">		days = c.getActualMaximum(Calendar.DAY_OF_MONTH);</span><br><span class="line">		System.out.println(<span class="string">"当月一共"</span> + days + <span class="string">"天"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> date;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * void set(int field , int value)</span></span><br><span class="line"><span class="comment"> * 调整指定的时间分量为指定的值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarDemo3</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Calendar c = Calendar.getInstance();</span><br><span class="line">		System.out.println(c.getTime());</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 调整年</span></span><br><span class="line">		c.set(Calendar.YEAR, <span class="number">2000</span>);</span><br><span class="line">		System.out.println(c.getTime());</span><br><span class="line">		<span class="comment">// 调整月</span></span><br><span class="line">		c.set(Calendar.MONTH, Calendar.DECEMBER);</span><br><span class="line">		System.out.println(c.getTime());</span><br><span class="line"></span><br><span class="line">		c.set(Calendar.HOUR_OF_DAY, <span class="number">20</span>);</span><br><span class="line">		c.set(Calendar.MINUTE, <span class="number">20</span>);</span><br><span class="line">		c.set(Calendar.SECOND, <span class="number">20</span>);</span><br><span class="line">		System.out.println(c.getTime());</span><br><span class="line"></span><br><span class="line">		c.set(Calendar.DAY_OF_WEEK, <span class="number">4</span>);</span><br><span class="line">		System.out.println(c.getTime());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> date;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * void add(int field,int amount) </span></span><br><span class="line"><span class="comment"> * 对指定的时间分量加上给定的值，若给定的值为负数则是减去。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarDemo4</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Calendar c = Calendar.getInstance();</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 查看三年二月零25天以后所在周的周三是哪天？</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="comment">//加年</span></span><br><span class="line">		c.add(Calendar.YEAR, <span class="number">3</span>);</span><br><span class="line">		<span class="comment">//加月</span></span><br><span class="line">		c.add(Calendar.MONTH, <span class="number">2</span>);</span><br><span class="line">		<span class="comment">//加天</span></span><br><span class="line">		c.add(Calendar.DAY_OF_YEAR, <span class="number">25</span>);</span><br><span class="line">		System.out.println(c.getTime());</span><br><span class="line">		c.set(Calendar.DAY_OF_WEEK, <span class="number">4</span>);</span><br><span class="line">		System.out.println(c.getTime());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/29/Java-Lambda/" rel="next" title="Java-Lambda">
+                <i class="fa fa-chevron-left"></i> Java-Lambda
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/31/Java-Date2/" rel="prev" title="Java-Date2">
+                Java-Date2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-日期时间"><span class="nav-number">1.</span> <span class="nav-text">Java 日期时间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java日期涉及几大类"><span class="nav-number">1.1.</span> <span class="nav-text">Java日期涉及几大类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-java-util-Date"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. java.util.Date</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Date类方法"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Date类方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-java-util-Calendar（抽象类）"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.java.util.Calendar（抽象类）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Calendar类对象字段类型"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Calendar类对象字段类型</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

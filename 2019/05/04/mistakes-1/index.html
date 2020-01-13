@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.(单选题)Outer类中定义了一个成员内部类Inner，需要在main()方法中创建Inner类实例对象，以下四种方式正确的是（ ）。A.Inner in = new Inner();B.Inner in = new Outer.Inner();C.Outer.Inner in = new Outer.Inner();D.Outer.Inner in = new Outer().new Inn">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一次月考">
+<meta property="og:url" content="http://yoursite.com/2019/05/04/mistakes-1/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="1.(单选题)Outer类中定义了一个成员内部类Inner，需要在main()方法中创建Inner类实例对象，以下四种方式正确的是（ ）。A.Inner in = new Inner();B.Inner in = new Outer.Inner();C.Outer.Inner in = new Outer.Inner();D.Outer.Inner in = new Outer().new Inn">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第一次月考">
+<meta name="twitter:description" content="1.(单选题)Outer类中定义了一个成员内部类Inner，需要在main()方法中创建Inner类实例对象，以下四种方式正确的是（ ）。A.Inner in = new Inner();B.Inner in = new Outer.Inner();C.Outer.Inner in = new Outer.Inner();D.Outer.Inner in = new Outer().new Inn">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/04/mistakes-1/">
+
+
+
+
+
+  <title>第一次月考 | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/mistakes-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第一次月考</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-04T14:15:54+08:00">
+                2019-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>1.(单选题)Outer类中定义了一个成员内部类Inner，需要在main()方法中创建</strong><br><strong>Inner类实例对象，以下四种方式正确的是（ ）。</strong><br><strong>A.Inner in = new Inner();</strong><br><strong>B.Inner in = new Outer.Inner();</strong><br><strong>C.Outer.Inner in = new Outer.Inner();</strong><br><strong>D.Outer.Inner in = new Outer().new Inner();</strong><br><strong>【正确答案】D</strong><br><strong>【答案解析】本题考查静态方法创建实例内部类对象 内部类的最重要的一个特点就是它可以直接访问它外部类的成员变量。成员变量是 对象身上的。对象创建完成了,才会为成员变量分配空间。能调用成员变量, 意味着一定有了实例对象. main方法是静态的，它执行的时候可以不用创建那个对象。这就矛盾了。 main方法运行的时候没有任何外部类的实例对象。我们的内部类的实例对象创建了 它又可以访问外部类的成员变量，外部类的实例对象在哪儿了？ 所以这个原因，要想创建内部类的实例对象，必须创建外部类的实例对象 选项D正确。</strong> </p>
+<p><strong>2.(单选题)下列运算结果正确的是（ ）。</strong><br><strong>A.int x = 4590;</strong><br><strong>x = x / 1000 *1000;</strong><br><strong>x的结果是4590</strong><br><strong>B.int x = 3;</strong><br><strong>x = x++;</strong><br><strong>x的结果是4</strong><br><strong>C.short x = 3;</strong><br><strong>x = x+4;</strong><br><strong>x的结果是7</strong><br><strong>D.int x = 2;</strong><br><strong>boolean b = x&gt;3 &amp;&amp; x&lt;6;</strong><br><strong>b的结果是false</strong><br><strong>【正确答案】D</strong><br><strong>【答案解析】本题考查运算符的使用 选项A，java中整数的直接量都是int类型，两个整型相除，忽略余数，结果还是int类型，4590/1000结果是4,41000=4000，结果为4000，错误 选项B，程序的执行顺序先运算赋值运算，变量再自增，所以x的结果是3 选项C，编译错误</strong> </p>
+<p><strong>3.(单选题)下列程序输出结果是（ ）。</strong><br><strong>class Super {</strong><br>    <strong>public static void m1() {</strong><br>        <strong>System.out.println(“m1 in Super”);    }</strong><br>    <strong>public void m2() {</strong><br>        <strong>System.out.println(“m2 in Super”);    }}</strong><br><strong>class Sub extends Super {</strong><br>    <strong>public static void m1() {</strong><br>        <strong>System.out.println(“m1 in Sub”);    }</strong><br>    <strong>public void m2() {</strong><br>        <strong>System.out.println(“m2 in Sub”);    }}</strong><br><strong>public class TestMain {</strong><br>    <strong>public static void main(String args[]) {</strong><br>        <strong>Super sup = new Sub();</strong><br>        <strong>sup.m1();</strong><br>        <strong>sup.m2();</strong><br>        <strong>Sub sub = (Sub) sup;</strong><br>        <strong>sub.m1();</strong><br>        <strong>sub.m2();    }}</strong><br><strong>A.m1 in Sub</strong><br>   <strong>m2 in Sub</strong><br>   <strong>m1 in Sub</strong><br>   <strong>m2 in Sub</strong><br><strong>B.m1 in Super</strong><br>   <strong>m2 in Super</strong><br>   <strong>m1 in Sub</strong><br>   <strong>m2 in Sub</strong><br><strong>C.m1 in Sub</strong><br>   <strong>m2 in Sub</strong><br>   <strong>m1 in Super</strong><br>   <strong>m2 in Super</strong><br><strong>D.m1 in Super</strong><br>   <strong>m2 in Sub</strong><br>   <strong>m1 in Sub</strong><br>   <strong>m2 in Sub</strong><br><strong>【正确答案】D</strong><br><strong>【答案解析】静态方法可以被继承和隐藏  而不能够被重写，因此不能实现多态，不能实现父类的引用可以指向不同子类的对象进行多态调用。 选项D正确</strong> </p>
+<p><strong>4.(多选题)请选出属于JDK的组成部分（ ）。</strong><br><strong>A.支持JAVA程序运行的一组类库</strong><br><strong>B.JVM</strong><br><strong>C.支持JAVA程序开发的一组开发工具</strong><br><strong>D.一组软件测试工具</strong><br><strong>【正确答案】A,B,C</strong><br><strong>【答案解析】JDK：JAVA开发工具集，包含JAVA程序的运行环境和辅助JAVA开发的一组开发工具。运行环境又包括一组类库和JVM</strong> </p>
+<p><strong>5.(多选题)下面关于数组的说法中，正确的是（ ）。</strong><br><strong>A.在类中声明一个整数数组作为成员变量，如果没有给它赋值，数值元素值为空</strong><br><strong>B.数组可以在内存空间连续存储任意一组数据</strong><br><strong>C.数组必须先声明，然后才能使用</strong><br><strong>D.数组本身是一个对象</strong><br><strong>【正确答案】C,D</strong><br><strong>【答案解析】本题考查数组的基本使用 数组中元素如果是数值元素初值为0值，数组中元素类型必须一致，数组必须先声明 再使用，数组在内存中以对象的形式存在。选项CD正确。</strong> </p>
+<p><strong>6.(多选题)下列关于JDK的说法正确的是（ ）</strong><br><strong>A.开发一个Java程序，需要完整的JDK</strong><br><strong>B.运行一个Java程序，需要完整的JDK</strong><br><strong>C.运行一个Java程序，只需要JDK中的JRE</strong><br><strong>D.以上说法都不对</strong><br><strong>【正确答案】A,C</strong><br><strong>【答案解析】本题考查JDK的组成和每个组成部分的功能 JDK是Java语言的软件开发工具包，其中包括JRE和一组开发工具 选项A，开发一个JAVA程序，需要开发工具，所以需要完整的JDK，正确 选项B，运行一个Java程序只需要JRE 错误 选项C，运行一个Java程序，只需要JDK中的JRE 正确 选项D，A C 选项是正确的，所以该选项是错误的</strong> </p>
+<p><strong>7.(多选题)给定java代码如下所示，在1处新增下列（  ）方法，是对show方法的重载</strong><br><strong>public class Test{<br>    public void show(int x, int y, int z) {    }</strong><br>    <strong>//1</strong><br><strong>}</strong><br><strong>A.public int show(int x,int y,float z){return 0;}</strong><br><strong>B.public int show(int x,int y,int z){return 0;}</strong><br><strong>C.public void show(int x,int z){}</strong><br><strong>D.public viod show(int z,int y,int x){}</strong><br><strong>【正确答案】A,C</strong><br><strong>【答案解析】本题考查方法的重载规则 方法的重载必须满足方法名相同和参数不同（类型或个数） 选项AC满足重载的条件正确 选项BD参数都与定义的方法参数相同，不是重载。</strong> </p>
+<p><strong>8.(多选题)给出以下代码，请问该程序的运行结果是什么？</strong><br><strong>class A{</strong><br>    <strong>private int x=0;</strong><br>    <strong>static int y=1;</strong><br>    <strong>protected int z=2;</strong><br><strong>}</strong><br><strong>class B extends A{</strong><br>    <strong>void method(){</strong><br>        <strong>System.out.println(x);</strong><br>        <strong>System.out.println(y);</strong><br>        <strong>System.out.println(z);</strong><br>    <strong>}</strong><br><strong>}</strong><br><strong>下列说法正确的是（ ）。</strong><br><strong>A.程序编译错误，因为类B不能访问变量x。</strong><br><strong>B.程序编译成功，打印输出012。</strong><br><strong>C.程序编译错误，如果移走System.out.println(x)这条语句，</strong><br><strong>可使编译程序通过。</strong><br><strong>D.程序编译错误,因为变量x未在类B中定义。</strong><br><strong>【正确答案】A,C,D</strong><br><strong>【答案解析】本题考查java中几种访问修饰符 public：公共的，可以在任何类中访问 protected：受保护的，只能在同一个包中，或子类中访问 default：只能在同一个包中的类中访问 private:私有的，只能在本类中访问的 本题代码中，变量x是私有的，不能在类外部访问，ACD正确。</strong></p>
+<p><strong>9.(多选题)关于类、对象、引用以下描述正确的是（ ）。</strong><br><strong>A.Person person = new Person(“张三”);</strong><br><strong>person是一个对象，是内存中的一块区域，是Person类的一个实例</strong><br><strong>B.Person person = new Person(“张三”);</strong><br><strong>person并不是真正的对象，而是指向所创建的对象的引用</strong><br><strong>C.Person person;</strong><br><strong>person = new Person(“张三”);</strong><br><strong>person = new Person(“李四”);</strong><br><strong>person是引用类型的变量，指向了“张三”和“李四”两个对象</strong><br><strong>D.Person person;</strong><br><strong>person = new Person(“张三”);</strong><br><strong>person = new Person(“李四”);</strong><br><strong>person是引用类型的变量，最后指向了“李四”这个对象</strong><br><strong>【正确答案】B,D</strong><br><strong>【答案解析】本题考查引用类型变量的含义 引用类型的变量可以存放该类对象的地址信息，通常称为“指向该类对象”； 选项A和B中，person并不是所创建的对象，是一个引用，是一个可以指向Person类的对象的引用。真正创建对象的语句是右边的new Person(“张三”); A错误，B正确 选项C和D，这里让person先指向了“张三”这个对象，然后又指向了“李四”这个对象。也就是说，Person person，这句话只是声明了一个Person类的引用，它可以指向任何Person类的实例 A错误，D正确</strong> </p>
+<p><strong>10.关于垃圾收集的哪些叙述是对的？（ ）</strong></p>
+<ul>
+<li><strong>A．垃圾收集将检查并释放不再使用的内存。</strong></li>
+<li><strong>B．垃圾收集允许程序开发者明确指定并立即释放该内存。</strong></li>
+<li><strong>C．程序开发者必须自己创建一个线程进行内存释放的工作。</strong></li>
+<li><p><strong>D．垃圾收集能够在期望的时间释放被 Java 对象使用的内存。</strong><br><strong>【参考答案】A</strong></p>
+</li>
+<li><p><strong>【试题分析】Java 语言将内存分配和释放的工组交给了自己，程序员不必做这些工作，它提供一个系统级的线程跟踪每个内存的分配，在 JVM 的空闲处理中，垃圾收集线程将检查和释放不再使用的内存（即可以被释放的内存）。垃圾收集的过程在 Java 程序的生存期中是自动的，不需要分配和释放内存，也避免了内存泄漏。可以调用 System.gc()方法建议 JVM 执行垃圾收集以使得可被释放的内存能立即被使用，当此方法返回的时候， JVM 已经做了最大的努力从被丢弃的对象上回收内存空间。程序员不能指定收集哪些内存，一般而言也不用关心这个问题，除非是程序的内存消耗很大，特别是有很多临时对象时可以“建议“进行垃圾收集以提高可用内存。需要指出的是调用 System.gc()方法不能保证 JVM 立即进行垃圾收集，而只能是建议,因为垃圾收集线程的优先级很低（通常是最低的）。JVM 垃圾收集器收集一个对象之前，一般要求程序调用适当的方法释放资源，但在没有明确释放资源的情况下，Java 提供了缺省机制来终止化该对象心释放资源，这个方法就是 finalize(  )。因此选项 A是正确的。</strong></p>
+</li>
+<li><strong>垃圾收集器不可以被强制执行，但程序员可以通过调用 System. gc 方法来建议执行垃圾收集器。因此选项 B 是错误的。</strong></li>
+<li><strong>Java 的垃圾回收机制是为所有 Java 应用进程服务的，而不是为某个特定的进程服务的。因此，任何一个进程都没有权利去命令垃圾回收机制做什么、怎么做或做多少。因此选项 C 是错误的。</strong></li>
+<li><strong>Java 运行时系统只在需要的时候才使用垃圾收集。因此用户无法知道垃圾回收发生的精确时间。同样没有办法预知在一组均符合垃圾收集器收集标准的对象中，哪一个会被首先收集。 因此选项 D 是错误的。</strong></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/03/case-2/" rel="next" title="练习案例-2">
+                <i class="fa fa-chevron-left"></i> 练习案例-2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/05/API-3/" rel="prev" title="API-3">
+                API-3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JSPJSP: Java服务器页面123J-JavaS-ServerP-Page  历史上 微软公司首先提供了 ASP 技术, 很受欢迎 SUN根据ASP的风格基于Servlet技术, 设计了JSP JSP就是Servlet  JSP编程好处:  JSP 页面基于HTML页面, 传统的HTML开发工具可以写JSP 在运行时候 JSP 被翻译成 .java 文件(Servlet) 再编译为.clas">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP-Java">
+<meta property="og:url" content="http://yoursite.com/2019/07/09/JSP-Java/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="JSPJSP: Java服务器页面123J-JavaS-ServerP-Page  历史上 微软公司首先提供了 ASP 技术, 很受欢迎 SUN根据ASP的风格基于Servlet技术, 设计了JSP JSP就是Servlet  JSP编程好处:  JSP 页面基于HTML页面, 传统的HTML开发工具可以写JSP 在运行时候 JSP 被翻译成 .java 文件(Servlet) 再编译为.clas">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.301Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP-Java">
+<meta name="twitter:description" content="JSPJSP: Java服务器页面123J-JavaS-ServerP-Page  历史上 微软公司首先提供了 ASP 技术, 很受欢迎 SUN根据ASP的风格基于Servlet技术, 设计了JSP JSP就是Servlet  JSP编程好处:  JSP 页面基于HTML页面, 传统的HTML开发工具可以写JSP 在运行时候 JSP 被翻译成 .java 文件(Servlet) 再编译为.clas">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/09/JSP-Java/">
+
+
+
+
+
+  <title>JSP-Java | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/JSP-Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSP-Java</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-09T17:30:46+08:00">
+                2019-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h2><p>JSP: Java服务器页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">J-Java</span><br><span class="line">S-Server</span><br><span class="line">P-Page</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>历史上 微软公司首先提供了 ASP 技术, 很受欢迎</li>
+<li>SUN根据ASP的风格基于Servlet技术, 设计了JSP</li>
+<li>JSP就是Servlet</li>
+</ol>
+<p>JSP编程好处:</p>
+<ol>
+<li>JSP 页面基于HTML页面, 传统的HTML开发工具可以写JSP</li>
+<li>在运行时候 JSP 被翻译成 .java 文件(Servlet) 再编译为.class</li>
+<li>执行时候执行class文件.</li>
+<li><p>JSP自动部署, 不用写web.xml</p>
+<blockquote>
+<p>JSP 的优势在于 使用HTML风格编码编写Servlet类! JSP非常适合显示网页符数据.</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>JSP Hello World!</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=utf-8"</span> pageEncoding=<span class="string">"utf-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">&lt;title&gt;第一个JSP&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;第一个JSP&lt;/h1&gt;</span><br><span class="line">    &lt;!-- JSP 中可以嵌入 <span class="string">"Java 程序脚本"</span> --&gt;</span><br><span class="line">    &lt;%</span><br><span class="line">        String str = <span class="string">"Hello World!"</span>;</span><br><span class="line">    %&gt;</span><br><span class="line">    &lt;!-- JSP 表达式, 用于计算表达式值 --&gt;</span><br><span class="line">    &lt;p&gt;&lt;%=str%&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="JSP运行原理"><a href="#JSP运行原理" class="headerlink" title="JSP运行原理"></a>JSP运行原理</h2><p>JSP运行过程:</p>
+<ul>
+<li>第一次请求JSP时候<ol>
+<li>先将JSP翻译为一个 Servlet 源程序(.java)</li>
+<li>再将Servlet源程序编译为.class文件</li>
+<li>创建Servlet对象</li>
+<li>执行Servlet对象的 service 方法, 处理请求与响应</li>
+</ol>
+</li>
+<li>第二次请求JSP时候<ol>
+<li>如果JSP被编辑过则重新走流程 1</li>
+<li>如果JSP没有被编辑过, 则执行执行Servlet对象的 service 方法</li>
+</ol>
+</li>
+</ul>
+<h2 id="JSP-中的Java"><a href="#JSP-中的Java" class="headerlink" title="JSP 中的Java"></a>JSP 中的Java</h2><ol>
+<li>Java 脚本 : 用于处理程序逻辑, 可以写任意语句, 流程控制等<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    <span class="comment">//Java 脚本 </span></span><br><span class="line">    <span class="keyword">long</span> now = System.currentTimeMillis();</span><br><span class="line">    <span class="keyword">long</span> year = now/<span class="number">1000</span>/<span class="number">60</span>/<span class="number">60</span>/<span class="number">24</span>/<span class="number">365</span> + <span class="number">1970</span>;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>Java 脚本中的语句会翻译到 service 方法中的语句</p>
+<ol start="2">
+<li>Java 表达式: 用于计算并且输出表达式<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- JSP 表达式, 用于计算表达式值并且在网页上输出--&gt;</span><br><span class="line">&lt;p&gt;&lt;%=now/1000%60%&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;%=year%&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;%=add(times, 1)%&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>Java 声明: 用于为Servlet声明成员<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- JSP 中的<span class="string">"声明"</span>,  --&gt;</span><br><span class="line">&lt;%!</span><br><span class="line">    <span class="comment">//用于为当前类声明 属性/方法/静态成员等</span></span><br><span class="line">    <span class="comment">//编译以后会成为 Servlet 中的成员</span></span><br><span class="line">    <span class="keyword">int</span> times = <span class="number">55</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a+b;</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>案例:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> </span><br><span class="line">    contentType=<span class="string">"text/html; charset=utf-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"utf-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">&lt;title&gt;Java 程序&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;JSP中的Java&lt;/h1&gt;</span><br><span class="line">    &lt;!-- JSP 中的<span class="string">"声明"</span>,  --&gt;</span><br><span class="line">    &lt;%!</span><br><span class="line">        <span class="comment">//用于为当前类声明 属性/方法/静态成员等</span></span><br><span class="line">        <span class="comment">//编译以后会成为 Servlet 中的成员</span></span><br><span class="line">        <span class="keyword">int</span> times = <span class="number">55</span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> a+b;</span><br><span class="line">        &#125;</span><br><span class="line">    %&gt;</span><br><span class="line">    &lt;%</span><br><span class="line">        <span class="comment">//Java 脚本 </span></span><br><span class="line">        <span class="keyword">long</span> now = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> year = now/<span class="number">1000</span>/<span class="number">60</span>/<span class="number">60</span>/<span class="number">24</span>/<span class="number">365</span> + <span class="number">1970</span>;</span><br><span class="line">    %&gt;</span><br><span class="line">    &lt;!-- JSP 表达式, 用于计算表达式值并且在网页上输出--&gt;</span><br><span class="line">    &lt;p&gt;&lt;%=now/1000%60%&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;&lt;%=year%&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;&lt;%=add(times, 1)%&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="page-指令"><a href="#page-指令" class="headerlink" title="page 指令"></a>page 指令</h2><p>使用 &lt;%@ page %&gt; 声明page 指令</p>
+<ol>
+<li>必须写在JSP的第一行</li>
+<li>属性:<ul>
+<li>language=java 可以省略, 省略就是Java, 只能Java</li>
+<li>contentType=”text/html; charset=UTF-8” 就是 response.setContentType(…) 设置浏览器端的解析编码</li>
+<li>pageEncoding=”UTF-8” 页面编码, 是告诉Tomcat读取当前网页时候的编码</li>
+<li>import=”java.util.<em>,java.sql.</em>“ 导入组件</li>
+</ul>
+</li>
+</ol>
+<h2 id="JSP内置对象"><a href="#JSP内置对象" class="headerlink" title="JSP内置对象"></a>JSP内置对象</h2><ul>
+<li>就是JSP中预先定义的引用, 引用了与JSP功能相关的对象.</li>
+<li>可以随时使用引用调用对象的方法, 实现功能</li>
+<li>一共有9个对象: 经常成为9大内置对象.<br>常用:</li>
+</ul>
+<ol>
+<li>request HttpServletResuest</li>
+<li>response HttpServletResponse</li>
+<li>out JspWriter 功能与 PrintWriter 一致</li>
+</ol>
+<blockquote>
+<p>考点: JSP out对象的类型: JspWriter</p>
+</blockquote>
+<p>比较常用:</p>
+<ol>
+<li>session HttpSession 类型, 用于存储与”用户会话”有关的数据.(以后讲)</li>
+<li>application ServletContext 类型, 用于存储与当前Servlet容器有关的数据(后续专门讲)</li>
+<li>pageContext PageContext, 页面”上下文Context”. PageContext是当前页面上下文, 是当前页面的大管家, 内部包含与JSP有关的全部资源.<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pageContext.getRequest() 返回的对象就是 request</span><br><span class="line">pageContext.getResponse()  返回的对象就是 response对象</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>不常用:</p>
+<ol>
+<li>config : ServletConfig 用于读取 web.xml 的内容</li>
+<li>page : Object类型, 是当前JSP对象(Servlet对象)的引用, 就是this</li>
+<li>exception : Exception 类型, 当前网页是错误页面时候, 用于获取异常信息.</li>
+</ol>
+<p>案例:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page </span><br><span class="line">    language=<span class="string">"java"</span> </span><br><span class="line">    contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">    <span class="keyword">import</span>=<span class="string">"java.util.*,java.sql.*"</span> </span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    List&lt;String&gt; list=<span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    <span class="comment">//演示request对象的功能: 读取请求中的数据</span></span><br><span class="line">    String ua = request.getHeader(<span class="string">"User-Agent"</span>);</span><br><span class="line">    <span class="comment">//演示response对象功能: 处理响应信息</span></span><br><span class="line">    response.setHeader(<span class="string">"message"</span>, <span class="string">"Hello World!"</span>); </span><br><span class="line">%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;内置对象功能演示&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;User-Agent:</span><br><span class="line">    &lt;%</span><br><span class="line">        <span class="comment">//在p标签里面显示ua信息</span></span><br><span class="line">        out.println(ua); </span><br><span class="line">    %&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;%</span><br><span class="line">        <span class="comment">//pageContext 页面上下文, 包含当前页面全部相关信息</span></span><br><span class="line">        <span class="comment">// pageContext.getOut() 返回对象就是 out 对象</span></span><br><span class="line">        <span class="comment">// 其功能与out对象相同</span></span><br><span class="line">        JspWriter o = pageContext.getOut();</span><br><span class="line">    %&gt;</span><br><span class="line">    &lt;p&gt;User-Agent: &lt;% o.println(ua); %&gt; &lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="利用request对象共享数据"><a href="#利用request对象共享数据" class="headerlink" title="利用request对象共享数据"></a>利用request对象共享数据</h2><p>request内部封装了一个集合, 用于在一个请求期间共享数据。<br>主要用于在Servlet与JSP之间共享数据。<br>其主要API方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.setAttribute(key, value);</span><br><span class="line">Object value = request.getAttribute(key);</span><br><span class="line">request.removeAttribute(key);</span><br></pre></td></tr></table></figure></p>
+<p>案例:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page </span><br><span class="line">    language=<span class="string">"java"</span> </span><br><span class="line">    contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">    <span class="keyword">import</span>=<span class="string">"java.util.*,java.sql.*"</span> </span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    <span class="comment">//将数据存储到 request中</span></span><br><span class="line">    request.setAttribute(<span class="string">"msg"</span>, <span class="string">"Hello World!"</span>);</span><br><span class="line">    request.setAttribute(<span class="string">"price"</span>, <span class="number">1234.0</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;利用request共享/传送数据&lt;/h1&gt;</span><br><span class="line">    &lt;%</span><br><span class="line">        <span class="comment">//接收request传递/共享的数据</span></span><br><span class="line">        String s = (String)request.getAttribute(<span class="string">"msg"</span>);</span><br><span class="line">        Double d = (Double)request.getAttribute(<span class="string">"price"</span>);</span><br><span class="line">        <span class="comment">//删除request中共享的数据</span></span><br><span class="line">        request.removeAttribute(<span class="string">"msg"</span>);</span><br><span class="line">        request.removeAttribute(<span class="string">"price"</span>);</span><br><span class="line">    %&gt;</span><br><span class="line">    &lt;p&gt;msg:&lt;%=s%&gt; price:&lt;%=d%&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h2><p>利用请求协作对象, 从Servlet转发到JSP。<br>SUN为了能够实现Servlet处理业务功能, 由JSP显示业务处理结果, 而设计了Servlet到JSP的转发功能。<br>案例:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//测试 从Servlet转发到JSP</span></span><br><span class="line">        <span class="comment">//1. 保存数据到 request 对象</span></span><br><span class="line">        request.setAttribute(<span class="string">"msg"</span>, <span class="string">"Hello World!"</span>);</span><br><span class="line">        <span class="comment">//2. 利用请求协作对象转发到一个JSP页面</span></span><br><span class="line">        RequestDispatcher rd=request.getRequestDispatcher(<span class="string">"demo03.jsp"</span>);</span><br><span class="line">        rd.forward(request, response);</span><br><span class="line">        <span class="comment">//注意!! 转发以后不能再处理网页内容, </span></span><br><span class="line">        <span class="comment">//包括向response输出信息, 或者再次转发!!</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  &lt;servlet&gt;</span><br><span class="line">    &lt;description&gt;&lt;/description&gt;</span><br><span class="line">    &lt;display-name&gt;DemoServlet&lt;/display-name&gt;</span><br><span class="line">    &lt;servlet-name&gt;DemoServlet&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-<span class="class"><span class="keyword">class</span>&gt;<span class="title">day05</span>.<span class="title">DemoServlet</span>&lt;/<span class="title">servlet</span>-<span class="title">class</span>&gt;</span></span><br><span class="line"><span class="class">  &lt;/<span class="title">servlet</span>&gt;</span></span><br><span class="line"><span class="class">  &lt;<span class="title">servlet</span>-<span class="title">mapping</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">servlet</span>-<span class="title">name</span>&gt;<span class="title">DemoServlet</span>&lt;/<span class="title">servlet</span>-<span class="title">name</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">url</span>-<span class="title">pattern</span>&gt;/<span class="title">demo</span>&lt;/<span class="title">url</span>-<span class="title">pattern</span>&gt;</span></span><br><span class="line"><span class="class">  &lt;/<span class="title">servlet</span>-<span class="title">mapping</span>&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&lt;%@ <span class="title">page</span> </span></span><br><span class="line"><span class="class">    <span class="title">language</span></span>=<span class="string">"java"</span> </span><br><span class="line">    contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">    <span class="keyword">import</span>=<span class="string">"java.util.*,java.sql.*"</span> </span><br><span class="line">%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;从Servlet转发到JSP&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;&lt;%=request.getAttribute("msg")%&gt;&lt;/p&gt; </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现MVC版本的员工列表"><a href="#实现MVC版本的员工列表" class="headerlink" title="实现MVC版本的员工列表:"></a>实现MVC版本的员工列表:</h2><ol>
+<li>DBUtil, Emp 等略</li>
+<li><p>编写Servlet</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListEmpServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//利用Dao获取数据</span></span><br><span class="line">        EmpDao dao = <span class="keyword">new</span> EmpDao();</span><br><span class="line">        List&lt;Emp&gt; list = dao.findAll();</span><br><span class="line">        <span class="comment">//利用request共享数据</span></span><br><span class="line">        request.setAttribute(<span class="string">"list"</span>, list); </span><br><span class="line">        <span class="comment">//转发到 list-emp.jsp, 显示员工列表</span></span><br><span class="line">        RequestDispatcher rd=request.getRequestDispatcher(<span class="string">"list-emp.jsp"</span>);</span><br><span class="line">        rd.forward(request, response); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>ListEmpServlet<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ListEmpServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>day05.ListEmpServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ListEmpServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/list-emp<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写JSP</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page </span><br><span class="line">    language=<span class="string">"java"</span> </span><br><span class="line">    contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">    <span class="keyword">import</span>=<span class="string">"java.util.*,entity.*"</span></span><br><span class="line">%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">&lt;title&gt;员工列表&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;员工列表&lt;/h1&gt;</span><br><span class="line">    &lt;table border=<span class="string">"1"</span>&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;编号&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;姓名&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;领导&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;入职日期&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;部门号&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;薪资&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;提成&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">&lt;% </span><br><span class="line">    List&lt;Emp&gt; list = </span><br><span class="line">        (List&lt;Emp&gt;)request.getAttribute(<span class="string">"list"</span>);</span><br><span class="line">%&gt;</span><br><span class="line">        &lt;%<span class="keyword">for</span>(Emp emp:list)&#123; %&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;&lt;%=emp.getEmpno()%&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;%=emp.getEname()%&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;%=emp.getMgr()%&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;%=emp.getHiredate()%&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;%=emp.getDeptno()%&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;%=emp.getSalary()%&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;%=emp.getComm()%&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;%&#125;%&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/09/Web-Servlet-3/" rel="next" title="Web-Servlet-3">
+                <i class="fa fa-chevron-left"></i> Web-Servlet-3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/09/JSP-case-1/" rel="prev" title="JSP-case-1">
+                JSP-case-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP"><span class="nav-number">1.</span> <span class="nav-text">JSP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP运行原理"><span class="nav-number">2.</span> <span class="nav-text">JSP运行原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-中的Java"><span class="nav-number">3.</span> <span class="nav-text">JSP 中的Java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#page-指令"><span class="nav-number">4.</span> <span class="nav-text">page 指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP内置对象"><span class="nav-number">5.</span> <span class="nav-text">JSP内置对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用request对象共享数据"><span class="nav-number">6.</span> <span class="nav-text">利用request对象共享数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转发"><span class="nav-number">7.</span> <span class="nav-text">转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现MVC版本的员工列表"><span class="nav-number">8.</span> <span class="nav-text">实现MVC版本的员工列表:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

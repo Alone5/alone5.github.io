@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="标准标签库 和 EL表达式关于标签库 和 EL表达式：  网页中的Java代码不方便维护，经常出现 空指针异常，不友好。 SUN提供了自定义标签技术，用于替代Java代码。每个厂商都设计了自己标签。 标签无法通用。自定义标签语法复杂，实现繁琐成本高。 Apache组织设计了“标准标签库 JSTL” 实现了绝大部分企业需要用的标签功能。 目前企业基本上都使用标准标签库解决问题。   使用标准标签库">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP-Java-2">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/JSP-Java-2/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="标准标签库 和 EL表达式关于标签库 和 EL表达式：  网页中的Java代码不方便维护，经常出现 空指针异常，不友好。 SUN提供了自定义标签技术，用于替代Java代码。每个厂商都设计了自己标签。 标签无法通用。自定义标签语法复杂，实现繁琐成本高。 Apache组织设计了“标准标签库 JSTL” 实现了绝大部分企业需要用的标签功能。 目前企业基本上都使用标准标签库解决问题。   使用标准标签库">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP-Java-2">
+<meta name="twitter:description" content="标准标签库 和 EL表达式关于标签库 和 EL表达式：  网页中的Java代码不方便维护，经常出现 空指针异常，不友好。 SUN提供了自定义标签技术，用于替代Java代码。每个厂商都设计了自己标签。 标签无法通用。自定义标签语法复杂，实现繁琐成本高。 Apache组织设计了“标准标签库 JSTL” 实现了绝大部分企业需要用的标签功能。 目前企业基本上都使用标准标签库解决问题。   使用标准标签库">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/10/JSP-Java-2/">
+
+
+
+
+
+  <title>JSP-Java-2 | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/JSP-Java-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSP-Java-2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T20:52:58+08:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="标准标签库-和-EL表达式"><a href="#标准标签库-和-EL表达式" class="headerlink" title="标准标签库 和 EL表达式"></a>标准标签库 和 EL表达式</h2><p>关于标签库 和 EL表达式：</p>
+<ol>
+<li>网页中的Java代码不方便维护，经常出现 空指针异常，不友好。</li>
+<li>SUN提供了自定义标签技术，用于替代Java代码。每个厂商都设计了自己标签。 标签无法通用。自定义标签语法复杂，实现繁琐成本高。</li>
+<li>Apache组织设计了“标准标签库 JSTL” 实现了绝大部分企业需要用的标签功能。 目前企业基本上都使用标准标签库解决问题。</li>
+</ol>
+<blockquote>
+<p>使用标准标签库 和 EL表达式</p>
+</blockquote>
+<h3 id="EL-表达式"><a href="#EL-表达式" class="headerlink" title="EL 表达式"></a>EL 表达式</h3><p>EL 表达式有标准标签库一起诞生， 与JSTL配合使用</p>
+<ol>
+<li>自动化工作：可以在pageContext，request，session，application中子弹寻找 “attribute”</li>
+<li>自动调用 get方法</li>
+<li>自动处理空值</li>
+</ol>
+<p>HelloWorld:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page </span><br><span class="line">  language=<span class="string">"java"</span> </span><br><span class="line">  contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">  pageEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">  <span class="keyword">import</span>=<span class="string">"java.util.*,entity.*"</span>  </span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  <span class="comment">//代表在Servlet中向 request 对象添加的数据</span></span><br><span class="line">  request.setAttribute(<span class="string">"message"</span>, <span class="string">"Hello World!"</span>);</span><br><span class="line">  Emp emp = <span class="keyword">new</span> Emp(<span class="number">1</span>, <span class="string">"Tom"</span>, <span class="number">1</span>, <span class="keyword">null</span>, <span class="number">1</span>, <span class="number">1000</span>,<span class="number">100</span>); </span><br><span class="line">  request.setAttribute(<span class="string">"emp"</span>, emp);</span><br><span class="line">  request.setAttribute(<span class="string">"text"</span>, <span class="keyword">null</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;EL EL表达式演示&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h1&gt;EL表达式演示&lt;/h1&gt;</span><br><span class="line">  &lt;h2&gt;Java 代码输出数据&lt;/h2&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  <span class="comment">//定义变量，利用getAttribute寻获数据</span></span><br><span class="line">  String message = </span><br><span class="line">    (String)request.getAttribute(<span class="string">"message"</span>);</span><br><span class="line">  Emp one = (Emp) request.getAttribute(<span class="string">"emp"</span>);</span><br><span class="line">  String text=(String)request.getAttribute(<span class="string">"text"</span>);</span><br><span class="line">%&gt;  </span><br><span class="line">  &lt;p&gt;利用java表达式输出数据： &lt;%=message%&gt; </span><br><span class="line">      &lt;%=one.getEname()%&gt; &lt;%=text%&gt; &lt;/p&gt;</span><br><span class="line"></span><br><span class="line">  &lt;h2&gt;EL表达式输出信息&lt;/h2&gt;</span><br><span class="line">  &lt;p&gt;自动寻获 $&#123;message&#125;，</span><br><span class="line">          自动调用get方法 $&#123;emp.ename&#125; </span><br><span class="line">          自动处理空 $&#123;text&#125; &lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="EL-语法"><a href="#EL-语法" class="headerlink" title="EL 语法"></a>EL 语法</h4><p>好处是： 简洁!  写的少，做的多</p>
+<ol>
+<li><p>可以访问对象的 getXxx() 方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.name  就是访问了 obj.getName()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以访问数组、List集合的元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr[下标]  </span><br><span class="line">list[下标]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以访问map</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map.key 得到 value</span><br><span class="line">map[&apos;key&apos;] 得到value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以上方式的符合使用，无需类型转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list[1].ename </span><br><span class="line">map.east.ename</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>案例：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page </span><br><span class="line">  language=<span class="string">"java"</span> </span><br><span class="line">  contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">  pageEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">  <span class="keyword">import</span>=<span class="string">"java.util.*,entity.*"</span>  </span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  <span class="keyword">int</span>[] arr1 = &#123;<span class="number">5</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">  String[] arr2 = &#123;<span class="string">"Tom"</span>,<span class="string">"Jerry"</span>&#125;;</span><br><span class="line">  Emp[] arr3 = &#123;<span class="keyword">new</span> Emp(<span class="number">1</span>, <span class="string">"光头强"</span>, <span class="number">1</span>, <span class="keyword">null</span>, <span class="number">1</span>,<span class="number">100</span>,<span class="number">10</span>),</span><br><span class="line">          <span class="keyword">new</span> Emp(<span class="number">1</span>,<span class="string">"李大嘴"</span>,<span class="number">1</span>,<span class="keyword">null</span>,<span class="number">1</span>,<span class="number">100</span>,<span class="number">10</span>)&#125;;</span><br><span class="line">  List&lt;String&gt; list1 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">  list1.add(<span class="string">"沉鱼落雁"</span>);</span><br><span class="line">  list1.add(<span class="string">"明眸善睐"</span>);</span><br><span class="line">  List&lt;Emp&gt; list2 = <span class="keyword">new</span> ArrayList&lt;Emp&gt;();</span><br><span class="line">  list2.add(<span class="keyword">new</span> Emp(<span class="number">3</span>,<span class="string">"擎天柱"</span>,<span class="number">1</span>,<span class="keyword">null</span>,<span class="number">1</span>,<span class="number">10</span>,<span class="number">1</span>));</span><br><span class="line">  list2.add(<span class="keyword">new</span> Emp(<span class="number">4</span>,<span class="string">"大黄蜂"</span>,<span class="number">1</span>,<span class="keyword">null</span>,<span class="number">1</span>,<span class="number">20</span>,<span class="number">5</span>));</span><br><span class="line">  Map&lt;String, Emp&gt; map=<span class="keyword">new</span> HashMap&lt;String, Emp&gt;();</span><br><span class="line">  map.put(<span class="string">"east"</span>, <span class="keyword">new</span> Emp(<span class="number">6</span>,<span class="string">"黄老邪"</span>,<span class="number">1</span>,<span class="keyword">null</span>,<span class="number">1</span>,<span class="number">50</span>,<span class="number">1</span>));</span><br><span class="line">  map.put(<span class="string">"north"</span>, <span class="keyword">new</span> Emp(<span class="number">7</span>,<span class="string">"洪七公"</span>,<span class="number">1</span>,<span class="keyword">null</span>,<span class="number">1</span>,<span class="number">40</span>,<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">  request.setAttribute(<span class="string">"arr1"</span>, arr1);</span><br><span class="line">  request.setAttribute(<span class="string">"arr2"</span>, arr2);</span><br><span class="line">  request.setAttribute(<span class="string">"arr3"</span>, arr3);</span><br><span class="line">  request.setAttribute(<span class="string">"list1"</span>, list1);</span><br><span class="line">  request.setAttribute(<span class="string">"list2"</span>, list2);</span><br><span class="line">  request.setAttribute(<span class="string">"map"</span>, map);</span><br><span class="line"></span><br><span class="line">%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;EL EL表达式演示2&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h1&gt;EL表达式演示2&lt;/h1&gt;</span><br><span class="line">  &lt;p&gt;arr1: $&#123;arr1[0]&#125; $&#123;arr1[1]&#125; &lt;/p&gt;</span><br><span class="line">  &lt;p&gt;arr2: $&#123;arr2[0]&#125; $&#123;arr2[1]&#125; &lt;/p&gt;</span><br><span class="line">  &lt;p&gt;arr3: $&#123;arr3[0].ename&#125; $&#123;arr3[0].empno&#125;&lt;/p&gt; </span><br><span class="line">  &lt;p&gt;list1: $&#123;list1[0]&#125;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;list2: $&#123;list2[0].ename&#125;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;map: $&#123;map.east.ename&#125; $&#123;map['east'].ename&#125;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="JSTL"><a href="#JSTL" class="headerlink" title="JSTL"></a>JSTL</h3><p>使用步骤:</p>
+<ol>
+<li><p>导包</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在JSP 导入标签库</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span> %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用JSP标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:out value=&quot;$&#123;message&#125;&quot;&gt;&lt;/c:out&gt;</span><br><span class="line">out 标签用于输出信息, 自动替换特殊符合，相对输出安全</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>HelloWorld案例：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page </span><br><span class="line">  language=<span class="string">"java"</span> </span><br><span class="line">  contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">  pageEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">  <span class="keyword">import</span>=<span class="string">"java.util.*,entity.*"</span>  </span><br><span class="line">%&gt;</span><br><span class="line">&lt;!-- 导入 core 核心标签库，使用前缀是c --&gt;</span><br><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span> %&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  request.setAttribute(<span class="string">"message"</span>, <span class="string">"&lt;Hello World!&gt;"</span>); </span><br><span class="line">%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;JSTL 演示&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h1&gt;JSTL演示&lt;/h1&gt; </span><br><span class="line">  &lt;!-- out 将信息输出到网页中 --&gt;</span><br><span class="line">  &lt;p&gt;&lt;c:out value="$&#123;message&#125;"&gt;&lt;/c:out&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;$&#123;message&#125;&lt;/p&gt;</span><br><span class="line">  &lt;!-- JSTL 标签和 EL 表达式都是在服务器上处理的 --&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="JSTL-有哪些常用标签："><a href="#JSTL-有哪些常用标签：" class="headerlink" title="JSTL 有哪些常用标签："></a>JSTL 有哪些常用标签：</h4><p>JSTL标签的设计目的：用于取代浏览器的中的用于显示信息的Java代码</p>
+<ol>
+<li>out标签，用于输出数据，相对于EL表达式输出，out标签进行了特殊字符替换</li>
+<li><p>for 循环标签： 1 计次循环， 2 集合遍历</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:forEach begin=<span class="string">"1"</span> end=<span class="string">"5"</span> step=<span class="string">"2"</span> <span class="keyword">var</span>=<span class="string">"i"</span>&gt; </span><br><span class="line">  &lt;p&gt;$&#123;i&#125;&lt;/p&gt;</span><br><span class="line">&lt;/c:forEach&gt; </span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;c:forEach items=<span class="string">"$&#123;list&#125;"</span> <span class="keyword">var</span>=<span class="string">"emp"</span> &gt; </span><br><span class="line">    &lt;li&gt;$&#123;emp.empno&#125;, $&#123;emp.ename&#125;&lt;/li&gt; </span><br><span class="line">  &lt;/c:forEach&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if标签 单路分支标签</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:<span class="keyword">if</span> test=<span class="string">"$&#123;active&gt;=100&#125;"</span>&gt;</span><br><span class="line">   &lt;span style="color:red"&gt;赚钱了&lt;/span&gt;</span><br><span class="line">&lt;/c:if&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多路分支标签</p>
+</li>
+</ol>
+<ul>
+<li>choose</li>
+<li>when</li>
+<li>otherwise</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:choose&gt;</span><br><span class="line">  &lt;c:when test=<span class="string">"$&#123;active&gt;=200&#125;"</span>&gt;</span><br><span class="line">    &lt;span style="color:red"&gt;赚大了&lt;/span&gt;</span><br><span class="line">  &lt;/c:when&gt;</span><br><span class="line">  &lt;c:when test=<span class="string">"$&#123;active&gt;=100&#125;"</span>&gt;</span><br><span class="line">    &lt;span style="color:red"&gt;赚钱了&lt;/span&gt;  </span><br><span class="line">  &lt;/c:when&gt;</span><br><span class="line">  &lt;c:otherwise&gt;</span><br><span class="line">    &lt;span style="color:green"&gt;赔本了&lt;/span&gt;</span><br><span class="line">  &lt;/c:otherwise&gt;</span><br><span class="line">&lt;/c:choose&gt;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>import 包含标<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:import url="footer.jsp"&gt;&lt;/c:import&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>重要：JSP、JSP中的脚本、JSP中的指令（包含）、EL、JSTL、等都是在服务器端执行的。 执行结束以后将生成HTML发送到浏览器显示结果。</p>
+</blockquote>
+<p>案例:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page </span><br><span class="line">  language=<span class="string">"java"</span> </span><br><span class="line">  contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">  pageEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">  <span class="keyword">import</span>=<span class="string">"java.util.*,entity.*"</span>  </span><br><span class="line">%&gt;</span><br><span class="line">&lt;!-- 导入 core 核心标签库，使用前缀是c --&gt;</span><br><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span> %&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;JSTL 演示&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;h1&gt;JSTL演示&lt;/h1&gt; </span><br><span class="line">  &lt;h2&gt;forEach 标签&lt;/h2&gt;</span><br><span class="line">  &lt;!-- begin: 开始， end：结束 step: 步子 <span class="keyword">var</span>:变量名</span><br><span class="line">   如下案例：从<span class="number">1</span>开始循环， 每次增加<span class="number">2</span>， 到<span class="number">5</span>结束循环--&gt;</span><br><span class="line">  &lt;c:forEach begin=<span class="string">"1"</span> end=<span class="string">"5"</span> step=<span class="string">"2"</span> <span class="keyword">var</span>=<span class="string">"i"</span>&gt; </span><br><span class="line">    &lt;p&gt;$&#123;i&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/c:forEach&gt;</span><br><span class="line">  &lt;h2&gt;集合的遍历&lt;/h2&gt;</span><br><span class="line">  &lt;%</span><br><span class="line">    <span class="comment">//在实际开发中，如下数据应该在Servlet中生成</span></span><br><span class="line">    List&lt;String&gt; names = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    names.add(<span class="string">"佟湘玉"</span>);</span><br><span class="line">    names.add(<span class="string">"白展堂"</span>);</span><br><span class="line">    names.add(<span class="string">"莫小贝"</span>);</span><br><span class="line">    names.add(<span class="string">"李大嘴"</span>);</span><br><span class="line">    request.setAttribute(<span class="string">"names"</span>, names); </span><br><span class="line"></span><br><span class="line">    List&lt;Emp&gt; list=<span class="keyword">new</span> ArrayList&lt;Emp&gt;();</span><br><span class="line">    list.add(<span class="keyword">new</span> Emp(<span class="number">1</span>, <span class="string">"霸波奔"</span>, <span class="number">1</span>, <span class="keyword">null</span>, <span class="number">1</span>, <span class="number">100</span>,<span class="number">10</span>));</span><br><span class="line">    list.add(<span class="keyword">new</span> Emp(<span class="number">2</span>, <span class="string">"奔波霸"</span>, <span class="number">1</span>, <span class="keyword">null</span>, <span class="number">1</span>, <span class="number">200</span>,<span class="number">10</span>));</span><br><span class="line">    request.setAttribute(<span class="string">"list"</span>, list); </span><br><span class="line">  %&gt;  </span><br><span class="line">  &lt;!-- forEach 遍历集合 --&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;c:forEach items=<span class="string">"$&#123;names&#125;"</span> <span class="keyword">var</span>=<span class="string">"name"</span>&gt; </span><br><span class="line">      &lt;li&gt;$&#123;name&#125;&lt;/li&gt;</span><br><span class="line">    &lt;/c:forEach&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;h2&gt;遍历对象集合&lt;/h2&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;c:forEach items=<span class="string">"$&#123;list&#125;"</span> <span class="keyword">var</span>=<span class="string">"emp"</span> &gt; </span><br><span class="line">      &lt;li&gt;$&#123;emp.empno&#125;, $&#123;emp.ename&#125;&lt;/li&gt; </span><br><span class="line">    &lt;/c:forEach&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;h2&gt;if 标签&lt;/h2&gt;</span><br><span class="line">  &lt;!-- <span class="keyword">if</span> 标签只能实现单路分支 --&gt;</span><br><span class="line">  &lt;%</span><br><span class="line">    request.setAttribute(<span class="string">"active"</span>, <span class="number">100</span>);</span><br><span class="line">  %&gt;</span><br><span class="line">  &lt;c:<span class="keyword">if</span> test=<span class="string">"$&#123;active&gt;=100&#125;"</span>&gt;</span><br><span class="line">     &lt;span style="color:red"&gt;赚钱了&lt;/span&gt;</span><br><span class="line">  &lt;/c:if&gt;</span><br><span class="line">  &lt;h2&gt;多路分支标签&lt;/h2&gt;</span><br><span class="line">  &lt;!-- 多路分支包含其他情形，相当于<span class="keyword">else</span> </span><br><span class="line">    choose 选择 when:当，当xxx的时候，otherwise其他情况 --&gt;</span><br><span class="line">  &lt;c:choose&gt;</span><br><span class="line">    &lt;c:when test=<span class="string">"$&#123;active&gt;=200&#125;"</span>&gt;</span><br><span class="line">      &lt;span style="color:red"&gt;赚大了&lt;/span&gt;</span><br><span class="line">    &lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test=<span class="string">"$&#123;active&gt;=100&#125;"</span>&gt;</span><br><span class="line">      &lt;span style="color:red"&gt;赚钱了&lt;/span&gt;  </span><br><span class="line">    &lt;/c:when&gt;</span><br><span class="line">    &lt;c:otherwise&gt;</span><br><span class="line">      &lt;span style="color:green"&gt;赔本了&lt;/span&gt;</span><br><span class="line">    &lt;/c:otherwise&gt;</span><br><span class="line">  &lt;/c:choose&gt;</span><br><span class="line">  &lt;h2&gt;包含标签&lt;/h2&gt;</span><br><span class="line">  &lt;!-- 其功能与  jsp:include  一样 --&gt;</span><br><span class="line">  &lt;c:import url="footer.jsp"&gt;&lt;/c:import&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="利用JSTL和EL重构-list-emp2-jsp"><a href="#利用JSTL和EL重构-list-emp2-jsp" class="headerlink" title="利用JSTL和EL重构 list-emp2.jsp:"></a>利用JSTL和EL重构 list-emp2.jsp:</h2><ol>
+<li><p>导入标签库：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=<span class="string">"c"</span> uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新头部组件包含</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Main Header 包含子页面  --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/header.jsp"</span>/&gt;</span><br><span class="line">   </span><br><span class="line">&lt;!-- Left side 包含子页面 --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/left-side.jsp"</span>/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新集合遍历输出表格</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:forEach items=<span class="string">"$&#123;list&#125;"</span> <span class="keyword">var</span>=<span class="string">"emp"</span>&gt;             </span><br><span class="line">&lt;tr&gt;</span><br><span class="line">  &lt;td&gt;$&#123;emp.empno&#125;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;c:out value="$&#123;emp.ename&#125;"/&gt;&lt;/td&gt; </span><br><span class="line">  &lt;td&gt;$&#123;emp.mgr&#125;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;$&#123;emp.hiredate&#125;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;$&#123;emp.deptno&#125;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;$&#123;emp.salary&#125;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;$&#123;emp.comm&#125;&lt;/td&gt;</span><br><span class="line">  &lt;!-- onclick中出现<span class="string">"return false"</span> 则会阻止事件</span><br><span class="line">  -点击事件的响应 --&gt;</span><br><span class="line">  &lt;td&gt;&lt;a onclick=<span class="string">"return confirm('真的删除?吗?')"</span> </span><br><span class="line">    href=<span class="string">"delete?empno=$&#123;emp.empno&#125;"</span> </span><br><span class="line">    <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-danger btn-xs"</span></span><br><span class="line">    &gt;&lt;i class="fa fa-fw fa-remove"&gt;&lt;/i&gt;&lt;/a&gt;</span><br><span class="line">    &lt;a href=<span class="string">"edit-emp?empno=$&#123;emp.empno&#125;"</span></span><br><span class="line">      <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-success btn-xs"</span>&gt;&lt;i </span><br><span class="line">      class="fa fa-fw fa-edit"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新尾部组件包含</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Main Footer 包含 --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/footer.jsp"</span>/&gt;</span><br><span class="line">   </span><br><span class="line">&lt;!-- Control Sidebar 包含 --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/sidebar.jsp"</span>/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="利用JSTL和EL重构-add-emp-jsp"><a href="#利用JSTL和EL重构-add-emp-jsp" class="headerlink" title="利用JSTL和EL重构 add-emp.jsp:"></a>利用JSTL和EL重构 add-emp.jsp:</h2><ol>
+<li><p>导入JSTL</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span>%&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换头部包含标签</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Main Header 包含子页面  --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/header.jsp"</span>/&gt;</span><br><span class="line">&lt;!-- Left side 包含子页面 --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/left-side.jsp"</span>/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换Java代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;select <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> id=<span class="string">"mgr"</span> name=<span class="string">"mgr"</span>&gt;</span><br><span class="line">  &lt;c:forEach items=<span class="string">"$&#123;mgrs&#125;"</span> <span class="keyword">var</span>=<span class="string">"mgr"</span>&gt;</span><br><span class="line">    &lt;!-- 客户端选中员工名，发送到服务器是对应的员工号</span><br><span class="line">     value属性是发送到服务器上的值 --&gt;</span><br><span class="line">    &lt;option value=<span class="string">"$&#123;mgr.empno&#125;"</span>&gt;</span><br><span class="line">      &lt;c:out value=<span class="string">"$&#123;mgr.ename&#125;"</span>/&gt;</span><br><span class="line">    &lt;/option&gt;</span><br><span class="line">  &lt;/c:forEach&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换尾部包含</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Main Footer 包含 --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/footer.jsp"</span>/&gt;</span><br><span class="line">&lt;!-- Control Sidebar 包含 --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/sidebar.jsp"</span>/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="利用JSTL和EL重构-edit-emp-jsp"><a href="#利用JSTL和EL重构-edit-emp-jsp" class="headerlink" title="利用JSTL和EL重构 edit-emp.jsp:"></a>利用JSTL和EL重构 edit-emp.jsp:</h2><ol>
+<li><p>导入JSTL</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span>%&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换头部包含标签</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Main Header 包含子页面  --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/header.jsp"</span>/&gt;</span><br><span class="line">&lt;!-- Left side 包含子页面 --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/left-side.jsp"</span>/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换Java代码</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Horizontal Form --&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box box-info"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box-header with-border"</span>&gt;</span><br><span class="line">    &lt;h3 class="box-title"&gt;添加新员工信息&lt;/h3&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;!-- /.box-header --&gt;</span><br><span class="line">  &lt;!-- form start --&gt;</span><br><span class="line">  &lt;form <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-horizontal"</span> </span><br><span class="line">    method=<span class="string">"post"</span> action=<span class="string">"update-emp"</span>&gt; </span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box-body"</span>&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"empno"</span> </span><br><span class="line">          class="col-sm-2 control-label"&gt;员工号&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">            id=<span class="string">"empno"</span> name=<span class="string">"empno"</span> placeholder=<span class="string">"员工号"</span></span><br><span class="line">            value=<span class="string">"$&#123;emp.empno&#125;"</span></span><br><span class="line">            readonly=<span class="string">"readonly"</span> &gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"ename"</span> </span><br><span class="line">          class="col-sm-2 control-label"&gt;姓名&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">            id=<span class="string">"ename"</span> name=<span class="string">"ename"</span> placeholder=<span class="string">"姓名"</span></span><br><span class="line">            value=<span class="string">"&lt;c:out value="</span>$&#123;emp.ename&#125;<span class="string">"/&gt;"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"mgr"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;领导&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">   </span><br><span class="line">          &lt;select <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> id=<span class="string">"mgr"</span> name=<span class="string">"mgr"</span>&gt;</span><br><span class="line">            &lt;c:forEach items=<span class="string">"$&#123;mgrs&#125;"</span> <span class="keyword">var</span>=<span class="string">"mgr"</span>&gt;</span><br><span class="line">            &lt;!-- 客户端选中员工名，发送到服务器是对应的员工号</span><br><span class="line">             value属性是发送到服务器上的值 --&gt;</span><br><span class="line">              &lt;c:choose&gt;</span><br><span class="line">                &lt;c:when test=<span class="string">"$&#123;emp.mgr == mgr.empno&#125;"</span>&gt;</span><br><span class="line">                  &lt;option value=<span class="string">"$&#123;mgr.empno&#125;"</span></span><br><span class="line">                    selected=<span class="string">"selected"</span>&gt;</span><br><span class="line">                    &lt;c:out value=<span class="string">"$&#123;mgr.ename&#125;"</span>/&gt;</span><br><span class="line">                  &lt;/option&gt;  </span><br><span class="line">                &lt;/c:when&gt;</span><br><span class="line">                &lt;c:otherwise&gt;</span><br><span class="line">                  &lt;option value=<span class="string">"$&#123;mgr.empno&#125;"</span>&gt;</span><br><span class="line">                    &lt;c:out value=<span class="string">"$&#123;mgr.ename&#125;"</span>/&gt;</span><br><span class="line">                  &lt;/option&gt;        </span><br><span class="line">                &lt;/c:otherwise&gt;</span><br><span class="line">              &lt;/c:choose&gt; </span><br><span class="line">            &lt;/c:forEach&gt;</span><br><span class="line">          &lt;/select&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"hiredate"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;入职日期&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"date"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">          id=<span class="string">"hiredate"</span> name=<span class="string">"hiredate"</span>  </span><br><span class="line">          placeholder=<span class="string">"入职日期"</span> </span><br><span class="line">          value=<span class="string">"$&#123;emp.hiredate&#125;"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"deptno"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;部门编号&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">          id=<span class="string">"deptno"</span> name=<span class="string">"deptno"</span>  </span><br><span class="line">          placeholder=<span class="string">"部门编号"</span></span><br><span class="line">          value=<span class="string">"$&#123;emp.deptno&#125;"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;  </span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"salary"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;薪资&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"number"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">          id=<span class="string">"salary"</span> name=<span class="string">"salary"</span>  </span><br><span class="line">          placeholder=<span class="string">"薪资"</span></span><br><span class="line">          value=<span class="string">"$&#123;emp.salary&#125;"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;  </span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"comm"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;提成&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"number"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">          id=<span class="string">"comm"</span> name=<span class="string">"comm"</span>  </span><br><span class="line">          placeholder=<span class="string">"提成"</span></span><br><span class="line">          value=<span class="string">"$&#123;emp.comm&#125;"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;                                </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- /.box-body --&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box-footer"</span>&gt;</span><br><span class="line">      &lt;button type="submit" class="btn btn-info pull-right"&gt;保存&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- /.box-footer --&gt;</span><br><span class="line">  &lt;/form&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- /.box --&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换尾部包含</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Main Footer 包含 --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/footer.jsp"</span>/&gt;</span><br><span class="line">&lt;!-- Control Sidebar 包含 --&gt;</span><br><span class="line">&lt;c:<span class="keyword">import</span> url=<span class="string">"/WEB-INF/include/sidebar.jsp"</span>/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="显示老板名字问题"><a href="#显示老板名字问题" class="headerlink" title="显示老板名字问题"></a>显示老板名字问题</h2><ol>
+<li><p>重构 ListEmpServlet</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建集合，缓存全部的员工号和员工名</span></span><br><span class="line">Map&lt;Integer, String&gt; names = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (Emp emp : list) &#123;</span><br><span class="line">    names.put(emp.getEmpno(), emp.getEname());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打桩测试 ...</span></span><br><span class="line">request.setAttribute(<span class="string">"names"</span>, names);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重构 list-emp2.jsp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;&lt;c:out value=&quot;$&#123;names[emp.mgr]&#125;&quot;/&gt;&lt;/td&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+</li>
+</ol>
+<h2 id="路径问题"><a href="#路径问题" class="headerlink" title="路径问题"></a>路径问题</h2><p>Web编程时候有3套路径体系</p>
+<ol>
+<li>浏览器视角的Web路径</li>
+<li>Java Web 用于程序的路径体系</li>
+<li>本地操作系统文件路径体系<ul>
+<li>ContextPath路径： Java web应用程序部署在Web服务器时候的部署文件夹。</li>
+<li>浏览器视角的路径与Java WEB路径相差了一个ContextPath路径</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>将Java Web路径映射到浏览器视角的Web路径有多种解决方案：</li>
+</ul>
+<ol>
+<li>使用相对路径<ul>
+<li>书写简单，当页面移动显示位置时候会css等资源加载失败出现404错误</li>
+</ul>
+</li>
+<li>利用 &lt;c:url&gt; 标签解决<ul>
+<li>&lt;c:url&gt; 标签就是解决将Java WEB路径转化为 浏览器视角绝对路径而设计的标签</li>
+<li>这个标签使用比较繁琐</li>
+</ul>
+</li>
+<li>利用EL表达式在路径前面添加ContextPath，这种方式简洁方便。<ul>
+<li>在Servlet中将 contextPath保存到request中叫 root</li>
+<li>在页面中将所有 html 标签路径修改为 ${root}/…</li>
+</ul>
+</li>
+</ol>
+<p>案例, 将全部emp功能移动到 /emp 中, 目的是为了后续增加权限管理功能</p>
+<pre><code>- 更新全部功能的URL
+</code></pre><p>修改 员工列表功能：</p>
+<ol>
+<li><p>修改web.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>ListEmpServlet<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ListEmpServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>day05.ListEmpServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ListEmpServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/emp/list<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此时查看网页/emp/list会看到很多 404 错误，导致很多css、js文件没有加载，因为路径上增加了一层emp造成了浏览器视角路径错误，找不到对应资源了。</p>
+</blockquote>
+</li>
+<li><p>更新 ListEmpServlet, 将contextPath添加到request中，命名为root</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将context路径保存request中， 用于将</span></span><br><span class="line"><span class="comment">//Java WEB目录映射到 浏览器视角WEB目录</span></span><br><span class="line">String contextPath = request.getContextPath();</span><br><span class="line">request.setAttribute(<span class="string">"root"</span>, contextPath);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新 list-emp2.jsp 将全部html标签中的路径更新为 ${root}/</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"$&#123;root&#125;/bower_components/bootstrap/dist/css/bootstrap.min.css"</span>&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"$&#123;root&#125;/bower_components/font-awesome/css/font-awesome.min.css"</span>&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"$&#123;root&#125;/bower_components/Ionicons/css/ionicons.min.css"</span>&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"$&#123;root&#125;/dist/css/AdminLTE.min.css"</span>&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"$&#123;root&#125;/dist/css/skins/skin-blue.min.css"</span>&gt;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&lt;!-- jQuery <span class="number">3</span> --&gt;</span><br><span class="line">&lt;script src="$&#123;root&#125;/bower_components/jquery/dist/jquery.min.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;!-- Bootstrap <span class="number">3.3</span>.7 --&gt;</span><br><span class="line">&lt;script src="$&#123;root&#125;/bower_components/bootstrap/dist/js/bootstrap.min.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;!-- AdminLTE App --&gt;</span><br><span class="line">&lt;script src="$&#123;root&#125;/dist/js/adminlte.min.js"&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新 header.jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"$&#123;root&#125;/dist/img/user2-160x160.jpg"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-circle"</span> alt=<span class="string">"User Image"</span>&gt;</span><br><span class="line">   ...</span><br><span class="line">&lt;img src=<span class="string">"$&#123;root&#125;/dist/img/user2-160x160.jpg"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"user-image"</span> alt=<span class="string">"User Image"</span>&gt;</span><br><span class="line">   ...</span><br><span class="line">&lt;img src=<span class="string">"$&#123;root&#125;/dist/img/user2-160x160.jpg"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-circle"</span> alt=<span class="string">"User Image"</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新 left-side.jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"$&#123;root&#125;/dist/img/user2-160x160.jpg"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-circle"</span> alt=<span class="string">"User Image"</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试 /emp/list</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/10/JSP-case-2/" rel="next" title="JSP-case-2">
+                <i class="fa fa-chevron-left"></i> JSP-case-2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/11/Servlet-Cookie-Session/" rel="prev" title="Servlet-Cookie/Session">
+                Servlet-Cookie/Session <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准标签库-和-EL表达式"><span class="nav-number">1.</span> <span class="nav-text">标准标签库 和 EL表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EL-表达式"><span class="nav-number">1.1.</span> <span class="nav-text">EL 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EL-语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">EL 语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSTL"><span class="nav-number">1.2.</span> <span class="nav-text">JSTL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSTL-有哪些常用标签："><span class="nav-number">1.2.1.</span> <span class="nav-text">JSTL 有哪些常用标签：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用JSTL和EL重构-list-emp2-jsp"><span class="nav-number">2.</span> <span class="nav-text">利用JSTL和EL重构 list-emp2.jsp:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用JSTL和EL重构-add-emp-jsp"><span class="nav-number">3.</span> <span class="nav-text">利用JSTL和EL重构 add-emp.jsp:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用JSTL和EL重构-edit-emp-jsp"><span class="nav-number">4.</span> <span class="nav-text">利用JSTL和EL重构 edit-emp.jsp:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示老板名字问题"><span class="nav-number">5.</span> <span class="nav-text">显示老板名字问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路径问题"><span class="nav-number">6.</span> <span class="nav-text">路径问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

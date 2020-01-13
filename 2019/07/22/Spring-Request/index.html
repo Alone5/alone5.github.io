@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1、接收请求参数1、【不推荐】通过HttpServletRequest获取请求参数可以在处理请求的方法中，添加HttpServletRequest类型的参数，在处理过程中，调用该参数对象的String getParameter(String name)就可以获取请求参数。 不推荐使用这种做法！主要原因有：  使用比较繁琐，代码量较多； 需要手动实现数据类型的转换； 不便于实现单元测试。  2、【推">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring-Request">
+<meta property="og:url" content="http://yoursite.com/2019/07/22/Spring-Request/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="1、接收请求参数1、【不推荐】通过HttpServletRequest获取请求参数可以在处理请求的方法中，添加HttpServletRequest类型的参数，在处理过程中，调用该参数对象的String getParameter(String name)就可以获取请求参数。 不推荐使用这种做法！主要原因有：  使用比较繁琐，代码量较多； 需要手动实现数据类型的转换； 不便于实现单元测试。  2、【推">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring-Request">
+<meta name="twitter:description" content="1、接收请求参数1、【不推荐】通过HttpServletRequest获取请求参数可以在处理请求的方法中，添加HttpServletRequest类型的参数，在处理过程中，调用该参数对象的String getParameter(String name)就可以获取请求参数。 不推荐使用这种做法！主要原因有：  使用比较繁琐，代码量较多； 需要手动实现数据类型的转换； 不便于实现单元测试。  2、【推">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/22/Spring-Request/">
+
+
+
+
+
+  <title>Spring-Request | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/Spring-Request/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring-Request</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-22T20:19:19+08:00">
+                2019-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1、接收请求参数"><a href="#1、接收请求参数" class="headerlink" title="1、接收请求参数"></a>1、接收请求参数</h2><h4 id="1、【不推荐】通过HttpServletRequest获取请求参数"><a href="#1、【不推荐】通过HttpServletRequest获取请求参数" class="headerlink" title="1、【不推荐】通过HttpServletRequest获取请求参数"></a>1、【不推荐】通过HttpServletRequest获取请求参数</h4><p>可以在处理请求的方法中，添加<code>HttpServletRequest</code>类型的参数，在处理过程中，调用该参数对象的<code>String getParameter(String name)</code>就可以获取请求参数。</p>
+<p>不推荐使用这种做法！主要原因有：</p>
+<ul>
+<li>使用比较繁琐，代码量较多；</li>
+<li>需要手动实现数据类型的转换；</li>
+<li>不便于实现单元测试。</li>
+</ul>
+<h4 id="2、【推荐】将请求参数设计为处理请求的方法的参数"><a href="#2、【推荐】将请求参数设计为处理请求的方法的参数" class="headerlink" title="2、【推荐】将请求参数设计为处理请求的方法的参数"></a>2、【推荐】将请求参数设计为处理请求的方法的参数</h4><p>假设客户端将提交名为<code>username</code>的参数，则在控制器的方法中添加同名参数即可，参数的类型可以是期望的数据类型，例如<code>username</code>是<code>String</code>类型的，则声明为<code>String username</code>即可：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"handle_reg.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handleReg</span><span class="params">(String username, String password)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"UserController.handleReg()"</span>);</span><br><span class="line">    System.out.println(<span class="string">"\t[2]username="</span> + username);</span><br><span class="line">    System.out.println(<span class="string">"\t[2]password="</span> + password);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>使用这种做法时，需要保证参数的名称与客户端提交的请求参数名称保持一致，否则，在控制器中的参数将是<code>null</code>值。</li>
+<li>使用这种做法的优点很多，基本上解决了使用<code>HttpServletRequest</code>获取参数时的所有问题！</li>
+<li>使用这种做法并不适用于请求参数的数量较多的应用场景！</li>
+</ul>
+<h4 id="3、【推荐】使用封装的类型接收较多的请求参数"><a href="#3、【推荐】使用封装的类型接收较多的请求参数" class="headerlink" title="3、【推荐】使用封装的类型接收较多的请求参数"></a>3、【推荐】使用封装的类型接收较多的请求参数</h4><p>当客户端提交的请求参数较多时，可以将这些参数全部封装为1个自定义的数据类型，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//生成GET、SET方法和toString</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>将该类型作为处理请求的方法的参数即可：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"handle_reg.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handleReg</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"UserController.handleReg()"</span>);</span><br><span class="line">    System.out.println(<span class="string">"\t"</span> + user);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在使用这种做法时，需要保证客户端提交的请求参数，与自定义的数据类型中的属性名称是保持一致的！</p>
+</blockquote>
+<h4 id="4、小结"><a href="#4、小结" class="headerlink" title="4、小结"></a>4、小结</h4><p>第1种使用<code>HttpServletRequest</code>的方式是不会再使用的。</p>
+<p>如果请求参数的数量较少，且从业务功能来说参数的数量基本固定，推荐使用第2种方式，即直接将请求参数逐一的设计在处理请求的方法中，否则，就使用第3种方式，将多个参数封装成1个自定义的数据类型。</p>
+<p>另外，第2种方式和第3种方式是可以组合使用的，即出现在同一个处理请求的方法中！</p>
+<h2 id="2、重定向"><a href="#2、重定向" class="headerlink" title="2、重定向"></a>2、重定向</h2><p>当处理请求的方法的返回值是<code>String</code>类型的，则返回的字符串使用<code>redirect:</code>作为前缀，加上重定向的目标路径，就可以实现重定向的效果。</p>
+<p>假设注册一定成功，且注册成功后需要跳转到登录页面，则：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"handle_reg.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handleReg</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"UserController.handleReg()"</span>);</span><br><span class="line">    System.out.println(<span class="string">"\t"</span> + user);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注册成功，重定向到登录页</span></span><br><span class="line">    <span class="comment">// 当前位置：handle_reg.do</span></span><br><span class="line">    <span class="comment">// 目标位置：login.do</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"redirect:login.do"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3、转发"><a href="#3、转发" class="headerlink" title="3、转发"></a>3、转发</h2><h4 id="1、执行转发"><a href="#1、执行转发" class="headerlink" title="1、执行转发"></a>1、执行转发</h4><p>当处理请求的方法的返回值是<code>String</code>类型，默认情况下，返回值就表示转发的意思，返回值将经过视图解析器，确定转发到的目标页面。</p>
+<p>转发时，处理请求的方法的返回值也可以使用<code>forward:</code>作为前缀，由于默认就是转发，所以不必显式的添加前缀。</p>
+<h4 id="2、【不推荐】通过HttpServletRequest封装需要转发的数据"><a href="#2、【不推荐】通过HttpServletRequest封装需要转发的数据" class="headerlink" title="2、【不推荐】通过HttpServletRequest封装需要转发的数据"></a>2、【不推荐】通过HttpServletRequest封装需要转发的数据</h4><p>假设在登录过程中，仅当用户名为<code>root</code>且密码是<code>1234</code>时允许登录，否则，在错误提示页面中提示错误的原因。</p>
+<p>由于错误信息可能有2种，分别是用户名错误和密码错误，使用JSP页面结合EL表达式可以显示转发的数据，在控制器转发之前，就需要将错误信息封装到<code>HttpServletRequest</code>对象中，则后续JSP页面才可以通过EL表达式读取<code>HttpServletRequest</code>对象中的数据。</p>
+<p>可以在处理请求的方法的参数列表中添加<code>HttpServletRequest</code>类型的参数，当添加了参数后，调用<code>HttpServletRequest</code>参数对象的<code>setAttribute(String name, String value)</code>方法封装需要转发的数据即可，无需获取转发器对象执行转发，只要最后返回字符串就表示转发：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"handle_login.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handleLogin</span><span class="params">(String username, String password,</span></span></span><br><span class="line"><span class="function"><span class="params">        HttpServletRequest request)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断用户名是否正确</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="string">"root"</span>.equals(username)) &#123;</span><br><span class="line">        <span class="comment">// 是：判断密码是否正确</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"1234"</span>.equals(password)) &#123;</span><br><span class="line">            <span class="comment">// 是：登录成功，重定向到主页</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">"redirect:index.do"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 否：密码错误</span></span><br><span class="line">            request.setAttribute(<span class="string">"errorMessage"</span>, <span class="string">"密码错误"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否：用户名错误</span></span><br><span class="line">        request.setAttribute(<span class="string">"errorMessage"</span>, <span class="string">"用户名错误"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这种做法依然是不推荐的，使用了<code>HttpServletRequest</code>作为参数后不便于执行单元测试。</p>
+</blockquote>
+<h4 id="3、【更不推荐】使用ModelAndView"><a href="#3、【更不推荐】使用ModelAndView" class="headerlink" title="3、【更不推荐】使用ModelAndView"></a>3、【更不推荐】使用ModelAndView</h4><p>使用<code>ModelAndView</code>作为处理请求的方法的返回值类型，在返回结果之前，调用<code>ModelAndView</code>对象的<code>setViewName(String viewName)</code>方法确定转发的视图名称，调用<code>addObject(String name, Object value)</code>方法封装需要转发的数据，然后返回结果即可：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"handle_login.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleLogin</span><span class="params">(String username, String password)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 创建返回值对象</span></span><br><span class="line">    ModelAndView mav = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    <span class="comment">// 判断用户名是否正确</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="string">"root"</span>.equals(username)) &#123;</span><br><span class="line">        <span class="comment">// 是：判断密码是否正确</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"1234"</span>.equals(password)) &#123;</span><br><span class="line">            <span class="comment">// 是：登录成功，重定向到主页</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 否：密码错误</span></span><br><span class="line">            mav.addObject(<span class="string">"errorMessage"</span>, <span class="string">"ModelAndView：密码错误"</span>);</span><br><span class="line">            mav.setViewName(<span class="string">"error"</span>);</span><br><span class="line">            <span class="keyword">return</span> mav;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否：用户名错误</span></span><br><span class="line">        mav.addObject(<span class="string">"errorMessage"</span>, <span class="string">"ModelAndView：用户名错误"</span>);</span><br><span class="line">        mav.setViewName(<span class="string">"error"</span>);</span><br><span class="line">        <span class="keyword">return</span> mav;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>因为对于初学SpringMVC的人来说，<code>ModelAndView</code>是一个新的、比较麻烦的数据类型，并且SpringMVC提供了更简单的操作方式，所以不推荐使用<code>ModelAndView</code>。</p>
+</blockquote>
+<h4 id="4、【推荐】使用ModelMap封装需要转发的数据"><a href="#4、【推荐】使用ModelMap封装需要转发的数据" class="headerlink" title="4、【推荐】使用ModelMap封装需要转发的数据"></a>4、【推荐】使用ModelMap封装需要转发的数据</h4><p>使用<code>ModelMap</code>的方式与使用<code>HttpServletRequest</code>几乎完全相同：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"handle_login.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handleLogin</span><span class="params">(String username, String password,</span></span></span><br><span class="line"><span class="function"><span class="params">        ModelMap modelMap)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断用户名是否正确</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="string">"root"</span>.equals(username)) &#123;</span><br><span class="line">        <span class="comment">// 是：判断密码是否正确</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"1234"</span>.equals(password)) &#123;</span><br><span class="line">            <span class="comment">// 是：登录成功，重定向到主页</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">"redirect:index.do"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 否：密码错误</span></span><br><span class="line">            modelMap.addAttribute(<span class="string">"errorMessage"</span>, <span class="string">"ModelMap：密码错误"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否：用户名错误</span></span><br><span class="line">        modelMap.addAttribute(<span class="string">"errorMessage"</span>, <span class="string">"ModelMap：用户名错误"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>相比<code>HttpServletRequest</code>而言，使用<code>ModelMap</code>更加易于实现单元测试，并且更加轻量级，所以，推荐使用这种方式来封装需要转发的数据。</p>
+<p>练习：假设<code>root</code>是已经被注册的用户名，在处理注册时，如果用户提交的用户名是<code>root</code>，则提示错误，否则，视为注册成功，重定向到登录页。</p>
+<h2 id="4、-RequestMapping注解"><a href="#4、-RequestMapping注解" class="headerlink" title="4、@RequestMapping注解"></a>4、@RequestMapping注解</h2><h4 id="4-1-基本使用"><a href="#4-1-基本使用" class="headerlink" title="4.1. 基本使用"></a>4.1. 基本使用</h4><p>在处理请求的方法之前添加<code>@RequestMapping</code>，可以配置请求路径与处理请求的方法的映射关系。</p>
+<p>除此以外，还可以在控制器类之前添加该注解，表示增加了访问路径中的层级，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span> </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>添加该注解以后，原本通过<code>login.do</code>访问的请求路径就需要调整为<code>user/login.do</code>才可以访问。通常，推荐为每一个控制器类都添加该注解！同时在类和方法之前都添加了注解后，最终的访问路径就是类与方法的注解中的路径组合出来的URL。</p>
+<blockquote>
+<p>在配置路径时，会无视两端的<code>/</code>符号</p>
+</blockquote>
+<h4 id="4-2-注解配置"><a href="#4-2-注解配置" class="headerlink" title="4.2. 注解配置"></a>4.2. 注解配置</h4><p>在配置<code>@RequestMapping</code>时，可以显式的配置为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"reg.do"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>该属性的数据类型是<code>String[]</code>，也可以配置为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value= &#123;<span class="string">"reg.do"</span>, <span class="string">"register.do"</span>&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>则后续无论通过这里的哪个URL都会导致映射的方法被执行。</p>
+<p>源代码中在<code>value</code>属性的声明上方还使用了<code>@AliasFor</code>注解，表示<code>value</code>和<code>path</code>是完全等效的！从SpringMVC 4.2版本开始支持使用<code>path</code>属性，并推荐使用<code>path</code>属性取代<code>value</code>属性。</p>
+<p>在使用时，还可以指定<code>method</code>属性，该属性的作用是用于限制请求方式，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(path= &#123;<span class="string">"reg.do"</span>, <span class="string">"register.do"</span>&#125;, method=RequestMethod.POST)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>以上代码表示提交的请求必须是POST请求，如果不是，会导致405错误，在没有配置<code>method</code>之前，是不限定请求方式的，如果配置了，则必须使用配置的请求方式中的某一种！当为注解配置多个属性时，每一个属性都必须显式的指定属性名称！</p>
+</blockquote>
+<h2 id="5-关于-RequestParam注解"><a href="#5-关于-RequestParam注解" class="headerlink" title="5. 关于@RequestParam注解"></a>5. 关于@RequestParam注解</h2><p>可以在处理请求的方法的参数之前添加<code>@RequestParam</code>注解，首先，使用该注解可以解决名称不一致的问题，即客户端提交的请求参数名称与服务器端处理请求的方法的参数名称不一致的问题，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(<span class="string">"uname"</span>) String username</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如果添加了该注解，仍然存在名称不一致的问题，会导致400错误（如果没有添加该注解，即使名称不一致，服务器端的参数只是null值，并不会报错）</p>
+</blockquote>
+<p>原因在于在该注解的源代码中：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>所以，添加了该注解，默认是必须提交指定名称的参数的！如果希望该请求参数不是必须提交的，可以：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(name=<span class="string">"uname"</span>, required=<span class="keyword">false</span>) String username</span><br></pre></td></tr></table></figure></p>
+<p>该注解中还有：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">defaultValue</span><span class="params">()</span> <span class="keyword">default</span> ValueConstants.DEFAULT_NONE</span>;</span><br></pre></td></tr></table></figure></p>
+<p>该属性用于指定默认值，即客户端没有提交指定名称的参数时，默认为某个值，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(name=<span class="string">"uname"</span>, required=<span class="keyword">false</span>, defaultValue=<span class="string">"admin"</span>) String username</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：在设置默认值时，必须显式的将<code>required</code>属性设置为<code>false</code>。</p>
+</blockquote>
+<p><strong>小结：在什么时候需要使用该注解？</strong></p>
+<ul>
+<li>前后端使用的名称不统一时；</li>
+<li>强制要求客户端必须提交某参数时；</li>
+<li>允许客户端不提交某参数，且视为提交了某默认值时；</li>
+<li>其他固定使用场景。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/20/problem-solving/" rel="next" title="problem-solving">
+                <i class="fa fa-chevron-left"></i> problem-solving
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/24/Mybatis-框架/" rel="prev" title="Mybatis-框架">
+                Mybatis-框架 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、接收请求参数"><span class="nav-number">1.</span> <span class="nav-text">1、接收请求参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、【不推荐】通过HttpServletRequest获取请求参数"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、【不推荐】通过HttpServletRequest获取请求参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、【推荐】将请求参数设计为处理请求的方法的参数"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、【推荐】将请求参数设计为处理请求的方法的参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、【推荐】使用封装的类型接收较多的请求参数"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、【推荐】使用封装的类型接收较多的请求参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、小结"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、小结</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#2、重定向"><span class="nav-number">2.</span> <span class="nav-text">2、重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、转发"><span class="nav-number">3.</span> <span class="nav-text">3、转发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、执行转发"><span class="nav-number">3.0.1.</span> <span class="nav-text">1、执行转发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、【不推荐】通过HttpServletRequest封装需要转发的数据"><span class="nav-number">3.0.2.</span> <span class="nav-text">2、【不推荐】通过HttpServletRequest封装需要转发的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、【更不推荐】使用ModelAndView"><span class="nav-number">3.0.3.</span> <span class="nav-text">3、【更不推荐】使用ModelAndView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、【推荐】使用ModelMap封装需要转发的数据"><span class="nav-number">3.0.4.</span> <span class="nav-text">4、【推荐】使用ModelMap封装需要转发的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、-RequestMapping注解"><span class="nav-number">4.</span> <span class="nav-text">4、@RequestMapping注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-基本使用"><span class="nav-number">4.0.1.</span> <span class="nav-text">4.1. 基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-注解配置"><span class="nav-number">4.0.2.</span> <span class="nav-text">4.2. 注解配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-关于-RequestParam注解"><span class="nav-number">5.</span> <span class="nav-text">5. 关于@RequestParam注解</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

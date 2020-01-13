@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SpringSpring简介Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Design中阐述的部分理念和原型衍生而来。它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring-框架">
+<meta property="og:url" content="http://yoursite.com/2019/07/18/Spring-框架/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="SpringSpring简介Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Design中阐述的部分理念和原型衍生而来。它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring-框架">
+<meta name="twitter:description" content="SpringSpring简介Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Design中阐述的部分理念和原型衍生而来。它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/18/Spring-框架/">
+
+
+
+
+
+  <title>Spring-框架 | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/18/Spring-框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring-框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-18T19:07:14+08:00">
+                2019-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><h3 id="Spring简介"><a href="#Spring简介" class="headerlink" title="Spring简介"></a>Spring简介</h3><p>Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作Expert One-On-One J2EE Development and Design中阐述的部分理念和原型衍生而来。它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring使用基本的JavaBean来完成以前只可能由EJB完成的事情。然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。</p>
+<ul>
+<li><p>通过设计模式中的工厂模式来创建对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IUserDao <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> UserDao2();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后，代码可以进一步调整为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> IUserDao userDao = UserDaoFactory.newInstance();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>则后续需要使用<code>IUserDao</code>对象时，声明成以上代码即可，如果需要更换具体的实现类对象，也只需要修改工厂类中的返回值，类似以上声明的代码，无论在项目中出现过多少次，都是不需要调整的！</p>
+</li>
+<li>所以，总的看来，通过工厂来创建对象，前期编写的代码会更多一些，但是，可以实现“解耦”的效果，后期的管理难度会大大的降低！</li>
+<li>在实际项目开发中，不可能为所有的类或者大量的类去设计专属工厂，而Spring框架就相当于一个大工厂，可以生产我们配置的、希望它去生产的所有对象！后续，当需要获取对象时，直接通过Spring获取即可，并不需要自己创建对象，所以，Spring框架也被称之为“Spring容器”。</li>
+</ul>
+<h3 id="1、Spring-示例："><a href="#1、Spring-示例：" class="headerlink" title="1、Spring 示例："></a>1、Spring 示例：</h3><p>创建<code>Maven Project</code>，Packaging选择<code>war</code><br>创建出来的项目默认没有<strong>web.xml</strong>文件，作为WEB项目来说是错误的，所以，需要先生成该文件。<br>需要添加所以依赖的框架，在<strong>pom.xml</strong>中添加：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3.8.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如果下载的jar包有问题，可以尝试换个版本，目前，对使用的Spring的要求是不低于4.2版本。</p>
+</blockquote>
+<p>当项目创建完成后，下载<a href="http://doc.tedu.cn/config/spring-context.zip文件，将压缩包中的文件**applicationContext.xml**复制到项目中的**src/main/resources**中。" target="_blank" rel="noopener">http://doc.tedu.cn/config/spring-context.zip文件，将压缩包中的文件**applicationContext.xml**复制到项目中的**src/main/resources**中。</a></p>
+<p>假设希望通过Spring创建<code>java.util.Date</code>类的对象，则应该在<strong>applicationContext.xml</strong>中添加配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- id:当从Spring容器中获取该对象时使用的名称 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- class:需要创建的类 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"date"</span> <span class="attr">class</span>=<span class="string">"java.util.Date"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>通过单元测试查看配置效果，需要先添加单元测试的依赖：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后，创建测试类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestCase</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getDate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1. 加载Spring配置文件，获得Spring容器</span></span><br><span class="line">        ClassPathXmlApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line">        <span class="comment">// 2. 从Spring容器中获取对象</span></span><br><span class="line">        Date date = (Date) ac.getBean(<span class="string">"date"</span>);</span><br><span class="line">        <span class="comment">// 3. 测试所获取的对象</span></span><br><span class="line">        System.out.println(date);</span><br><span class="line">        <span class="comment">// 4. 关闭Spring容器，释放资源</span></span><br><span class="line">        ac.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="通过Spring创建对象的方式"><a href="#通过Spring创建对象的方式" class="headerlink" title="通过Spring创建对象的方式"></a>通过Spring创建对象的方式</h4><p><strong>(a) 类中存在无参数的构造方法（实用，掌握）</strong><br>以<code>java.util.Date</code>类为例，当Spring创建对象时，会自动调用其无参数构造方法。<br>在Spring的配置文件中，配置方式为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"date"</span> <span class="attr">class</span>=<span class="string">"java.util.Date"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如果某个类中并不存在无参数的构造方法，则不可以通过这种方式进行配置。</p>
+</blockquote>
+<p><strong>(b) 类中存在静态工厂方法（不实用，了解）</strong><br>如果某个类中存在某个<code>static</code>修饰的方法，且方法的返回值类型就是当前类的类型，例如<code>java.util.Calendar</code>类就是如此：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Calendar</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Calendar <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>符合这种条件的类，可以配置为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">&lt;!-- (b) 类中存在静态工厂方法 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- factory-method:工厂方法的名称 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"calendar"</span> <span class="attr">class</span>=<span class="string">"java.util.Calendar"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">factory-method</span>=<span class="string">"getInstance"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>(c) 存在实例工厂方法（更不实用，了解）</strong><br>在其他类中，存在某个工厂方法，可以创建指定的类的对象，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Phone</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Phone</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhoneFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Phone <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Phone(<span class="string">"HuaWei"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当需要Spring创建<code>Phone</code>对象时，可以让Spring先创建<code>PhoneFactory</code>的对象(实例)，然后调用该对象的<code>newInstance()</code>方法，即可获取<code>Phone</code>的对象，从而完成对象的创建过程。</p>
+<p>具体配置为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- (c) 存在实例工厂方法 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- factory-bean:配置为工厂类的bean-id --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"phoneFactory"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.spring.PhoneFactory"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"phone"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"cn.tedu.spring.Phone"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">factory-bean</span>=<span class="string">"phoneFactory"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">factory-method</span>=<span class="string">"newInstance"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="由Spring管理的对象的作用域与生命周期"><a href="#由Spring管理的对象的作用域与生命周期" class="headerlink" title="由Spring管理的对象的作用域与生命周期"></a>由Spring管理的对象的作用域与生命周期</h3><p><strong>(a) 由Spring管理的对象的作用域</strong><br>单例：单一实例，在某个时刻，可以获取到的同一个类的对象将有且仅有1个，如果反复获取，并不会得到多个实例。<br>单例是一种设计模式，其代码格式可以是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> King king = <span class="keyword">new</span> King();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> king;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上单例模式也称之为“饿汉式单例模式”，其工作特性为“程序运行初期就已经创建了该类的实例，随时获取实例时，都可以直接获取”，还有另外一种单例模式是“懒汉式单例模式”，其工作特性为“不到逼不得已不会创建类的对象”，其代码是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object LOCK = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> King king;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (king == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (LOCK) &#123;</span><br><span class="line">                <span class="keyword">if</span> (king == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    king = <span class="keyword">new</span> King();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> king;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>理论上来说，懒汉式的单例模式可能可以节省一部分性能消耗，例如整个系统运行了30分钟之后才获取对象的话，则前30分钟是不需要创建对象的！但是，这种优势只是理论上的优势，在实际应用时，2种单例模式的差异表现的并不明显！</li>
+<li>通过以上单例模式的设计方式，可以发现单例的对象都是使用了<code>static</code>修饰的！所以，具有“唯一、常驻”的特性！</li>
+</ul>
+<p>在Spring管理对象时，可以配置<code>lazy-init</code>属性，以配置是否为懒汉式的单例模式：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- lazy-init：是否懒加载，取值为true或false(默认) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"cn.tedu.spring.User"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">lazy-init</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在Spring管理对象时，可以配置<code>scope</code>属性，以配置类的对象是否是单例的：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- scope:是否单例，取值为singleton(默认，单例)或prototype(非单例) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"cn.tedu.spring.User"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>(b) 由Spring管理的对象的生命周期</strong></p>
+<ul>
+<li>生命周期描述了某个对象从创建到销毁的整个历程，在这个历程中，会被调用某些方法，这些方法就是生命周期方法，学习生命周期的意义在于了解这些方法的调用特征，例如 何时调用、调用次数，以至于开发功能时，可以将正确的代码重写在正确的方法中！</li>
+<li>以Servlet为例，其生命周期方法主要有<code>init()</code>、<code>service()</code>、<code>destroy()</code>，其中，<code>init()</code>和<code>destroy()</code>都是只执行1次的方法，而<code>service()</code>在每次接收到请求时都会被调用，且<code>init()</code>方法是创建对象之后就会执行的方法，<code>destroy()</code>是销毁对象的前一刻执行的方法，所以，如果有某个流对象需要初始化，初始化的代码写在<code>destroy()</code>方法中就是不合适的！反之，如果要销毁流对象，也不能把代码写在<code>init()</code>中！</li>
+</ul>
+<p>由Spring管理的单例对象也并不是开发人员完全可控的，即不知道何时创建的，何时销毁的，所以，Spring提供了“允许自定义初始化方法和销毁方法”的做法，开发人员可以自行定义2个方法分别表示初始化方法和销毁方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        System.out.println(<span class="string">"创建User对象……"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"初始化方法被调用……"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"销毁方法被调用……"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- init-method：初始化方法的名称 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- destroy-method：销毁方法的名称 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"cn.tedu.spring.User"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">init-method</span>=<span class="string">"init"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">destroy-method</span>=<span class="string">"destroy"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：生命周期方法的配置是建立在“单例”基础之上的，如果对象并不是单例的，讨论生命周期就没有意义了。</p>
+</blockquote>
+<h3 id="2、Spring-IOC"><a href="#2、Spring-IOC" class="headerlink" title="2、Spring IOC"></a>2、Spring IOC</h3><h4 id="1、通过SET方式注入属性的值"><a href="#1、通过SET方式注入属性的值" class="headerlink" title="1、通过SET方式注入属性的值"></a>1、通过SET方式注入属性的值</h4><p>假设存在：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="comment">//如果需要为`driver`注入值，首先需要为该属性添加SET方法</span></span><br><span class="line">    <span class="keyword">public</span> String driver; <span class="comment">// com.mysql.jdbc.Driver</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDriver</span><span class="params">(String driver)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.driver = driver;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Spring的配置文件中，添加<code>&lt;property&gt;</code>节点以进行配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userDao"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.spring.UserDao"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>另外，如果某个属性的值并不是基本值（在Spring中，把基本数据类型的值和字符串统一称为基本值），例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> UserDao userDao;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上属性的值应该是前序创建的<code>UserDao</code>类的对象，则，在配置时，可以通过<code>&lt;property&gt;</code>节点的<code>ref</code>属性引用那个<code>&lt;bean&gt;</code>的<code>id</code>：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userServlet"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.spring.UserServlet"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"userDao"</span> <span class="attr">ref</span>=<span class="string">"userDao"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>综合来看，无论属性的值是什么类型，只要是通过SET方式注入属性值，首先都必须为属性添加SET方法，然后在<code>&lt;bean&gt;</code>节点下级通过<code>&lt;property&gt;</code>节点进行配置，如果属性的值是基本值，则使用<code>value</code>属性直接编写对应的值，如果属性的值不是基本值，则使用<code>ref</code>属性引用另一个<code>&lt;bean&gt;</code>的<code>id</code>（如果没有所说的另一个<code>&lt;bean&gt;</code>，就想办法配出这样一个<code>&lt;bean&gt;</code>）。</li>
+</ul>
+<h4 id="2、通过构造方法注入属性的值"><a href="#2、通过构造方法注入属性的值" class="headerlink" title="2、通过构造方法注入属性的值"></a>2、通过构造方法注入属性的值</h4><p>假设存在：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdminDao</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String url;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AdminDao</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.url = url;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Spring配置文件中：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过构造方法注入属性值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"adminDao"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.spring.AdminDao"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- index：参数的序号，即第几个参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"0"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://..."</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><ul>
+<li>通过SET方式注入必须为属性添加规范的SET方法，在配置时，使用<code>&lt;property&gt;</code>节点注入属性的值，该节点中，<code>name</code>属性可以理解为就是属性名称；</li>
+<li>通过构造方法注入必须自定义带参数的构造方法，且构造方法会基于参数为属性赋值；</li>
+<li>无论通过哪种方式，如果注入的值是基本值，通过<code>value</code>属性配置，如果注入的值是引用其他Bean，通过<code>ref</code>引用那个<code>&lt;bean&gt;</code>的<code>id</code>。</li>
+<li>通常推荐为绝大部分类提供无参数的构造方法，所以，通过SET方式注入是比较实用的做法，而通过构造方法注入的使用频率就非常低。</li>
+</ul>
+<h4 id="3、注入集合类型的属性值"><a href="#3、注入集合类型的属性值" class="headerlink" title="3、注入集合类型的属性值"></a>3、注入集合类型的属性值</h4><p><strong>1. List</strong><br>假设存在：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Frank, Andy, Lucy, Kate</span></span><br><span class="line"><span class="comment">//通过SET方式注入属性的值，需要先 生成SET方法</span></span><br><span class="line"><span class="keyword">public</span> List&lt;String&gt; names;</span><br></pre></td></tr></table></figure></p>
+<p>配置为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入List类型的值：Frank, Andy, Lucy, Kate --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"names"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>Frank<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>Andy<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>Lucy<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>Kate<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Spring框架在处理时，会使用<code>ArrayList</code>封装<code>List</code>类型的属性的值。</p>
+</blockquote>
+<p><strong>2. Set</strong><br>假设存在：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Beijing, Shanghai, Guangzhou, Shenzhen</span></span><br><span class="line"><span class="keyword">public</span> Set&lt;String&gt; cities;</span><br></pre></td></tr></table></figure></p>
+<p>配置为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入Set类型的值：Beijing, Shanghai, Guangzhou, Shenzhen --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cities"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>Beijing<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>Shanghai<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>Guangzhou<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>Shenzhen<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Spring框架在处理时，会使用<code>LinkedHashSet</code>封装<code>Set</code>类型的属性的值。</p>
+</blockquote>
+<p><strong>3. 数组</strong><br>假设存在：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#123; 9, 5, 2, 7 &#125; </span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] numbers;</span><br></pre></td></tr></table></figure></p>
+<p>配置为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入数组类型的值：&#123; 9, 5, 2, 7 &#125; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"numbers"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>9<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>5<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>7<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在Spring框架中，注入<code>List</code>集合类型的值和数组类型的值时，使用<code>&lt;list&gt;</code>节点或者<code>&lt;array&gt;</code>节点都是可以的，即：数据是<code>List</code>类型的，使用<code>&lt;array&gt;</code>来配置，或者数据是数组类型的，使用<code>&lt;list&gt;</code>来配置，都是正确的。</p>
+</blockquote>
+<p><strong>4. Map</strong><br>假设存在：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// username=root, password=1234, from=Hangzhou, age=26</span></span><br><span class="line"><span class="keyword">public</span> Map&lt;String, String&gt; session;</span><br></pre></td></tr></table></figure></p>
+<p>配置为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入Map类型的值：username=root, password=1234, from=Hangzhou, age=26 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"session"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"1234"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"from"</span> <span class="attr">value</span>=<span class="string">"Hangzhou"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"26"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>5. Properties</strong><br>在配置<code>Properties</code>类型的属性值时，其配置的节点结构是：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入Properties类型的值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"config"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"username"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"password"</span>&gt;</span>1234<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以准备<strong>.properties</strong>文件。<strong>创建db.properties</strong>文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">url=jdbc:mysql://localhost:3306/db_name?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai</span><br><span class="line">driver=com.mysql.jdbc.Driver</span><br><span class="line">username=root</span><br><span class="line">password=1234</span><br></pre></td></tr></table></figure></p>
+<p>在Spring的配置文件中，使用<code>&lt;util:properties&gt;</code>节点就可以直接读取<strong>.properties</strong>文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">util:properties</span> <span class="attr">id</span>=<span class="string">"config"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">location</span>=<span class="string">"classpath:db.properties"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>以上<code>&lt;util:properties&gt;</code>节点也是一种<code>&lt;bean&gt;</code>节点，所以，注入值时，可以通过<code>ref</code>引用这个节点：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注入Properties类型的值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"config"</span> <span class="attr">ref</span>=<span class="string">"config"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Spring表达式"><a href="#Spring表达式" class="headerlink" title="Spring表达式"></a>Spring表达式</h3><p>Spring表达式是使用占位符的方式定义在Spring的配置文件中的，作用是用于获取其他<code>&lt;bean&gt;</code>中的属性的值！</p>
+<p>假设存在：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ValueBean</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 值是SampleBean中的names中的第2个</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">	<span class="comment">//通过SET方式注入，也可以通过构造方法注入</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在Spring的配置文件中进行配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 使用Spring表达式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"valueBean"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.spring.ValueBean"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 值是SampleBean中的names中的第2个 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">value</span>=<span class="string">"#&#123;sampleBean.names[1]&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>Spring表达式的基本格式是使用<code>#{}</code>进行占位，其内部语法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#123;bean的id.属性&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果属性的类型是<code>List</code>集合、<code>Set</code>集合或者数组，则在属性右侧使用<code>[]</code>写出索引或者下标：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#123;bean的id.属性[索引或者下标]&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果属性的类型是<code>Map</code>集合或者<code>Properties</code>，可以使用的语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. #&#123;bean的id.属性.key&#125;</span><br><span class="line">2. #&#123;bean的id.属性[&apos;key&apos;]&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="自动装配-autowire"><a href="#自动装配-autowire" class="headerlink" title="自动装配(autowire)"></a>自动装配(autowire)</h3><p>自动装配：不需要在Spring的配置文件中进行属性值的注入，只需要配置允许自动装配，Spring就会自动的完成属性值的注入。</p>
+<p>假设存在<code>StudentServlet</code>依赖于<code>StudentDao</code>：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentServlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> StudentDao studentDao;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStudentDao</span><span class="params">(StudentDao studentDao)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.studentDao = studentDao;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"StudentServlet.reg()"</span>);</span><br><span class="line">        studentDao.reg();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"StudentDao.reg()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配置为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"studentDao"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"cn.tedu.spring.StudentDao"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"studentServlet"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"cn.tedu.spring.StudentServlet"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">autowire</span>=<span class="string">"byName"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上配置中，<code>autowire</code>属性就是用于配置自动装配的。</p>
+</blockquote>
+<ul>
+<li>当取值是<code>byName</code>时，表示“按照名称自动装配”，在这个过程中，Spring会先检测到在<code>StudentServlet</code>中有名为<code>studentDao</code>的属性，会根据该属性得到<code>setStudentDao</code>这个方法名称，然后，尝试找到与SET方法名称对应的bean的id，即查找某个id为<code>studentDao</code>的<code>&lt;bean&gt;</code>，如果找到，则自动调用<code>setStudentDao</code>方法来完成自动装配，如果没有找到匹配的bean-id，则不会尝试自动装配。简单的来说，就是<strong>SET方法的名称需要与bean-id相对应</strong>，属性的名称可以和bean-id不对应。自动装配是一种“尝试性”的操作，能装就装，装不上也不会报错！</li>
+<li>还可以取值为<code>byType</code>，表示“按照类型自动装配”，在这个过程，Spring会检测<code>StudentServlet</code>中以<code>set</code>作为前缀的方法，并尝试调用这些方法，调用时，<strong>会在Spring容器中查找与参数类型相符合的bean，如果没有匹配的对象，则不自动装配，如果找到1个，则执行该方法，以完成自动装配，如果找到2个或者更多，则直接报错错误</strong>。</li>
+</ul>
+<h3 id="Spring注解"><a href="#Spring注解" class="headerlink" title="Spring注解"></a>Spring注解</h3><h4 id="1、-通用注解"><a href="#1、-通用注解" class="headerlink" title="1、 通用注解"></a>1、 通用注解</h4><p>使用注解的方式来管理对象时，就不必在Spring的配置文件中使用<code>&lt;bean&gt;</code>节点进行配置了，但是，需要先配置一项“组件扫描”，使得Spring框架知道需要管理的类在哪里：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置组件扫描的根包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu.spring"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为需要创建对象的类添加<code>@Component</code>注解即可：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>“组件扫描 + 注解”就可以实现Spring创建对象！</p>
+</blockquote>
+<p>在配置组件扫描时，<code>base-package</code>表示“根包”，假设类都在<code>cn.tedu.spring</code>包中，可以直接配置为这个包。例如实际使用的是<code>cn.tedu.spring.dao</code>、<code>cn.tedu.spring.servlet</code>等，可以把根包设置为<code>cn.tedu.spring</code>。！</p>
+<p>关于使用的注解，可以是：</p>
+<ul>
+<li><code>@Component</code>：通用注解</li>
+<li><code>@Controller</code>：添加在控制器之前的注解</li>
+<li><code>@Service</code>：添加在业务类之前的注解</li>
+<li><code>@Repository</code>：添加在处理持久层的类之前的注解<blockquote>
+<p>在配置Spring创建和管理对象时，在类之前添加以上4个注解中的任意1个即可，以上4个注解的作用相同，使用方式相同，语义不同。</p>
+</blockquote>
+</li>
+</ul>
+<p>在使用以上注解后，由Spring创建的对象的bean-id默认就是类名首字母改为小写的名称，例如<code>UserDao</code>类的默认bean-id就是<code>userDao</code>，如果需要自定义bean-id，可以对注解进行配置，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(<span class="string">"dao"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2、关于作用域与生命周期的注解"><a href="#2、关于作用域与生命周期的注解" class="headerlink" title="2、关于作用域与生命周期的注解"></a>2、关于作用域与生命周期的注解</h4><ul>
+<li>使用<code>@Scope</code>注解可以配置某类的对象是否是单例的，可以在该注解中配置属性为<code>singleton</code>或<code>prototype</code>，当配置为<code>@Scope(&quot;prototype&quot;)</code>时表示非单例的，如果希望是单例，则不需要配置该注解，默认就是单例的。</li>
+<li>在单例的前提下，默认是饿汉式的单例，如果希望是懒汉式的单例模式，可以在类之前添加<code>@Lazy</code>注解，在该注解中还可以配置<code>true</code>或<code>false</code>，例如<code>@Lazy(false)</code>，但是，没有必要这样配置，如果希望是饿汉式的，根本就不需要添加该注解，如果希望是懒汉式的，只需要配置<code>@Lazy</code>即可，而不需要写成<code>@Lazy(true)</code>。</li>
+</ul>
+<p>在被Spring管理的类中，可以自定义方法，作为初始化方法和销毁时调用的方法，需要添加<code>@PostConstruct</code>和<code>@PreDestroy</code>注解，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserDao</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"创建UserDao的对象！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"UserDao.init()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PreDestroy</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"UserDao.destroy()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>以上2个注解是<code>javax</code>包中的注解，使用时，需要为项目添加Tomcat运行环境，以使用Java EE相关的jar包，才可以识别以上2个注解！</p>
+</blockquote>
+<h4 id="3-、自动装配"><a href="#3-、自动装配" class="headerlink" title="3.、自动装配"></a>3.、自动装配</h4><p>假设存在：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"UserDao.reg()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果存在<code>UserServlet</code>需要依赖于以上<code>UserDao</code>，则在<code>UserServlet</code>中的属性之前添加<code>@Autowired</code>注解即可，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"UserServlet.reg()"</span>);</span><br><span class="line">        userDao.reg();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然，以上2个类都必须是被Spring所管理的，即：都在组件扫描的包下，且都添加了<code>@Component</code>或等同功能的注解。</p>
+<p>通过注解实现自动装配时，并不需要属性有SET方法！Spring框架就是将值直接赋值过去的！</p>
+<p>使用<code>@Resource</code>注解也可以实现自动装配，它是Java EE中的注解，它的装配模式是：优先<code>byName</code>实现装配，如果装配失败，会尝试<code>byType</code>实现装配，且，如果<code>byType</code>装配，要求匹配类型的对象必须有且仅有1个，无论是0个还是超过1个，都会报告错误！</p>
+<p>使用<code>@Resource</code>时还可以配置需要注入的bean的id，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Resource(name=&quot;ud1&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>@Autowired</code>时，会优先<code>byType</code>，如果找到1个匹配类型的对象，则直接装配，如果没有匹配类型的对象，则直接报告错误，如果找到多个匹配类型的对象，则会尝试<code>byName</code>，如果<code>byName</code>装配失败，则报告错误！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/17/Java-reflect-Annotations/" rel="next" title="Java-reflect-Annotations">
+                <i class="fa fa-chevron-left"></i> Java-reflect-Annotations
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/18/Java-question-2/" rel="prev" title="Java-question-2">
+                Java-question-2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring"><span class="nav-number">1.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring简介"><span class="nav-number">1.1.</span> <span class="nav-text">Spring简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1、Spring-示例："><span class="nav-number">1.2.</span> <span class="nav-text">1、Spring 示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过Spring创建对象的方式"><span class="nav-number">1.2.1.</span> <span class="nav-text">通过Spring创建对象的方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#由Spring管理的对象的作用域与生命周期"><span class="nav-number">1.3.</span> <span class="nav-text">由Spring管理的对象的作用域与生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、Spring-IOC"><span class="nav-number">1.4.</span> <span class="nav-text">2、Spring IOC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、通过SET方式注入属性的值"><span class="nav-number">1.4.1.</span> <span class="nav-text">1、通过SET方式注入属性的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、通过构造方法注入属性的值"><span class="nav-number">1.4.2.</span> <span class="nav-text">2、通过构造方法注入属性的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.4.3.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、注入集合类型的属性值"><span class="nav-number">1.4.4.</span> <span class="nav-text">3、注入集合类型的属性值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring表达式"><span class="nav-number">1.5.</span> <span class="nav-text">Spring表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动装配-autowire"><span class="nav-number">1.6.</span> <span class="nav-text">自动装配(autowire)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring注解"><span class="nav-number">1.7.</span> <span class="nav-text">Spring注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、-通用注解"><span class="nav-number">1.7.1.</span> <span class="nav-text">1、 通用注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、关于作用域与生命周期的注解"><span class="nav-number">1.7.2.</span> <span class="nav-text">2、关于作用域与生命周期的注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-、自动装配"><span class="nav-number">1.7.3.</span> <span class="nav-text">3.、自动装配</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

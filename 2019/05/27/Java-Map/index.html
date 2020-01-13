@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Map接口 Map接口中键和值一一映射. 可以通过键来获取值。 给定一个键和一个值，你可以将该值存储在一个Map对象. 之后，你可以通过键来访问对应的值。 当访问的值不存在的时候，方法就会抛出一个NoSuchElementException异常. 当对象的类型和Map里元素类型不兼容的时候，就会抛出一个 ClassCastException异常。 当在不允许使用Null对象的Map中使用Null对">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-Map">
+<meta property="og:url" content="http://yoursite.com/2019/05/27/Java-Map/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="Map接口 Map接口中键和值一一映射. 可以通过键来获取值。 给定一个键和一个值，你可以将该值存储在一个Map对象. 之后，你可以通过键来访问对应的值。 当访问的值不存在的时候，方法就会抛出一个NoSuchElementException异常. 当对象的类型和Map里元素类型不兼容的时候，就会抛出一个 ClassCastException异常。 当在不允许使用Null对象的Map中使用Null对">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.322Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java-Map">
+<meta name="twitter:description" content="Map接口 Map接口中键和值一一映射. 可以通过键来获取值。 给定一个键和一个值，你可以将该值存储在一个Map对象. 之后，你可以通过键来访问对应的值。 当访问的值不存在的时候，方法就会抛出一个NoSuchElementException异常. 当对象的类型和Map里元素类型不兼容的时候，就会抛出一个 ClassCastException异常。 当在不允许使用Null对象的Map中使用Null对">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/27/Java-Map/">
+
+
+
+
+
+  <title>Java-Map | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/Java-Map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java-Map</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T18:52:01+08:00">
+                2019-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h2><ul>
+<li><strong>Map接口中键和值一一映射. 可以通过键来获取值。</strong><ul>
+<li><strong>给定一个键和一个值，你可以将该值存储在一个Map对象. 之后，你可以通过键来访问对应的值。</strong></li>
+<li><strong>当访问的值不存在的时候，方法就会抛出一个NoSuchElementException异常.</strong></li>
+<li><strong>当对象的类型和Map里元素类型不兼容的时候，就会抛出一个 ClassCastException异常。</strong></li>
+<li><strong>当在不允许使用Null对象的Map中使用Null对象，会抛出一个NullPointerException 异常。</strong></li>
+<li><strong>当尝试修改一个只读的Map时，会抛出一个UnsupportedOperationException异常。</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li><strong>void    clear()</strong><ul>
+<li><strong>从该地图中删除所有的映射（可选操作）。</strong></li>
+</ul>
+</li>
+<li><strong>default V    compute(K key, BiFunction&lt; ? super K,? super V,? extends V&gt; remappingFunction)</strong><ul>
+<li><strong>尝试计算指定键的映射及其当前映射的值（如果没有当前映射， null ）。</strong></li>
+</ul>
+</li>
+<li><strong>default V    computeIfAbsent(K key, Function&lt; ? super K,? extends V&gt; mappingFunction)</strong><ul>
+<li><strong>如果指定的键尚未与值相关联（或映射到 null ），则尝试使用给定的映射函数计算其值，并将其输入到此映射中，除非 null 。</strong></li>
+</ul>
+</li>
+<li><strong>default V    computeIfPresent(K key, BiFunction&lt; ? super K,? super V,? extends V&gt; remappingFunction)</strong><ul>
+<li><strong>如果指定的密钥的值存在且非空，则尝试计算给定密钥及其当前映射值的新映射。</strong></li>
+</ul>
+</li>
+<li><strong>boolean    containsKey(Object key)</strong><ul>
+<li><strong>如果此映射包含指定键的映射，则返回 true 。</strong></li>
+</ul>
+</li>
+<li><strong>boolean    containsValue(Object value)</strong><ul>
+<li><strong>如果此地图将一个或多个键映射到指定的值，则返回 true 。</strong></li>
+</ul>
+</li>
+<li><strong>Set&lt;Map.Entry&lt;K,V&gt;&gt;    entrySet()</strong><ul>
+<li><strong>返回此地图中包含的映射的Set视图。</strong></li>
+</ul>
+</li>
+<li><strong>boolean    equals(Object o)</strong><ul>
+<li><strong>将指定的对象与此映射进行比较以获得相等性。</strong></li>
+</ul>
+</li>
+<li><strong>default void    forEach(BiConsumer&lt; ? super K,? super V&gt; action)</strong><ul>
+<li><strong>对此映射中的每个条目执行给定的操作，直到所有条目都被处理或操作引发异常。</strong></li>
+</ul>
+</li>
+<li><strong>V    get(Object key)</strong><ul>
+<li><strong>返回到指定键所映射的值，或 null如果此映射包含该键的映射。</strong></li>
+</ul>
+</li>
+<li><strong>default V    getOrDefault(Object key, V defaultValue)</strong><ul>
+<li><strong>返回到指定键所映射的值，或 defaultValue如果此映射包含该键的映射。</strong></li>
+</ul>
+</li>
+<li><strong>int    hashCode()</strong><ul>
+<li><strong>返回此地图的哈希码值。</strong></li>
+</ul>
+</li>
+<li><strong>boolean    isEmpty()</strong><ul>
+<li><strong>如果此地图不包含键值映射，则返回 true 。</strong></li>
+</ul>
+</li>
+<li><strong>Set&lt; K &gt;    keySet()</strong><ul>
+<li><strong>返回此地图中包含的键的Set视图。</strong></li>
+</ul>
+</li>
+<li><strong>default V    merge(K key, V value, BiFunction&lt; ? super V,? super V,? extends V&gt; remappingFunction)</strong><ul>
+<li><strong>如果指定的键尚未与值相关联或与null相关联，则将其与给定的非空值相关联。</strong></li>
+</ul>
+</li>
+<li><strong>V    put(K key, V value)</strong><ul>
+<li><strong>将指定的值与该映射中的指定键相关联（可选操作）。</strong></li>
+</ul>
+</li>
+<li><strong>void    putAll(Map&lt; ? extends K,? extends V&gt; m)</strong><ul>
+<li><strong>将指定地图的所有映射复制到此映射（可选操作）。</strong></li>
+</ul>
+</li>
+<li><strong>default V    putIfAbsent(K key, V value)</strong><ul>
+<li><strong>如果指定的键尚未与某个值相关联（或映射到 null ）将其与给定值相关联并返回 null ，否则返回当前值。</strong></li>
+</ul>
+</li>
+<li><strong>V    remove(Object key)</strong><ul>
+<li><strong>如果存在（从可选的操作），从该地图中删除一个键的映射。</strong></li>
+</ul>
+</li>
+<li><strong>default boolean    remove(Object key, Object value)</strong><ul>
+<li><strong>仅当指定的密钥当前映射到指定的值时删除该条目。</strong></li>
+</ul>
+</li>
+<li><strong>default V    replace(K key, V value)</strong><ul>
+<li><strong>只有当目标映射到某个值时，才能替换指定键的条目。</strong></li>
+</ul>
+</li>
+<li><strong>default boolean    replace(K key, V oldValue, V newValue)</strong><ul>
+<li><strong>仅当当前映射到指定的值时，才能替换指定键的条目。</strong></li>
+</ul>
+</li>
+<li><strong>default void    replaceAll(BiFunction&lt; ? super K,? super V,? extends V&gt; function)</strong><ul>
+<li><strong>将每个条目的值替换为对该条目调用给定函数的结果，直到所有条目都被处理或该函数抛出异常。</strong></li>
+</ul>
+</li>
+<li><strong>int    size()</strong><ul>
+<li><strong>返回此地图中键值映射的数量。</strong></li>
+</ul>
+</li>
+<li><strong>Collection&lt; V &gt;    values()</strong><ul>
+<li><strong>返回此地图中包含的值的Collection视图。</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><ul>
+<li><strong>hashMap是一个用于存储key-value键值对的集合，每一个键值对也被叫做Entry。这些个键值对分散存储在一个数组当中，这个数组就是HaspMap的主干。</strong></li>
+<li><strong>总体上看，Hashmap分为很多个数组，每一个数组里面存放着一个链表。</strong></li>
+</ul>
+<h4 id="hashCode方法"><a href="#hashCode方法" class="headerlink" title="hashCode方法"></a>hashCode方法</h4><ul>
+<li><strong>key的hashCode()方法的返回值对HashMap存储元素时起着很重要的作用。而hashCode()方法实际上是在Object中定义的。那么应当妥善重写该方法：</strong><ul>
+<li><strong>对于重写equals方法的对象，一般要妥善的重写继承自Object类的hashCode方法，Object提供的hashCode方法将返回该对象所在内存地址的整数形式。</strong></li>
+<li><strong>重写hashCode方法时需注意两点：</strong><ul>
+<li><strong>1：与equals方法的一致性，即equals比较返回true的两个对象其hashCode方法返回值应该相同。</strong></li>
+<li><strong>2：hashCode返回的数值应符合hash算法的要求，如果有很多对象的hashCode方法返回值都相同，则会大大降低hash表的效率。</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Capacity：容量，hash表里bucket(桶)的数量，也就是散列数组大小。</strong></li>
+<li><strong>Initial capacity：初始容量，创建hash表示，初始bucket的数量，默认构建容量是16，也可以使用特定容量。</strong></li>
+<li><strong>Size：大小，当前散列表中储存数据的数量。</strong></li>
+<li><strong>Load factor：加载因子，默认值0.75(75%)，当向散列表增加数据时如果size/capacity的值大于Load factor则发生扩充并且重新散列(rehash)。</strong></li>
+<li><strong>性能优化：加载银子较小时，散列查找性能会提高，同时也浪费了散列桶空间容量。0.75是性能和空间相对平衡结果。在创建散列表时指定合理容量，减少rehash提高性能。</strong></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/25/Java-XML/" rel="next" title="Java-XML">
+                <i class="fa fa-chevron-left"></i> Java-XML
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/28/Java-reflect/" rel="prev" title="Java-reflect">
+                Java-reflect <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Map接口"><span class="nav-number">1.</span> <span class="nav-text">Map接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">1.2.</span> <span class="nav-text">HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hashCode方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">hashCode方法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

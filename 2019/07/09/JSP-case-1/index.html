@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="实现添加员工功能步骤:  在员工列表页面list-emp2.jsp增加添加链接: 1&amp;lt;h3 class=&quot;box-title&quot;&amp;gt;员工信息 &amp;lt;a href=&quot;add-emp.jsp&quot; class=&quot;btn btn-success&quot;&amp;gt;添加&amp;lt;/a&amp;gt;&amp;lt;/h3&amp;gt;  根据模板页面 starter.html 和 pages/forms/general.html创建">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP-case-1">
+<meta property="og:url" content="http://yoursite.com/2019/07/09/JSP-case-1/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="实现添加员工功能步骤:  在员工列表页面list-emp2.jsp增加添加链接: 1&amp;lt;h3 class=&quot;box-title&quot;&amp;gt;员工信息 &amp;lt;a href=&quot;add-emp.jsp&quot; class=&quot;btn btn-success&quot;&amp;gt;添加&amp;lt;/a&amp;gt;&amp;lt;/h3&amp;gt;  根据模板页面 starter.html 和 pages/forms/general.html创建">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.303Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP-case-1">
+<meta name="twitter:description" content="实现添加员工功能步骤:  在员工列表页面list-emp2.jsp增加添加链接: 1&amp;lt;h3 class=&quot;box-title&quot;&amp;gt;员工信息 &amp;lt;a href=&quot;add-emp.jsp&quot; class=&quot;btn btn-success&quot;&amp;gt;添加&amp;lt;/a&amp;gt;&amp;lt;/h3&amp;gt;  根据模板页面 starter.html 和 pages/forms/general.html创建">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/09/JSP-case-1/">
+
+
+
+
+
+  <title>JSP-case-1 | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/JSP-case-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSP-case-1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-09T19:27:46+08:00">
+                2019-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="实现添加员工功能"><a href="#实现添加员工功能" class="headerlink" title="实现添加员工功能"></a>实现添加员工功能</h2><p>步骤:</p>
+<ol>
+<li><p>在员工列表页面list-emp2.jsp增加添加链接:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h3 class="box-title"&gt;员工信息 &lt;a href="add-emp.jsp" class="btn btn-success"&gt;添加&lt;/a&gt;&lt;/h3&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据模板页面 starter.html 和 pages/forms/general.html创建 add-emp.jsp</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Horizontal Form --&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box box-info"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box-header with-border"</span>&gt;</span><br><span class="line">    &lt;h3 class="box-title"&gt;添加新员工信息&lt;/h3&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;!-- /.box-header --&gt;</span><br><span class="line">  &lt;!-- form start --&gt;</span><br><span class="line">  &lt;form <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-horizontal"</span> </span><br><span class="line">    method=<span class="string">"post"</span> action=<span class="string">"save-emp"</span>&gt; </span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box-body"</span>&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"ename"</span> </span><br><span class="line">          class="col-sm-2 control-label"&gt;姓名&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">            id=<span class="string">"ename"</span> name=<span class="string">"ename"</span> placeholder=<span class="string">"姓名"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"mgr"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;领导编号&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">          id=<span class="string">"mgr"</span> name=<span class="string">"mgr"</span> placeholder=<span class="string">"领导编号"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"hiredate"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;入职日期&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"date"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">          id=<span class="string">"hiredate"</span> name=<span class="string">"hiredate"</span>  </span><br><span class="line">          placeholder=<span class="string">"入职日期"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"deptno"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;部门编号&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">          id=<span class="string">"deptno"</span> name=<span class="string">"deptno"</span>  </span><br><span class="line">          placeholder=<span class="string">"部门编号"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;  </span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"salary"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;薪资&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"number"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">          id=<span class="string">"salary"</span> name=<span class="string">"salary"</span>  </span><br><span class="line">          placeholder=<span class="string">"薪资"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;  </span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">"comm"</span> </span><br><span class="line">        class="col-sm-2 control-label"&gt;提成&lt;/label&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-10"</span>&gt;</span><br><span class="line">          &lt;input type=<span class="string">"number"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> </span><br><span class="line">          id=<span class="string">"comm"</span> name=<span class="string">"comm"</span>  </span><br><span class="line">          placeholder=<span class="string">"提成"</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;                                </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- /.box-body --&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box-footer"</span>&gt;</span><br><span class="line">      &lt;button type="submit" class="btn btn-info pull-right"&gt;保存&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- /.box-footer --&gt;</span><br><span class="line">  &lt;/form&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- /.box --&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在EmpDao中添加 save(emp) 方法, 实现增加Emp对象的功能.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加新用户功能</span></span><br><span class="line"><span class="comment"> * 返回添加的行数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">save</span><span class="params">(Emp emp)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//将emp对象中的数据保存到 数据库</span></span><br><span class="line">    String sql = <span class="string">"insert into t_emp (empno, ename, mgr, hiredate, deptno, salary, comm) values (null, ?,?,?,?,?,? )"</span>;</span><br><span class="line">    <span class="keyword">try</span>(Connection conn=DBUtil.getConnection())&#123;</span><br><span class="line">        PreparedStatement ps = conn.prepareStatement(sql);</span><br><span class="line">        ps.setString(<span class="number">1</span>, emp.getEname());</span><br><span class="line">        ps.setInt(<span class="number">2</span>, emp.getMgr());</span><br><span class="line">        ps.setDate(<span class="number">3</span>, emp.getHiredate());</span><br><span class="line">        ps.setInt(<span class="number">4</span>, emp.getDeptno());</span><br><span class="line">        ps.setDouble(<span class="number">5</span>, emp.getSalary());</span><br><span class="line">        ps.setDouble(<span class="number">6</span>, emp.getComm());</span><br><span class="line">        <span class="keyword">int</span> n = ps.executeUpdate();</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">        e.printStackTrace(); </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试 save 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestCase</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSaveEmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">        Emp emp = <span class="keyword">new</span> Emp(<span class="number">0</span>, <span class="string">"范传奇"</span>, <span class="number">1</span>, date,</span><br><span class="line">                <span class="number">1</span>, <span class="number">1000</span>, <span class="number">20</span>); </span><br><span class="line">        EmpDao dao = <span class="keyword">new</span> EmpDao();</span><br><span class="line">        <span class="keyword">int</span> n = dao.save(emp);</span><br><span class="line">        System.out.println(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写Servlet, 处理表单post请求:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SaveEmpServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//1. 接收表单参数</span></span><br><span class="line">        <span class="comment">//2. 将表单参数保存到数据</span></span><br><span class="line">        <span class="comment">//3. 转发到 成功页面</span></span><br><span class="line">        request.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        String ename=request.getParameter(<span class="string">"ename"</span>);</span><br><span class="line">        String mgrId=request.getParameter(<span class="string">"mgr"</span>);</span><br><span class="line">        String date =request.getParameter(<span class="string">"hiredate"</span>);</span><br><span class="line">        String deptId=request.getParameter(<span class="string">"deptno"</span>);</span><br><span class="line">        String salarys=request.getParameter(<span class="string">"salary"</span>);</span><br><span class="line">        String comms = request.getParameter(<span class="string">"comm"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(ename);</span><br><span class="line">        System.out.println(mgrId);</span><br><span class="line">        System.out.println(date);</span><br><span class="line">        System.out.println(deptId);</span><br><span class="line">        System.out.println(salarys);</span><br><span class="line">        System.out.println(comms);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//数据类型转换: 将字符串转换为目标数据类型</span></span><br><span class="line">            SimpleDateFormat fmt= <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">            <span class="keyword">int</span> mgr = Integer.parseInt(mgrId);</span><br><span class="line">            Date hiredate = <span class="keyword">new</span> Date(fmt.parse(date).getTime());</span><br><span class="line">            <span class="keyword">int</span> deptno = Integer.parseInt(deptId);</span><br><span class="line">            <span class="keyword">double</span> salary = Double.parseDouble(salarys);</span><br><span class="line">            <span class="keyword">double</span> comm = Double.parseDouble(comms);</span><br><span class="line">            <span class="comment">//保存到数据库</span></span><br><span class="line">            Emp emp = <span class="keyword">new</span> Emp(<span class="number">0</span>, ename, mgr, hiredate, deptno, salary, comm);</span><br><span class="line">            EmpDao dao = <span class="keyword">new</span> EmpDao();</span><br><span class="line">            <span class="keyword">int</span> n = dao.save(emp);</span><br><span class="line">            <span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">                <span class="comment">//成功</span></span><br><span class="line">                request.setAttribute(<span class="string">"message"</span>, <span class="string">"添加成功!"</span>);</span><br><span class="line">                request.getRequestDispatcher(<span class="string">"/WEB-INF/jsp/message.jsp"</span>).forward(request, response);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//失败</span></span><br><span class="line">                request.setAttribute(<span class="string">"message"</span>, <span class="string">"添加失败!"</span>);</span><br><span class="line">                request.getRequestDispatcher(<span class="string">"/WEB-INF/jsp/message.jsp"</span>).forward(request, response);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">            e.printStackTrace(); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置Servlet</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span><span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>SaveEmpServlet<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SaveEmpServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>day06.SaveEmpServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SaveEmpServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/save-emp<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用starter.html 创建 /WEB-INF/jsp/message.jsp 用于显示成功消息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;p class=<span class="string">"well"</span>&gt;</span><br><span class="line">  &lt;%=request.getAttribute(<span class="string">"message"</span>)%&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+</li>
+</ol>
+<h2 id="转发-与-重定向"><a href="#转发-与-重定向" class="headerlink" title="转发 与 重定向"></a>转发 与 重定向</h2><ol>
+<li>转发: 一次请求<ol>
+<li>为了实现 Servlet与JSP协同工作, Sertvlet处理结束以后由JSP负责显示数据, SUN 设计 Servlet到JSP的转发功能.(尽管Servlet到Servlet, JSP到JSP可以转发, 但极少使用)</li>
+<li>一般都在Servlet处理以后, 转发到JSP显示数据!!</li>
+</ol>
+</li>
+<li>重定向: 两次请求<ol>
+<li>是HTTP协议中设计的一个功能, 浏览器根据服务器的响应结果自动转向(跳转)到一个新的URL地址.</li>
+<li>服务在响应中发送 302 状态码和Location头, 浏览器收到302就会转向到 Location头中设定的URL地址.</li>
+<li>如果服务器端希望重新转向新的URL地址(发起新的GET请求)时候使用重定向.</li>
+</ol>
+</li>
+</ol>
+<p>重构SaveEmpServlet利用重定向显示添加的结果:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">    String url= request.getContextPath()+<span class="string">"/list-emp"</span>;</span><br><span class="line">    response.sendRedirect(url); </span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//失败</span></span><br><span class="line">    request.setAttribute(<span class="string">"message"</span>, <span class="string">"添加失败!"</span>);</span><br><span class="line">    request.getRequestDispatcher(<span class="string">"/WEB-INF/jsp/message.jsp"</span>) .forward(request, response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现删除功能"><a href="#实现删除功能" class="headerlink" title="实现删除功能:"></a>实现删除功能:</h2><p>步骤:</p>
+<ol>
+<li><p>EmpDao中添加delete方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 按照员工号删除员工信息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> empno)</span> </span>&#123;</span><br><span class="line">    String sql=<span class="string">"delete from t_emp where empno=?"</span>;</span><br><span class="line">    <span class="keyword">try</span>(Connection conn=DBUtil.getConnection())&#123;</span><br><span class="line">        PreparedStatement ps = conn.prepareStatement(sql);</span><br><span class="line">        ps.setInt(<span class="number">1</span>, empno);</span><br><span class="line">        <span class="keyword">int</span> n = ps.executeUpdate();</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDeleteEmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    EmpDao dao = <span class="keyword">new</span> EmpDao();</span><br><span class="line">    <span class="keyword">int</span> n = dao.delete(<span class="number">4</span>);</span><br><span class="line">    System.out.println(n); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改list-emp2.jsp 添加删除链接:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;table <span class="class"><span class="keyword">class</span></span>=<span class="string">"table table-bordered"</span>&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">  &lt;th style="width: 10px"&gt;#&lt;/th&gt;</span><br><span class="line">  &lt;th&gt;姓名&lt;/th&gt;</span><br><span class="line">  &lt;th&gt;老板&lt;/th&gt;</span><br><span class="line">  &lt;th&gt;入职日期&lt;/th&gt;</span><br><span class="line">  &lt;th&gt;部门编号&lt;/th&gt;</span><br><span class="line">  &lt;th&gt;薪资&lt;/th&gt;</span><br><span class="line">  &lt;th&gt;提成&lt;/th&gt;</span><br><span class="line">  &lt;th&gt;&lt;/th&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;% </span><br><span class="line">  List&lt;Emp&gt; list =</span><br><span class="line">      (List&lt;Emp&gt;)request.getAttribute(<span class="string">"list"</span>);</span><br><span class="line">%&gt;              </span><br><span class="line">&lt;%<span class="keyword">for</span>(Emp emp:list)&#123;%&gt;  </span><br><span class="line">&lt;tr&gt;</span><br><span class="line">  &lt;td&gt;&lt;%=emp.getEmpno()%&gt;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;%=emp.getEname()%&gt;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;%=emp.getMgr()%&gt;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;%=emp.getHiredate()%&gt;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;%=emp.getDeptno()%&gt;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;%=emp.getSalary()%&gt;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;%=emp.getComm()%&gt;&lt;/td&gt;</span><br><span class="line">  &lt;!-- onclick中出现<span class="string">"return false"</span> 则会阻止事件</span><br><span class="line">  -点击事件的响应 --&gt;</span><br><span class="line">  &lt;td&gt;&lt;a onclick=<span class="string">"return confirm('真的删除?吗?')"</span> </span><br><span class="line">    href=<span class="string">"delete?empno=&lt;%=emp.getEmpno()%&gt;"</span> </span><br><span class="line">    <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-danger btn-xs"</span></span><br><span class="line">    &gt;&lt;i class="fa fa-fw fa-remove"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;%&#125;%&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写Servlet</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeleteEmpServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">   </span><br><span class="line">       <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">           String no = request.getParameter(<span class="string">"empno"</span>);</span><br><span class="line">           <span class="comment">//请自行打桩测试接收到的参数是否有效</span></span><br><span class="line">           <span class="keyword">int</span> empno = Integer.parseInt(no);</span><br><span class="line">           <span class="comment">//调用EmpDao删除数据</span></span><br><span class="line">           EmpDao dao = <span class="keyword">new</span> EmpDao();</span><br><span class="line">           <span class="keyword">int</span> n = dao.delete(empno);</span><br><span class="line">           <span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">               <span class="comment">//重定向到 员工列表页面, 显示结果</span></span><br><span class="line">               String path=request.getContextPath()+<span class="string">"/list-emp"</span>;</span><br><span class="line">               response.sendRedirect(path);</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="comment">//转发到message.jsp显示错误消息</span></span><br><span class="line">               request.setAttribute(<span class="string">"message"</span>, <span class="string">"删除失败"</span>);</span><br><span class="line">               request.getRequestDispatcher(<span class="string">"/WEB-INF/jsp/message.jsp"</span>)</span><br><span class="line">.forward(request, response); </span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/09/JSP-Java/" rel="next" title="JSP-Java">
+                <i class="fa fa-chevron-left"></i> JSP-Java
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/10/JSP-case-2/" rel="prev" title="JSP-case-2">
+                JSP-case-2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现添加员工功能"><span class="nav-number">1.</span> <span class="nav-text">实现添加员工功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转发-与-重定向"><span class="nav-number">2.</span> <span class="nav-text">转发 与 重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现删除功能"><span class="nav-number">3.</span> <span class="nav-text">实现删除功能:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

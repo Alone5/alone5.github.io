@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.package:  1)作用:避免类的命名冲突  2)包名可以有层次结构 类的全称: 包名.类名  3)同包中的类不能同名  4)建议:包名所有字母都小写 import:  1)同包中的类可以直接访问，​     不同包中的类不能直接访问，想访问如下两种方式:     1.先import声明类再使用类——-建议     2.类的全称—————太繁琐，不建议 2.访问控制修饰符:  1)publ">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA 面向对象 （二）">
+<meta property="og:url" content="http://yoursite.com/2019/04/25/github-notes3/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="1.package:  1)作用:避免类的命名冲突  2)包名可以有层次结构 类的全称: 包名.类名  3)同包中的类不能同名  4)建议:包名所有字母都小写 import:  1)同包中的类可以直接访问，​     不同包中的类不能直接访问，想访问如下两种方式:     1.先import声明类再使用类——-建议     2.类的全称—————太繁琐，不建议 2.访问控制修饰符:  1)publ">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.400Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA 面向对象 （二）">
+<meta name="twitter:description" content="1.package:  1)作用:避免类的命名冲突  2)包名可以有层次结构 类的全称: 包名.类名  3)同包中的类不能同名  4)建议:包名所有字母都小写 import:  1)同包中的类可以直接访问，​     不同包中的类不能直接访问，想访问如下两种方式:     1.先import声明类再使用类——-建议     2.类的全称—————太繁琐，不建议 2.访问控制修饰符:  1)publ">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/25/github-notes3/">
+
+
+
+
+
+  <title>JAVA 面向对象 （二） | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/github-notes3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JAVA 面向对象 （二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-25T08:57:58+08:00">
+                2019-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-package"><a href="#1-package" class="headerlink" title="1.package:"></a><strong>1.package:</strong></h3><p>  <strong>1)作用:避免类的命名冲突</strong><br>  <strong>2)包名可以有层次结构 类的全称: 包名.类名</strong><br>  <strong>3)同包中的类不能同名</strong><br>  <strong>4)建议:包名所有字母都小写</strong></p>
+<h4 id="import"><a href="#import" class="headerlink" title="import:"></a><strong>import:</strong></h4><p>  <strong>1)同包中的类可以直接访问，</strong><br>​     <strong>不同包中的类不能直接访问，想访问如下两种方式:</strong><br>     <strong>1.先import声明类再使用类——-建议</strong><br>     <strong>2.类的全称—————太繁琐，不建议</strong></p>
+<h3 id="2-访问控制修饰符"><a href="#2-访问控制修饰符" class="headerlink" title="2.访问控制修饰符:"></a><strong>2.访问控制修饰符:</strong></h3><p>  <strong>1)public:公开的，任何类</strong><br>  <strong>2)private:私有的，本类</strong><br>  <strong>3)protected:受保护的，本类、派生类、同包类</strong><br>  <strong>4)默认的:什么也不写，本类、同包类</strong><br>  <strong>说明:</strong><br>​    <strong>1)类的访问控制修饰符只能是public和默认的</strong><br>​    <strong>2)类中成员的访问控制修饰符如上4种都可以</strong></p>
+<h3 id="3-final-最终的、不可改变的—–单独应用率极低"><a href="#3-final-最终的、不可改变的—–单独应用率极低" class="headerlink" title="3.final:最终的、不可改变的—–单独应用率极低"></a><strong>3.final:最终的、不可改变的—–单独应用率极低</strong></h3><p>  <strong>1)修饰变量:变量不能被改变</strong><br>  <strong>2)修饰方法:方法不能被重写</strong><br>  <strong>3)修饰类:类不能被继承</strong></p>
+<h3 id="4-static-静态的"><a href="#4-static-静态的" class="headerlink" title="4.static:静态的"></a><strong>4.static:静态的</strong></h3><p>  <strong>1)静态变量:</strong><br>​      <strong>1.由static修饰</strong><br>​      <strong>2.属于类，存在方法区中，只有一份</strong><br>​      <strong>3.常常通过类名点来访问</strong><br>​      <strong>4.何时用:所有对象所共享的数据(图片、音频、视频等)</strong><br>  <strong>2)静态方法:</strong><br>​      <strong>1.由static修饰</strong><br>​      <strong>2.属于类，存在方法区中，只有一份</strong><br>​      <strong>3.常常通过类名点来访问</strong><br>​      <strong>4.静态方法没有隐式this传递的，</strong><br>​         <strong>在静态方法中不能直接访问实例成员</strong><br>​      <strong>5.何时用:方法的操作仅与参数相关而与对象无关时</strong><br>  <strong>3)静态块:</strong><br>​      <strong>1.由static修饰</strong><br>​      <strong>2.属于类，在类被加载期间自动执行，</strong><br>​          <strong>因类只被加载一次，所以静态块只执行一次</strong><br>​      <strong>3.何时用:加载/初始化静态资源(图片、音频、视频等)</strong></p>
+<h3 id="5-static-final常量"><a href="#5-static-final常量" class="headerlink" title="5.static final常量:"></a><strong>5.static final常量:</strong></h3><p>  <strong>1)必须声明同时初始化</strong><br>  <strong>2)由类名点来访问，并且不能被改变</strong><br>  <strong>3)建议:常量名所有字母都大写，多个单词用_分隔</strong><br>  <strong>4)编译器在编译时将常量直接替换为具体的值，效率高</strong><br>  <strong>5)何时用:数据永远不变、并且经常使用</strong></p>
+<h3 id="6-抽象方法"><a href="#6-抽象方法" class="headerlink" title="6.抽象方法:"></a><strong>6.抽象方法:</strong></h3><p>  <strong>1)由abstract修饰</strong><br>  <strong>2)只有方法的定义，没有具体的实现(连{}都没有)</strong></p>
+<h3 id="7-抽象类"><a href="#7-抽象类" class="headerlink" title="7.抽象类:"></a><strong>7.抽象类:</strong></h3><p>  <strong>1)由abstract修饰</strong><br>  <strong>2)包含抽象方法的类必须是抽象类</strong><br>​      <strong>不包含抽象方法的类也可以声明为抽象类</strong><br>  <strong>3)抽象类不能被实例化</strong><br>  <strong>4)抽象类是需要被继承的，派生类:</strong><br>​      <strong>1.重写所有抽象方法——–常用</strong><br>​      <strong>2.也声明为抽象类——-一般不这么做</strong><br>  <strong>5)抽象类的意义:</strong><br>​      <strong>1.封装派生类所共有的属性和行为———代码复用</strong><br>​      <strong>2.给所有派生类提供统一的类型————向上造型</strong><br>​      <strong>3.可以包含抽象方法，为所有派生类提供统一的入口</strong><br>​          <strong>派生类的具体行为不同，但入口是一致的</strong></p>
+<h3 id="8-成员内部类-应用率低"><a href="#8-成员内部类-应用率低" class="headerlink" title="8.成员内部类:应用率低"></a><strong>8.成员内部类:应用率低</strong></h3><p>​     <strong>问:内部类有独立的.class吗?</strong><br>​     <strong>答:有</strong><br>  <strong>1)类中套类，外面的称为Outer外部类，里面的称为Inner内部类</strong><br>  <strong>2)内部类通常只服务于外部类，对外不具备可见性</strong><br>  <strong>3)内部类对象通常是在外部类中创建的</strong><br>  <strong>4)内部类中可以直接访问外部类的成员(包括私有的)</strong><br>​      <strong>内部类中有个隐式的引用指向了创建它的外部类对象</strong></p>
+<h3 id="9-匿名内部类-应用率高"><a href="#9-匿名内部类-应用率高" class="headerlink" title="9.匿名内部类:应用率高"></a><strong>9.匿名内部类:应用率高</strong></h3><p>  <strong>1)若想创建了一个类(派生类)的对象，并且对象只被创建一次，</strong><br>​      <strong>此时该类不必命名，称为匿名内部类</strong><br>  <strong>2)匿名内部类中若想访问外部的变量，该变量必须是的final的</strong><br>​    <strong>—–在JDK1.8之前有这样的要求</strong></p>
+<h3 id="10-接口"><a href="#10-接口" class="headerlink" title="10.接口:"></a><strong>10.接口:</strong></h3><p>  <strong>1)是一种数据类型(引用类型)</strong><br>  <strong>2)由interface定义</strong><br>  <strong>3)只能包含常量和抽象方法</strong><br>  <strong>4)接口不能被实例化</strong><br>  <strong>5)接口是需要被实现/继承的，实现类/派生类:</strong><br>​      <strong>必须重写接口中的所有抽象方法</strong><br>  <strong>6)一个类可以实现多个接口，用逗号隔开</strong><br>​      <strong>若又继承又实现时，必须先继承后实现</strong><br>  <strong>7)接口可以继承接口</strong></p>
+<h4 id="设计规则"><a href="#设计规则" class="headerlink" title="设计规则:"></a><strong>设计规则:</strong></h4><p><strong>1)将所有派生类所共有的属性和行为，抽到超类中——–抽共性</strong><br><strong>2)所有派生类的行为都一样，设计为普通方法</strong><br>   <strong>所有派生类的行为都不一样，设计为抽象方法</strong><br><strong>3)将部分派生类所共有的行为，抽到接口中</strong><br>  <strong>接口是对继承单根性的扩展————-实现多继承</strong><br>  <strong>符合 既是 也是 原则时，使用接口</strong></p>
+<h3 id="11-多态"><a href="#11-多态" class="headerlink" title="11.多态:"></a><strong>11.多态:</strong></h3><p>  <strong>1)意义:</strong><br>​    <strong>1.同一类型的引用，指向不同的对象时，有不同的实现</strong><br>​        <strong>—-行为的多态:cut()、run()、step()、getImage()…</strong><br>​    <strong>2.同一个对象，被造型为不同的类型时，有不同的功能</strong><br>​        <strong>—-对象的多态:水、我…</strong><br>  <strong>2)向上造型/自动类型转换:</strong><br>​     <strong>1.超类型的引用指向派生类的对象</strong><br>​     <strong>2.能造型成为的数据类型有: 超类+所实现的接口</strong><br>​     <strong>3.能点出来什么，看引用的类型</strong><br>  <strong>3)强制类型转换，成功的条件只有如下两种:</strong><br>​     <strong>1.引用所指向的对象，就是该类型</strong><br>​     <strong>2.引用所指向的对象，继承了该类或实现了该接口</strong><br>  <strong>4)强转时若不符合如上条件，则发生ClassCastException类型转换异常</strong><br>​      <strong>建议:在强转之前先通过instanceof来判断引用的对象是否是该类型</strong></p>
+<h3 id="12-内存管理-由JVM来管理的"><a href="#12-内存管理-由JVM来管理的" class="headerlink" title="12.内存管理:由JVM来管理的"></a><strong>12.内存管理:由JVM来管理的</strong></h3><p>  <strong>1)堆:</strong><br>​    <strong>1.存储new出来的对象(包括实例变量)</strong><br>​    <strong>2.垃圾:没有任何引用所指向的对象</strong><br>​        <strong>垃圾回收器(GC)不定时到内存中清理垃圾，</strong><br>​        <strong>回收过程是透明的(看不到的)，不一定一发现垃圾就立刻回收，</strong><br>​        <strong>调用System.gc()可以建议虚拟机尽快调度GC来回收</strong><br>​    <strong>3.内存泄漏:不再使用的内存没有被及时的回收</strong><br>​        <strong>建议:对象不再使用时及时将引用设置为null</strong><br>​    <strong>4.实例变量的生命周期:</strong><br>​       <strong>在创建对象时存储在堆中，对象被回收时一并被回收</strong><br>  <strong>2)栈:</strong><br>​    <strong>1.存储正在调用的方法中的所有局部变量(包括方法的参数)</strong><br>​    <strong>2.调用方法时，会在栈中为该方法分配一块对应的栈帧，</strong><br>​       <strong>栈帧中存储方法中的局部变量(包括参数)，</strong><br>​       <strong>方法调用结束时，栈帧被清除，局部变量一并被清除</strong><br>​    <strong>3.局部变量的生命周期:</strong><br>​       <strong>方法被调用时存储在栈中，方法结束时与栈帧一并被清除</strong><br>  <strong>3)方法区:</strong><br>​    <strong>1.存储.class字节码文件(包括静态变量、方法)</strong><br>​    <strong>2.方法只有一份，通过this来区分具体的调用对象</strong></p>
+<h3 id="面向对象三大特征"><a href="#面向对象三大特征" class="headerlink" title="面向对象三大特征:"></a><strong>面向对象三大特征:</strong></h3><p><strong>1.封装:</strong><br>  <strong>1)类:封装的是对象的属性和行为</strong><br>  <strong>2)方法:封装的是特定的业务逻辑功能</strong><br>  <strong>3)访问控制修饰符:封装的是具体的访问权限</strong><br><strong>2.继承:</strong><br>  <strong>1)作用:代码复用</strong><br>  <strong>2)超类:所有派生类所共有的属性和行为</strong><br>​      <strong>接口:部分派生类所共有的行为</strong><br>​      <strong>派生类:派生类所特有的属性和行为</strong><br>  <strong>3)单一继承、多接口实现，传递性</strong><br><strong>3.多态:</strong><br>  <strong>1)意义:行为的多态(所有抽象方法都是多态的)</strong><br>​              <strong>对象的多态(所有对象都是多态的)</strong><br>  <strong>2)向上造型、强制类型转换、instanceof判断</strong><br>  <strong>3)多态的表现形式:</strong><br>​      <strong>1.重写:根据对象的不同来表现多态</strong><br>​      <strong>2.重载:根据参数的不同来表现多态</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/24/github-notes2/" rel="next" title="JAVA 面向对象 （一）">
+                <i class="fa fa-chevron-left"></i> JAVA 面向对象 （一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/26/API-1/" rel="prev" title="API-1">
+                API-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-package"><span class="nav-number">1.</span> <span class="nav-text">1.package:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#import"><span class="nav-number">1.1.</span> <span class="nav-text">import:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-访问控制修饰符"><span class="nav-number">2.</span> <span class="nav-text">2.访问控制修饰符:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-final-最终的、不可改变的—–单独应用率极低"><span class="nav-number">3.</span> <span class="nav-text">3.final:最终的、不可改变的—–单独应用率极低</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-static-静态的"><span class="nav-number">4.</span> <span class="nav-text">4.static:静态的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-static-final常量"><span class="nav-number">5.</span> <span class="nav-text">5.static final常量:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-抽象方法"><span class="nav-number">6.</span> <span class="nav-text">6.抽象方法:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-抽象类"><span class="nav-number">7.</span> <span class="nav-text">7.抽象类:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-成员内部类-应用率低"><span class="nav-number">8.</span> <span class="nav-text">8.成员内部类:应用率低</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-匿名内部类-应用率高"><span class="nav-number">9.</span> <span class="nav-text">9.匿名内部类:应用率高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-接口"><span class="nav-number">10.</span> <span class="nav-text">10.接口:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设计规则"><span class="nav-number">10.1.</span> <span class="nav-text">设计规则:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-多态"><span class="nav-number">11.</span> <span class="nav-text">11.多态:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-内存管理-由JVM来管理的"><span class="nav-number">12.</span> <span class="nav-text">12.内存管理:由JVM来管理的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象三大特征"><span class="nav-number">13.</span> <span class="nav-text">面向对象三大特征:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

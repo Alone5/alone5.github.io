@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="晨考题OOP 什么是方法的重载？构造方法可以重载吗？   重载(Overload):发生在一个类中，方法名相同，参数列表不同，方法体不同，与返回值类型无关，重载遵循”编译期”绑定，构造方法可以重载。   什么是重写？  重写(Override):   发生在父子类中，方法名称相同，参数列表相同，方法体不同   遵循”运行期绑定”，看对象的类型来调用方法  this关键字的作用  this表示当前对">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-question-2">
+<meta property="og:url" content="http://yoursite.com/2019/07/18/Java-question-2/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="晨考题OOP 什么是方法的重载？构造方法可以重载吗？   重载(Overload):发生在一个类中，方法名相同，参数列表不同，方法体不同，与返回值类型无关，重载遵循”编译期”绑定，构造方法可以重载。   什么是重写？  重写(Override):   发生在父子类中，方法名称相同，参数列表相同，方法体不同   遵循”运行期绑定”，看对象的类型来调用方法  this关键字的作用  this表示当前对">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java-question-2">
+<meta name="twitter:description" content="晨考题OOP 什么是方法的重载？构造方法可以重载吗？   重载(Overload):发生在一个类中，方法名相同，参数列表不同，方法体不同，与返回值类型无关，重载遵循”编译期”绑定，构造方法可以重载。   什么是重写？  重写(Override):   发生在父子类中，方法名称相同，参数列表相同，方法体不同   遵循”运行期绑定”，看对象的类型来调用方法  this关键字的作用  this表示当前对">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/18/Java-question-2/">
+
+
+
+
+
+  <title>Java-question-2 | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/18/Java-question-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java-question-2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-18T19:11:51+08:00">
+                2019-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="晨考题"><a href="#晨考题" class="headerlink" title="晨考题"></a>晨考题</h2><h3 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h3><ol>
+<li><strong>什么是方法的重载？构造方法可以重载吗？</strong></li>
+</ol>
+<ul>
+<li>重载(Overload):发生在一个类中，方法名相同，参数列表不同，方法体不同，与返回值类型无关，重载遵循”编译期”绑定，构造方法可以重载。</li>
+</ul>
+<ol start="2">
+<li><p><strong>什么是重写？</strong></p>
+<ul>
+<li>重写(Override):</li>
+</ul>
+<ol>
+<li>发生在父子类中，方法名称相同，参数列表相同，方法体不同</li>
+</ol>
+</li>
+<li><p>遵循”运行期绑定”，看对象的类型来调用方法</p>
+</li>
+<li><p><strong>this关键字的作用</strong></p>
+<ul>
+<li>this表示当前对象：<ul>
+<li>this.属性   区分成员变量和局部变量</li>
+<li>this.() 调用本类的某个方法</li>
+<li>this()表示调用本类构造方法，只能用在构造方法的第一行语句。</li>
+</ul>
+</li>
+<li>this关键字只能出现在非static修饰的代码中</li>
+</ul>
+</li>
+<li><p><strong>抽象类与接口的区别</strong></p>
+<ul>
+<li>接口是抽象类的变体，接口中所有的方法都是抽象的。而抽象类是声明方法的存在而不去实现它的类。</li>
+<li>接口可以多继承，抽象类不行</li>
+<li>接口定义方法，不能实现，而抽象类可以实现部分方法。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>接口中基本数据类型为static 而抽类象不是的。</li>
+</ul>
+<ol start="5">
+<li><p><strong>&amp;&amp;和&amp;的区别？可举例说明。</strong></p>
+<ul>
+<li>&amp;和&amp;&amp;都可以执行关系判断，</li>
+<li>&amp;: 按位与,当&amp;操作符两边的表达式不是boolean类型时，a&amp;b是把a和b都转换成二进制数然后再进行与的运算，不管前面的条件是否正确，后面都执行.<ul>
+<li>4&amp;7=100&amp;111=100</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>&amp;&amp;：逻辑与,前面条件正确时，才执行后面，不正确时，就不执行，就效率而言，这个更好</li>
+</ul>
+<ol start="6">
+<li><p><strong>final关键字的用法。(具体说明)</strong></p>
+<ol>
+<li>修饰变量:变量不可被改变</li>
+<li>修饰方法:方法不可被重写</li>
+<li>修饰类:类不可被继承</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>final关键字修饰成员变量，意为初始化后不可改变。该成员变量必需在初始化时赋值，对象一旦创建即不可改变。可以在声明时初始化或在构造方法中进行初始化。</li>
+</ul>
+<ol start="7">
+<li><p><strong>分别写出break、continue、return的作用是什么？</strong></p>
+<ul>
+<li>break: 常用在嵌套循环和判断语句中，作用是跳出当前循环(写在哪一层，就跳出哪一层)</li>
+<li>continue: 跳过当前循环中的剩余语句而开始下一次的循环</li>
+<li>return: 有返回值时，把方法的返回值返回给调用方，无返回值时，结束方法</li>
+</ul>
+</li>
+<li><p><strong>static 关键字的用法？</strong></p>
+<ol>
+<li>用来修饰成员变量，将其变为类的成员，从而实现所有对象对于该成员的共享。</li>
+<li>用来修饰成员方法，将其变为类方法，可以直接使用“类名.方法名”的方式调用，常用于工具类，静态方法可以访问静态成员变量，不能访问非静态成员变量。</li>
+<li>静态块用法，将多个类成员放在一起初始化，使得程序更加规整，其中理解对象的初始化过程非常关键。</li>
+<li>static final用来修饰成员变量和成员方法，可简单理解为“全局常量”。</li>
+</ol>
+</li>
+<li><p><strong>请写出JAVA中的8大基本类型和其在内存中所占用的字节数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">byte	1字节</span><br><span class="line">short	2字节</span><br><span class="line">int		4字节</span><br><span class="line">long	8字节</span><br><span class="line">float	4字节</span><br><span class="line">double	8字节</span><br><span class="line">char	2字节</span><br><span class="line">boolean	1字节</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>面向对象三大特征:</strong></p>
+<ol>
+<li>封装:<ol>
+<li>类:封装的是对象的属性和行为</li>
+<li>方法:封装的是具体的业务逻辑功能</li>
+<li>访问控制修饰符:封装的是访问的权限</li>
+</ol>
+</li>
+<li>继承:<ol>
+<li>作用:代码的复用</li>
+<li>父类:所有子类共有的属性和行为<br>子类:子类所特有的属性和行为</li>
+<li>子继承父后，子具有:父类+子类</li>
+<li>单一继承、多接口实现，传递性</li>
+</ol>
+</li>
+<li>多态:<ol>
+<li>意义:行为的多态、对象的多态</li>
+<li>向上造型、强制类型转换、instanceof</li>
+<li>多态的表现形式:<ul>
+<li>重写:主要是依据对象</li>
+<li>重载:主要是依据参数</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="SE"><a href="#SE" class="headerlink" title="SE"></a>SE</h3><ol>
+<li><p><strong>已知如下定义，String s = ”stary”，下面那个表达式是合法的?</strong><br> A. s += ”books”;<br> B. char c = s[1];<br> C. int len = s.length;<br> D. String t = s.toLowerCase();</p>
+<p><strong>答案：AD</strong><br>解析：<br>选项B s为字符串对象，char c=s.toCharArray()[1];<br>选项C int len=s.length();</p>
+</li>
+<li><p><strong>对传入的字符串参数进行对比，如果是以 “db _ “ 开头的，则返回”匹配检验成功”，否则则返回”没找到” 。（写出主要代码即可）</strong></p>
+<p>答案：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">check</span><span class="params">(String str)</span></span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(str != <span class="keyword">null</span> &amp;&amp; str.startsWith(<span class="string">"db_"</span>) )&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"匹配检验成功"</span>;</span><br><span class="line">   &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      retrun <span class="string">"没找到"</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>已知表达式 int[] m= {0，1，2，3，4，5，6}； 下面哪个表达式的值与数组下标量总数相等？</strong><br> A .m.length()         B.m.length        C.m.length()+1        D.m.length+1</p>
+<p> <strong>答案：B</strong><br> 解析：<br> 数组下标是从零开始的，但是数据下标的总量和数据长度相同。</p>
+</li>
+<li><p><strong>如何将数值型字符转换为数字？</strong><br><strong>参考答案：</strong><br>调用数值类型相应包装类中的方法parse”…” (String) 或 valueOf(String)  即可返回相应基本类型或包装类型数值</p>
+<ul>
+<li>例如:</li>
+</ul>
+<ol>
+<li><p>如何将字串 String 转换成整数 int? </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i = Integer.valueOf(str).intValue();</span><br><span class="line">或int i=Integer.parseInt(str);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如何将字串 String 转换成Integer ?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer integer=Integer.valueOf(str);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p><strong>写一个线程，每隔10秒钟输出到控制台一个”hello world”。打印10次以后退出</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">            System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test t=<span class="keyword">new</span> Test();</span><br><span class="line">        t.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="6">
+<li><p><strong>斐波那契数列，它指的是这样一个数列：1,1,2,3,5,8,13……用递归算法求前10项的系数。</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"系数前20项是："</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">10</span>;j++)&#123;</span><br><span class="line">		System.out.print(getFibo(j)+<span class="string">"\t"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getFibo</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">1</span>||i==<span class="number">2</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> getFibo(i-<span class="number">1</span>)+getFibo(i-<span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/18/Spring-框架/" rel="next" title="Spring-框架">
+                <i class="fa fa-chevron-left"></i> Spring-框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/20/Spring-MVC/" rel="prev" title="Spring-MVC">
+                Spring-MVC <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#晨考题"><span class="nav-number">1.</span> <span class="nav-text">晨考题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OOP"><span class="nav-number">1.1.</span> <span class="nav-text">OOP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SE"><span class="nav-number">1.2.</span> <span class="nav-text">SE</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

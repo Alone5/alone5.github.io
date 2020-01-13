@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="XML 可扩展标记语言（英语：Extensible Markup Language，简称：XML），是一种标记语言。标记指计算机所能理解的信息符号，通过此种标记，计算机之间可以处理包含各种信息的文章等。如何定义这些标记，既可以选择国际通用的标记语言，比如HTML，也可以使用像XML这样由相关人士自由决定的标记语言，这就是语言的可扩展性。XML是从标准通用标记语言（SGML）中简化修改出来的。它主要">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-XML">
+<meta property="og:url" content="http://yoursite.com/2019/05/25/Java-XML/index.html">
+<meta property="og:site_name" content="Wt Blog">
+<meta property="og:description" content="XML 可扩展标记语言（英语：Extensible Markup Language，简称：XML），是一种标记语言。标记指计算机所能理解的信息符号，通过此种标记，计算机之间可以处理包含各种信息的文章等。如何定义这些标记，既可以选择国际通用的标记语言，比如HTML，也可以使用像XML这样由相关人士自由决定的标记语言，这就是语言的可扩展性。XML是从标准通用标记语言（SGML）中简化修改出来的。它主要">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T09:09:21.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java-XML">
+<meta name="twitter:description" content="XML 可扩展标记语言（英语：Extensible Markup Language，简称：XML），是一种标记语言。标记指计算机所能理解的信息符号，通过此种标记，计算机之间可以处理包含各种信息的文章等。如何定义这些标记，既可以选择国际通用的标记语言，比如HTML，也可以使用像XML这样由相关人士自由决定的标记语言，这就是语言的可扩展性。XML是从标准通用标记语言（SGML）中简化修改出来的。它主要">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/25/Java-XML/">
+
+
+
+
+
+  <title>Java-XML | Wt Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wt Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/25/Java-XML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java-XML</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-25T10:44:37+08:00">
+                2019-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h3><ul>
+<li><strong>可扩展标记语言（英语：Extensible Markup Language，简称：XML），是一种标记语言。标记指计算机所能理解的信息符号，通过此种标记，计算机之间可以处理包含各种信息的文章等。如何定义这些标记，既可以选择国际通用的标记语言，比如HTML，也可以使用像XML这样由相关人士自由决定的标记语言，这就是语言的可扩展性。XML是从标准通用标记语言（SGML）中简化修改出来的。它主要用到的有可扩展标记语言、可扩展样式语言（XSL）、XBRL和XPath等。</strong></li>
+</ul>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p><strong>XML设计用来传送及携带数据信息，不用来表现或展示数据，HTML则用来表现数据，所以XML用途的焦点是它说明数据是什么，以及携带数据信息。</strong></p>
+<ul>
+<li><strong>丰富文件（Rich Documents）- 自定文件描述并使其更丰富</strong><ul>
+<li><strong>属于文件为主的XML技术应用</strong></li>
+<li><strong>标记是用来定义一份资料应该如何呈现</strong></li>
+</ul>
+</li>
+<li><strong>元数据（Metadata）- 描述其它文件或网络资讯</strong><ul>
+<li><strong>属于资料为主的XML技术应用</strong></li>
+<li><strong>标记是用来说明一份资料的意义</strong></li>
+</ul>
+</li>
+<li><strong>配置文档（Configuration Files）- 描述软件设置的参数</strong></li>
+</ul>
+<h3 id="处理节点"><a href="#处理节点" class="headerlink" title="处理节点"></a>处理节点</h3><p>xml 推荐在第一行，必须写在第一行，可以省略。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="标记（标签）-tag"><a href="#标记（标签）-tag" class="headerlink" title="标记（标签） tag"></a>标记（标签） tag</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">开始标记 &lt;标记名&gt;  </span><br><span class="line">结束标记    &lt;/标记名&gt;</span><br></pre></td></tr></table></figure></p>
+<p>标记规则：</p>
+<ol>
+<li>中文英文都可以作为标记名，建议使用英文</li>
+<li>区分大小写</li>
+<li>开始标记和结束标记要成对使用</li>
+<li>不能交叉嵌套</li>
+<li>一个XML中只有唯一的根标记<br>标记名可以扩展 标记的嵌套关系可以扩展</li>
+</ol>
+<h3 id="注释-Comment"><a href="#注释-Comment" class="headerlink" title="注释 Comment"></a>注释 Comment</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 注释 --&gt;</span><br></pre></td></tr></table></figure></p>
+<p>注释不能嵌套使用！！</p>
+<h3 id="内容-Content"><a href="#内容-Content" class="headerlink" title="内容 Content"></a>内容 Content</h3><p>语法： 开始标记和结束标记之间的信息称为内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;name&gt;檀香刑&lt;/name&gt;</span><br><span class="line">&lt;book&gt;&lt;name&gt;檀香刑&lt;/name&gt;&lt;/book&gt;</span><br><span class="line">&lt;book&gt;</span><br><span class="line">    &lt;name&gt;檀香刑&lt;/name&gt;</span><br><span class="line">    &lt;author&gt;莫言&lt;/author&gt;</span><br><span class="line">&lt;/book&gt;</span><br></pre></td></tr></table></figure></p>
+<p>内容：</p>
+<ol>
+<li>文本内容</li>
+<li>标记</li>
+<li>多个标记和文本的混合</li>
+<li>内容是可扩展的！</li>
+</ol>
+<h3 id="元素-Element"><a href="#元素-Element" class="headerlink" title="元素 Element"></a>元素 Element</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标记 + 内容 = 元素</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>XML 只有一个根元素</li>
+<li>元素中的元素称为子元素，外层元素称为父元素</li>
+</ol>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;book id=&quot;b1&quot; lang=&quot;cn&quot;&gt;</span><br><span class="line">&lt;book lang=&quot;cn&quot; id=&quot;b1&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>在开始标记上定义元素的属性</li>
+<li>可以定义多个属性</li>
+<li>多个属性不分先后次序</li>
+<li>属性之间需要有空格</li>
+<li>属性名=”属性值” 属性和值之间等号前后不用写空格，属性值必须用 引号</li>
+</ol>
+<h3 id="实体-Entity"><a href="#实体-Entity" class="headerlink" title="实体 Entity"></a>实体 Entity</h3><p>实体： 类似于 Java 的字符串中的转义字符，一些用于替换表示XML语法的字符。 用来解决XML文字解析错误<br>常用实体：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt; &amp;lt;</span><br><span class="line">&gt; &amp;gt;</span><br><span class="line">&amp; &amp;amp;</span><br></pre></td></tr></table></figure></p>
+<h3 id="CDATA"><a href="#CDATA" class="headerlink" title="CDATA"></a>CDATA</h3><p>使用CDATA包裹的文本，可以写任何字符，无需进行实体替换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;![CDATA[ 文本内容 ]]&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="XML可扩展性"><a href="#XML可扩展性" class="headerlink" title="XML可扩展性"></a>XML可扩展性</h3><ol>
+<li>元素（标记）名可以扩展</li>
+<li>元素的嵌套关系可以扩展</li>
+<li>元素的属性可以扩展</li>
+<li>属性名可以扩展</li>
+<li>内容可以扩展</li>
+</ol>
+<h3 id="在Java中使用XML"><a href="#在Java中使用XML" class="headerlink" title="在Java中使用XML"></a>在Java中使用XML</h3><p>Java 业界有API可以读取XML文件。读取以后可以按照元素、属性进行结构分解。<br>Dom4J 读作 Dom for J<br>Dom4J 的底层<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IO 流 -&gt; W3C Dom -&gt; Dom4J</span><br></pre></td></tr></table></figure></p>
+<h3 id="利用Maven导入dom4j-API"><a href="#利用Maven导入dom4j-API" class="headerlink" title="利用Maven导入dom4j API"></a>利用Maven导入dom4j API</h3><p>得到Dom4j 的maven组件坐标<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.dom4j&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;dom4j&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.1.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>将组件坐标添加到 pom.xml 文件中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;cn.tedu&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;XML01&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.dom4j&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;dom4j&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.1.1&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">  &lt;/dependencies&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Dom4j-API-的使用"><a href="#Dom4j-API-的使用" class="headerlink" title="Dom4j API 的使用"></a>Dom4j API 的使用</h2><h3 id="读取XML"><a href="#读取XML" class="headerlink" title="读取XML"></a>读取XML</h3><p>Dom4j提供了API将XML文件读取为Dom对象（Document）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * 使用dom4j读取xml文件</span><br><span class="line"> */</span><br><span class="line">SAXReader reader = new SAXReader();</span><br><span class="line"></span><br><span class="line">//doc=reader.read(文件、文件流)</span><br><span class="line">Document doc=</span><br><span class="line">  reader.read(new File(&quot;books.xml&quot;));</span><br><span class="line"></span><br><span class="line">System.out.println(doc.asXML());</span><br></pre></td></tr></table></figure></p>
+<h3 id="利用Dom-API（Document）可以访问Dom树中的数据"><a href="#利用Dom-API（Document）可以访问Dom树中的数据" class="headerlink" title="利用Dom API（Document）可以访问Dom树中的数据"></a>利用Dom API（Document）可以访问Dom树中的数据</h3><ol>
+<li><p>访问根元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//读取根元素, Root 根， Element元素</span><br><span class="line">Element root = doc.getRootElement();</span><br><span class="line">//输出根元素root中的内容</span><br><span class="line">System.out.println(&quot;根元素：&quot;);</span><br><span class="line">System.out.println(root.asXML());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以获取元素中全部的子元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Element&gt; list=root.elements();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以获取一批名字一样的子元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Element&gt; list= root.elements(&quot;book&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取一个指定名字的子元素, 适合元素的子元素名字都不同，获取其中的一个子元素时候使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Element e = book.element(&quot;name&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取元素中文字内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s1 = name.getText()</span><br><span class="line">String s2 = name.getTextTrim() //去除前后空白，常用！</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取元素的属性值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;book id=&quot;b1&quot; &gt;</span><br><span class="line">String s = book.attributeValue(&quot;id&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>直接获取子元素的文本内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String name = book.elementTextTrim(&quot;name&quot;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/22/Java-Collection/" rel="next" title="Java-Collection">
+                <i class="fa fa-chevron-left"></i> Java-Collection
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/27/Java-Map/" rel="prev" title="Java-Map">
+                Java-Map <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alone5</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#XML"><span class="nav-number">1.</span> <span class="nav-text">XML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用途"><span class="nav-number">2.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理节点"><span class="nav-number">3.</span> <span class="nav-text">处理节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记（标签）-tag"><span class="nav-number">4.</span> <span class="nav-text">标记（标签） tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释-Comment"><span class="nav-number">5.</span> <span class="nav-text">注释 Comment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容-Content"><span class="nav-number">6.</span> <span class="nav-text">内容 Content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元素-Element"><span class="nav-number">7.</span> <span class="nav-text">元素 Element</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-number">8.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体-Entity"><span class="nav-number">9.</span> <span class="nav-text">实体 Entity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDATA"><span class="nav-number">10.</span> <span class="nav-text">CDATA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML可扩展性"><span class="nav-number">11.</span> <span class="nav-text">XML可扩展性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Java中使用XML"><span class="nav-number">12.</span> <span class="nav-text">在Java中使用XML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用Maven导入dom4j-API"><span class="nav-number">13.</span> <span class="nav-text">利用Maven导入dom4j API</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Dom4j-API-的使用"><span class="nav-number"></span> <span class="nav-text">Dom4j API 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读取XML"><span class="nav-number">1.</span> <span class="nav-text">读取XML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用Dom-API（Document）可以访问Dom树中的数据"><span class="nav-number">2.</span> <span class="nav-text">利用Dom API（Document）可以访问Dom树中的数据</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alone5</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
