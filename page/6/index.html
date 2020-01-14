@@ -229,6 +229,236 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/Exception/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/15/Exception/" itemprop="url">Exception</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-15T21:44:48+08:00">
+                2019-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="JAVA异常概念"><a href="#JAVA异常概念" class="headerlink" title="JAVA异常概念"></a>JAVA异常概念</h3><ul>
+<li><strong>异常是程序中的一些错误，但并不是所有的错误都是异常，并且错误有时候是可以避免的。</strong></li>
+<li><strong>比如说，你的代码少了一个分号，那么运行出来结果是提示是错误 java.lang.Error</strong></li>
+</ul>
+<h4 id="异常发生的原因有很多，通常包含以下几大类："><a href="#异常发生的原因有很多，通常包含以下几大类：" class="headerlink" title="异常发生的原因有很多，通常包含以下几大类："></a>异常发生的原因有很多，通常包含以下几大类：</h4><ul>
+<li><strong>用户输入了非法数据。</strong></li>
+<li><strong>要打开的文件不存在。</strong></li>
+<li><strong>网络通信时连接中断，或者JVM内存溢出。</strong><br><strong>这些异常有的是因为用户错误引起，有的是程序错误引起的，还有其它一些是因为物理错误引起的。</strong></li>
+</ul>
+<h4 id="要理解Java异常处理是如何工作的，你需要掌握以下三种类型的异常："><a href="#要理解Java异常处理是如何工作的，你需要掌握以下三种类型的异常：" class="headerlink" title="要理解Java异常处理是如何工作的，你需要掌握以下三种类型的异常："></a>要理解Java异常处理是如何工作的，你需要掌握以下三种类型的异常：</h4><ul>
+<li><strong>检查性异常：</strong><ul>
+<li><strong>最具代表的检查性异常是用户错误或问题引起的异常，这是程序员无法预见的。例如要打开一个不存在文件时，一个异常就发生了，这些异常在编译时不能被简单地忽略。</strong></li>
+</ul>
+</li>
+<li><strong>运行时异常：</strong><ul>
+<li><strong>运行时异常是可能被程序员避免的异常。与检查性异常相反，运行时异常可以在编译时被忽略。</strong></li>
+</ul>
+</li>
+<li><strong>错误：</strong><ul>
+<li><strong>错误不是异常，而是脱离程序员控制的问题。错误在代码中通常被忽略。例如，当栈溢出时，一个错误就发生了，它们在编译也检查不到的。</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="Exception-类的层次"><a href="#Exception-类的层次" class="headerlink" title="Exception 类的层次"></a>Exception 类的层次</h3><ul>
+<li><strong>所有的异常类是从 java.lang.Exception 类继承的子类。</strong></li>
+<li><strong>Exception 类是 Throwable 类的子类。除了Exception类外，Throwable还有一个子类Error 。</strong></li>
+</ul>
+<h3 id="Java-内置异常类"><a href="#Java-内置异常类" class="headerlink" title="Java 内置异常类"></a>Java 内置异常类</h3><ul>
+<li><strong>Java 语言定义了一些异常类在 java.lang 标准包中。</strong></li>
+<li><p><strong>标准运行时异常类的子类是最常见的异常类。由于 java.lang 包是默认加载到所有的 Java 程序的，所以大部分从运行时异常类继承而来的异常都可以直接使用。</strong></p>
+</li>
+<li><p><strong>Java 的非检查性异常:</strong></p>
+<ul>
+<li><strong>ArithmeticException： 当出现异常的运算条件时，抛出此异常。例如，一个整数”除以零”时，抛出此类的一个实例。</strong> </li>
+<li><strong>ArrayIndexOutOfBoundsException： 用非法索引访问数组时抛出的异常。如果索引为负或大于等于数组大小，则该索引为非法索引。</strong> </li>
+<li><strong>ArrayStoreException： 试图将错误类型的对象存储到一个对象数组时抛出的异常。</strong> </li>
+<li><strong>ClassCastException： 当试图将对象强制转换为不是实例的子类时，抛出该异常。</strong> </li>
+<li><strong>IllegalArgumentException： 抛出的异常表明向方法传递了一个不合法或不正确的参数。</strong> </li>
+<li><strong>IllegalMonitorStateException： 抛出的异常表明某一线程已经试图等待对象的监视器，或者试图通知其他正在等待对象的监视器而本身没有指定监视器的线程。</strong> </li>
+<li><strong>IllegalStateException： 在非法或不适当的时间调用方法时产生的信号。换句话说，即 Java 环境或 Java 应用程序没有处于请求操作所要求的适当状态下。</strong> </li>
+<li><strong>IllegalThreadStateException： 线程没有处于请求操作所要求的适当状态时抛出的异常。</strong> </li>
+<li><strong>IndexOutOfBoundsException： 指示某排序索引（例如对数组、字符串或向量的排序）超出范围时抛出。</strong> </li>
+<li><strong>NegativeArraySizeException： 如果应用程序试图创建大小为负的数组，则抛出该异常。</strong> </li>
+<li><strong>NullPointerException： 当应用程序试图在需要对象的地方使用 <code>null</code> 时，抛出该异常</strong> </li>
+<li><strong>NumberFormatException： 当应用程序试图将字符串转换成一种数值类型，但该字符串不能转换为适当格式时，抛出该异常。</strong> </li>
+<li><strong>SecurityException： 由安全管理器抛出的异常，指示存在安全侵犯。</strong> </li>
+<li><strong>StringIndexOutOfBoundsException： 此异常由 <code>String</code> 方法抛出，指示索引或者为负，或者超出字符串的大小。</strong> </li>
+<li><strong>UnsupportedOperationException： 当不支持请求的操作时，抛出该异常。</strong> </li>
+</ul>
+</li>
+<li><p><strong>Java 定义在 java.lang 包中的检查性异常类：</strong></p>
+<ul>
+<li><strong>ClassNotFoundException： 应用程序试图加载类时，找不到相应的类，抛出该异常。</strong> </li>
+<li><strong>CloneNotSupportedException： 当调用 <code>Object</code> 类中的 <code>clone</code> 方法克隆对象，但该对象的类无法实现 <code>Cloneable</code> 接口时，抛出该异常。</strong></li>
+<li><strong>IllegalAccessException： 拒绝访问一个类的时候，抛出该异常。</strong></li>
+<li><strong>InstantiationException： 当试图使用 <code>Class</code> 类中的 <code>newInstance</code> 方法创建一个类的实例，而指定的类对象因为是一个接口或是一个抽象类而无法实例化时，抛出该异常。</strong> </li>
+<li><strong>InterruptedException： 一个线程被另一个线程中断，抛出该异常。</strong> </li>
+<li><strong>NoSuchFieldException： 请求的变量不存在</strong> </li>
+<li><strong>NoSuchMethodException： 请求的方法不存在</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="捕获异常"><a href="#捕获异常" class="headerlink" title="捕获异常"></a>捕获异常</h3><ul>
+<li><p><strong>使用 try 和 catch 关键字可以捕获异常。try/catch 代码块放在异常可能发生的地方。<br>try/catch代码块中的代码称为保护代码，使用 try/catch 的语法如下：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">代码块</span><br><span class="line">&#125;catch(XXXExecption e)&#123;</span><br><span class="line">处理try中出现的XXXExecption的代码片段</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>当出现了异常时，JVM会实例化该异常的实例并将其抛出</strong></p>
+</li>
+</ul>
+<h3 id="多重捕获块"><a href="#多重捕获块" class="headerlink" title="多重捕获块"></a>多重捕获块</h3><ul>
+<li><strong>catch是可以定义多个的，当针对不同的异常,我们有不同的处理手段时，我们可以分别捕获这些异常并处理。但应当有一个好的习惯，在最后一个catch中捕获Exception，Exception,可以防止因为一个未处理的异常导致程序中断。</strong><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">   // 程序代码</span><br><span class="line">&#125;catch(异常类型1 异常的变量名1)&#123;</span><br><span class="line">  // 程序代码</span><br><span class="line">&#125;catch(异常类型2 异常的变量名2)&#123;</span><br><span class="line">  // 程序代码</span><br><span class="line">&#125;catch(异常类型2 异常的变量名2)&#123;</span><br><span class="line">  // 程序代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="throws-throw-关键字："><a href="#throws-throw-关键字：" class="headerlink" title="throws/throw 关键字："></a>throws/throw 关键字：</h3><ul>
+<li><strong>如果一个方法没有捕获到一个检查性异常，那么该方法必须使用 throws 关键字来声明。throws 关键字放在方法签名的尾部。</strong></li>
+<li><strong>一个方法可以声明抛出多个异常，多个异常之间用逗号隔开。</strong></li>
+<li><strong>使用throw关键字可以将一个异常抛出。通常如下情况我们会对外主动抛出异常:</strong><ul>
+<li><strong>1.程序执行中发现一个满足语法要求，但是不满足业务逻辑要求的情况时,可以对外抛出异常告知不应当这样做。</strong></li>
+<li><strong>2.程序确实出现了异常，但是该异常不应当在当前代码片段中被解决时,可以对外抛出给调用者解决(责任制问题)</strong></li>
+</ul>
+</li>
+<li><strong>当我们调用一个含有throws声明异常抛出的方法时，编译器要求我们必须处理这个异常，否则编译不通过。</strong><ul>
+<li><strong>两种处理方式：</strong><ul>
+<li><strong>1.使用try-catch捕获并处理这个异常</strong></li>
+<li><strong>2.在当前方法上继续使用throws将这个异常抛出,具体选择哪种解决方式取决于处理异常的责任问题</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="finally关键字"><a href="#finally关键字" class="headerlink" title="finally关键字"></a>finally关键字</h3><ul>
+<li><strong>finally块是异常处理机制的最后一块，可以直接跟在try块之后或者最后一个catch之后。</strong></li>
+<li><strong>finally块可以确保只要代码执行到try当中，无论try块 当中的代码是否抛出异常，finally块中的代码都必定执行，通常我们将释放的资源这样的操作放在finally中确保执行， 比如IO中关闭流的操作。</strong></li>
+</ul>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><ul>
+<li><strong>catch 不能独立于 try 存在。</strong></li>
+<li><strong>在 try/catch 后面添加 finally 块并非强制性要求的。</strong></li>
+<li><strong>try 代码后不能既没 catch 块也没 finally 块。</strong></li>
+<li><strong>try, catch, finally 块之间不能添加任何代码。</strong></li>
+</ul>
+<h3 id="声明自定义异常"><a href="#声明自定义异常" class="headerlink" title="声明自定义异常"></a>声明自定义异常</h3><p><strong>在 Java 中你可以自定义异常。编写自己的异常类时需要记住下面的几点。</strong></p>
+<ul>
+<li><strong>所有异常都必须是 Throwable 的子类。</strong></li>
+<li><strong>如果希望写一个检查性异常类，则需要继承 Exception 类。</strong></li>
+<li><strong>如果你想写一个运行时异常类，那么需要继承 RuntimeException 类。</strong></li>
+</ul>
+<h3 id="通用异常"><a href="#通用异常" class="headerlink" title="通用异常"></a>通用异常</h3><p><strong>在Java中定义了两种类型的异常和错误。</strong></p>
+<ul>
+<li><strong>JVM(Java虚拟机)异常：由 JVM 抛出的异常或错误。例如：NullPointerException 类，ArrayIndexOutOfBoundsException 类，ClassCastException 类。</strong></li>
+<li><strong>程序级异常：由程序或者API程序抛出的异常。例如 IllegalArgumentException 类，IllegalStateException 类。</strong></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/case-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1837,129 +2067,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/03/case-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alone5">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wt Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/03/case-2/" itemprop="url">练习案例-2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-03T18:26:21+08:00">
-                2019-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-输出两个int数中的最大值"><a href="#1-输出两个int数中的最大值" class="headerlink" title="1.输出两个int数中的最大值"></a>1.输出两个int数中的最大值</h3><p><strong>用户从控制台接收两个整数，通过程序找出两个数中的最大值。</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"请输入依次输入两个整数a，b 用空格符 空开"</span>);</span><br><span class="line">		int a = scan.nextInt();</span><br><span class="line">		int b = scan.nextInt();</span><br><span class="line">		int max = a&gt;b?a:b;</span><br><span class="line">		System.out.println(max);</span><br><span class="line">		<span class="keyword">if</span>(a&gt;b) &#123;</span><br><span class="line">			System.out.println(<span class="string">"最大值为："</span>+a);</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"最大值为："</span>+b);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-编写三个数值的排序程序"><a href="#2-编写三个数值的排序程序" class="headerlink" title="2.编写三个数值的排序程序"></a>2.编写三个数值的排序程序</h3><p><strong>使用程序为用户所录入的 3 个数值进行升序排列，并将排序后的结果输出到控制台。</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"请输入依次输入三个整数a，b，c 用空格符 空开"</span>);</span><br><span class="line">		int a = scan.nextInt();</span><br><span class="line">		int b = scan.nextInt();</span><br><span class="line">		int c = scan.nextInt();</span><br><span class="line">		System.out.println(<span class="string">"您输入的是："</span>);</span><br><span class="line">		System.out.println(<span class="string">"a="</span>+a+<span class="string">",b="</span>+b+<span class="string">",c="</span>+c);</span><br><span class="line">		<span class="keyword">if</span>(a&gt;b) &#123;</span><br><span class="line">			int d=a;</span><br><span class="line">			a=b;</span><br><span class="line">			b=d;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(a&gt;c) &#123;</span><br><span class="line">			int d=a;</span><br><span class="line">			a=c;</span><br><span class="line">			c=d;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(b&gt;c) &#123;</span><br><span class="line">			int d=b;</span><br><span class="line">			b=c;</span><br><span class="line">			c=d;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"升序排序后结果为："</span>);</span><br><span class="line">		System.out.println(<span class="string">"a="</span>+a);</span><br><span class="line">		System.out.println(<span class="string">"b="</span>+b);</span><br><span class="line">		System.out.println(<span class="string">"c="</span>+c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="3-编写程序判断某一个年份是否为闰年（使用if-else）"><a href="#3-编写程序判断某一个年份是否为闰年（使用if-else）" class="headerlink" title="3.编写程序判断某一个年份是否为闰年（使用if-else）"></a>3.编写程序判断某一个年份是否为闰年（使用if-else）</h3><p><strong>本案例需要使用交互的方式判断某年是否为闰年：用户从控制台输入需要判断的年份值，由程序使用if-else判断该年是否为闰年，并将判断结果输出到控制台。</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        Scanner scan = new Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"请输入年份："</span>);</span><br><span class="line">		int year = scan.nextInt();</span><br><span class="line">		<span class="keyword">if</span>(year%4==0 &amp;&amp; year%100!=0 || year%400==0) &#123;</span><br><span class="line">			System.out.println(year+<span class="string">"是闰年"</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			System.out.println(year+<span class="string">"是平年"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="4-输出三个int数中的最大值"><a href="#4-输出三个int数中的最大值" class="headerlink" title="4.输出三个int数中的最大值"></a>4.输出三个int数中的最大值</h3><p><strong>用户从控制台接收三个整数，通过程序找出三个数中的最大值。</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"请输入依次输入三个整数a，b，c 用空格符 空开"</span>);</span><br><span class="line">		int a = scan.nextInt();</span><br><span class="line">		int b = scan.nextInt();</span><br><span class="line">		int c = scan.nextInt();</span><br><span class="line">		<span class="keyword">if</span>(a&gt;b &amp;&amp; a&gt;c) &#123;</span><br><span class="line">			System.out.println(<span class="string">"最大值为a="</span>+a);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(b&gt;a &amp;&amp; b&gt;c) &#123;</span><br><span class="line">			System.out.println(<span class="string">"最大值为b="</span>+b);</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"最大值为c="</span>+c);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2010,7 +2117,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

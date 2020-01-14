@@ -229,6 +229,125 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/IDEA-EasyCode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alone5">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wt Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/14/IDEA-EasyCode/" itemprop="url">IDEA-EasyCode</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-14T08:17:28+08:00">
+                2020-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="IDEA中自动生成文件插件Easy-Code的安装及使用"><a href="#IDEA中自动生成文件插件Easy-Code的安装及使用" class="headerlink" title="IDEA中自动生成文件插件Easy Code的安装及使用"></a>IDEA中自动生成文件插件Easy Code的安装及使用</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/java-dos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1756,245 +1875,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/Spring-MVC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alone5">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wt Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/20/Spring-MVC/" itemprop="url">Spring-MVC</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-20T15:16:31+08:00">
-                2019-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring-MVC"></a>Spring-MVC</h2><h3 id="1-SpringMVC的作用"><a href="#1-SpringMVC的作用" class="headerlink" title="1. SpringMVC的作用"></a>1. SpringMVC的作用</h3><p>SpringMVC主要解决了View-Controller交互的问题。</p>
-<p>传统的<code>Controller</code>具体表现为一个个的<code>Servlet</code>类，在一个普通的项目中，需要实现的功能至少有50个以上，假设是50个，则项目中就需要创建50个<code>Servlet</code>类去处理这50个功能对应的请求，在<strong>web.xml</strong>中每个<code>Servlet</code>类至少需要8行代码进行配置，如果是一个更加复杂的系统，就会导致：<code>Servlet</code>实例过多，类文件太多，配置文件太长，所导致的代码开发难度和维护难度大的问题。另外，还存在<code>Servlet</code>或其它Java EE中的API功能较弱的问题。</p>
-<h3 id="2-SpringMVC中的核心组件"><a href="#2-SpringMVC中的核心组件" class="headerlink" title="2. SpringMVC中的核心组件"></a>2. SpringMVC中的核心组件</h3><ul>
-<li><code>DispatcherServlet</code>：前端控制器，用于接收所有请求，并进行分发；</li>
-<li><code>HandlerMapping</code>：记录了请求路径与实际处理请求的控制器之间的对应关系；</li>
-<li><code>Controller</code>：实际处理请求的控制器；</li>
-<li><code>ModelAndView</code>：控制器的处理结果，其中<code>Model</code>表示处理请求时得到的即将响应给客户端数据，<code>View</code>表示负责响应时显示的视图的名称；</li>
-<li><code>ViewResolver</code>：根据视图的名称，确定视图组件。</li>
-</ul>
-<img src="/2019/07/20/Spring-MVC/MVC.png" title="流程图">
-<h3 id="3-SpringMVC-HelloWorld"><a href="#3-SpringMVC-HelloWorld" class="headerlink" title="3. SpringMVC HelloWorld"></a>3. SpringMVC HelloWorld</h3><h4 id="3-1-案例目标"><a href="#3-1-案例目标" class="headerlink" title="3.1. 案例目标"></a>3.1. 案例目标</h4><p>在浏览器中，通过<code>http://localhost:8080/项目名称/hello.do</code>进行访问，页面中将显示“Hello, SpringMVC!!!”字样。</p>
-<h4 id="3-2-创建项目"><a href="#3-2-创建项目" class="headerlink" title="3.2. 创建项目"></a>3.2. 创建项目</h4><p>创建<strong>Maven Project</strong>，<strong>Packaging</strong>必须选择<code>war</code>。<br>创建完成后，在<strong>web.xml</strong>；添加<strong>spring-webmvc</strong>依赖；复制Spring的配置文件到项目中；添加Tomcat运行环境。</p>
-<h4 id="3-3-通过DispatcherServlet接收所有请求"><a href="#3-3-通过DispatcherServlet接收所有请求" class="headerlink" title="3.3. 通过DispatcherServlet接收所有请求"></a>3.3. 通过DispatcherServlet接收所有请求</h4><p>SpringMVC中已经定义好了<code>DispatcherSerlvet</code>类，如果需要该<code>Servlet</code>能够接收并处理请求，首先，就需要在<strong>web.xml</strong>中进行配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SpringMVC<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SpringMVC<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.do<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>在配置时，如果不明确<code>DispatcherServlet</code>的包名，可以随意创建某个Java类，在类中声明该<code>Servlet</code>，由Eclipse完成导包，则<code>import</code>语句中就有了该类的全名。</p>
-</blockquote>
-<p>至此，<code>DispatcherServlet</code>就可以接收所有以<code>.do</code>为后缀的请求。</p>
-<p>默认情况下，所有的<code>Servlet</code>都是第一次接收并处理请求时才完成的初始化操作，并且，SpringMVC框架是基于Spring框架基础之上的，在项目启动初期，就应该加载整个Spring环境，以保证SpringMVC框架能正常运行！所以，可以通过配置去实现：当启动Tomcat时，就直接初始化<code>DispatcherServlet</code>，在<code>DispatcherServlet</code>中，已经定义了某个属性，值是Spring配置文件的位置，当<code>DispatcherServlet</code>被初始化时，就会读取该配置文件！</p>
-<p>在配置时，可以通过<code>&lt;load-on-startup&gt;</code>使得<code>DispatcherServlet</code>是默认直接初始化的！</p>
-<p>在<code>DispatcherServlet</code>的父类<code>FrameworkServlet</code>中，有<code>contextConfigLocation</code>属性，其作用就是制定Spring配置文件的位置，一旦创建了<code>DispatcherServlet</code>对象，就会自动读取所配置的文件，以加载Spring的环境！则配置为：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><code>DispatcherServlet</code>的完整配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SpringMVC<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SpringMVC<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.do<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>以上配置实现的效果就是：当Tomcat启动时，就会创建<code>DispatcherServlet</code>的对象，并且，<code>DispatcherServlet</code>会读取所配置的<code>spring.xml</code>文件，以加载Spring环境，后续，<code>DispatcherServlet</code>将接收所有以<code>.do</code>为后缀的请求！</p>
-</blockquote>
-<p>验证现在的配置结果，可以自定义<code>cn.tedu.spring.User</code>类，然后，在类中显式的定义构造方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"创建了User的对象！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在Spring的配置文件中进行配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"cn.tedu.spring.User"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>由于Tomcat启动时就会初始化<code>DispatcherServlet</code>，进而加载Spring配置文件，就会由Spring框架创建<code>User</code>对象，导致构造方法被执行，所以，当启动Tomcat时，就会看到构造方法中输出的内容！</p>
-<h4 id="3-4-使用控制器接收请求"><a href="#3-4-使用控制器接收请求" class="headerlink" title="3.4. 使用控制器接收请求"></a>3.4. 使用控制器接收请求</h4><p>首先创建<code>cn.tedu.spring.HelloController</code>控制器类，在类之前添加<code>@Controller</code>注解：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.tedu.spring;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后，在Spring的配置文件设置组件扫描：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 组件扫描 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu.spring"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>控制类中需要添加处理请求的方法，方法的设计原则是：</p>
-<ol>
-<li>应该使用<code>public</code>权限；</li>
-<li>暂时使用<code>String</code>作为返回值类型；</li>
-<li>方法名称自由定义；</li>
-<li>方法中暂时不添加参数。</li>
-</ol>
-<p>方法之前添加<code>@RequestMapping</code>注解，用于配置请求路径，以确定请求路径与处理请求的方法的对应关系：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"hello.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">showHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//测试代码</span></span><br><span class="line">    System.out.println(<span class="string">"HelloController.showHello()"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>打开浏览器，输入<code>http://localhost:8080/SPRINGMVC-01/hello.do</code>，在浏览器中会提示404错误，因为目前尚未处理页面，在Eclipse的控制台应该可以看到以上输出的内容！每访问一次，就会出现1次输出语句！</p>
-</blockquote>
-<h4 id="3-5-响应页面"><a href="#3-5-响应页面" class="headerlink" title="3.5. 响应页面"></a>3.5. 响应页面</h4><p>处理请求的方法的参数是<code>String</code>类型时，默认表示响应给客户端的视图的名称，后续，会经过<code>ViewResolver</code>进行处理，得到具体的视图。</p>
-<p>首先，创建jsp页面，例如在<strong>WEB-INF</strong>下创建<strong>index.jsp</strong>文件，页面内容随意。</p>
-<p>然后，设计处理请求的方法的返回值，并配置<code>ViewResolver</code>！<code>ViewResolver</code>是一个接口，具体使用的实现类是<code>InternalResourceViewResolver</code>，需要在Spring的配置文件中配置它的<code>prefix</code>和<code>suffix</code>属性，分别表示“前缀”和“后缀”，<code>InternalResourceViewResolver</code>的工作模式是以<strong>webapp</strong>文件夹为根路径，将“前缀 + 处理请求的方法的返回值 + 后缀”得到具体的JSP文件的位置，刚才创建的JSP文件在<strong>webapp/WEB-INF/index.jsp</strong>，则可以：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/WEB-INF/   +   index   +   .jsp</span><br><span class="line"></span><br><span class="line">&quot;&quot;  +   /WEB-INF/index.jsp  +   &quot;&quot;</span><br></pre></td></tr></table></figure>
-<p>还可以是其他组合方式，只要能组合出文件的路径都是正确的，可以在处理请求的方法中返回<code>&quot;index&quot;</code>，配置为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>开发完成，再次测试访问。</p>
-</blockquote>
-<h2 id="1-使用Session"><a href="#1-使用Session" class="headerlink" title="1. 使用Session"></a>1. 使用Session</h2><p>当需要向Session中存入数据时，可以使用<code>ModelMap</code>对象将数据进行封装，操作方式与封装转发的数据完全相同，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">modelMap.addAttribute(<span class="string">"username"</span>, username);</span><br></pre></td></tr></table></figure></p>
-<p>需要在当前控制器类之前添加<code>@SessionAttributes</code>注解，并且，在注解中显式的指定<code>ModelMap</code>中封装的哪些数据是需要存储在Session中的，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span> </span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"user"</span>)</span><br><span class="line"><span class="meta">@SessionAttributes</span>(<span class="string">"username"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>当添加了以上注解后，如果<code>ModelMap</code>中被存入了名为<code>username</code>的数据，该数据就在Session中，而<code>ModelMap</code>中的其它数据依然只能用于转发，也就是数据的作用域只在Request级别。</p>
-<p><strong>关于<code>@SessionAttributes</code>注解，其属性的配置可以参考该注解的源代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AliasFor</span>(<span class="string">"names"</span>)</span><br><span class="line">String[] value() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">@AliasFor</span>(<span class="string">"value"</span>)</span><br><span class="line">String[] names() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">Class&lt;?&gt;[] types() <span class="keyword">default</span> &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p><code>value</code>和<code>names</code>属性的作用是完全相同，用于指定<code>ModelMap</code>中的哪些名称对应的数据需要存放到Session中，可以使用字符串数组表示多个属性，另外，还可以配置<code>types</code>属性用于指定Session的数据的数据类型，也可以是数组类型，与配置的<code>names</code>保持一致即可。</p>
-</blockquote>
-<p>使用这种做法操作Session非常简单，但是，也存在一系列的问题：</p>
-<ol>
-<li>默认情况下，重定向时会把Session中的数据暴露在URL中；</li>
-<li>通过<code>ModelMap</code>存放的数据一定会在Request的作用域中，所以，通过这种方式存放到Session中的数据，其实在Request中也是存在的；</li>
-<li>通过这种方式存放到Session中的数据，不可以通过Session对象的<code>invalidate()</code>方法清除！只能通过<code>SessionStatus</code>类的<code>setComplete()</code>方法进行清除！</li>
-</ol>
-<p>更加简单的操作Session的方式就是直接在处理请求的方法中添加<code>HttpSession</code>类型的参数，然后在方法体中直接操作即可，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"handle_login.do"</span>) </span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handleLogin</span><span class="params">(String username, String password,</span></span></span><br><span class="line"><span class="function"><span class="params">        ModelMap modelMap, HttpSession session)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 日志</span></span><br><span class="line">    System.out.println(<span class="string">"UserController.handleLogin()"</span>);</span><br><span class="line">    System.out.println(<span class="string">"\tusername="</span> + username);</span><br><span class="line">    System.out.println(<span class="string">"\tpassword="</span> + password);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断用户名是否正确</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="string">"root"</span>.equals(username)) &#123;</span><br><span class="line">        <span class="comment">// 是：判断密码是否正确</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"1234"</span>.equals(password)) &#123;</span><br><span class="line">            <span class="comment">// 是：登录成功，将用户名存入到Session</span></span><br><span class="line">            <span class="comment">// modelMap.addAttribute("username", username);</span></span><br><span class="line">            session.setAttribute(<span class="string">"username"</span>, username);</span><br><span class="line">            <span class="comment">// 重定向到主页</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">"redirect:../index.do"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 否：密码错误</span></span><br><span class="line">            modelMap.addAttribute(<span class="string">"errorMessage"</span>, <span class="string">"ModelMap：密码错误"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否：用户名错误</span></span><br><span class="line">        modelMap.addAttribute(<span class="string">"errorMessage"</span>, <span class="string">"ModelMap：用户名错误"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>使用这种做法并不存在以上使用<code>@SessionAttributes</code>时的各种问题，操作也非常简单，缺点就是不易于执行单元测试！</p>
-</blockquote>
-<blockquote>
-<p>可以忽略“不易于执行单元测试”，甚至“不使用<code>@SessionAttributes</code>”的原因可能是：可以使用专门的测试工具去测试控制器，所以，在控制器中的方法本身是不需要执行单元测试的，甚至在大型项目中根本就不会使用Session，那各种使用方式都是不需要的！</p>
-</blockquote>
-<h2 id="2-SpringMVC的拦截器-Interceptor"><a href="#2-SpringMVC的拦截器-Interceptor" class="headerlink" title="2. SpringMVC的拦截器(Interceptor)"></a>2. SpringMVC的拦截器(Interceptor)</h2><ul>
-<li>如果项目中有多个请求需要执行相同的数据处理方案，就可以使用拦截器来实现。</li>
-<li>拦截器的作用并不一定是要把请求“拦截下来，不允许向后执行”，其主要特征是：若干种不同的请求都需要先执行拦截器中的代码，才可以向后执行。</li>
-</ul>
-<p>当然，拦截器也确实具备“拦截”的功能，即：可以将请求拦截下来，不允许向后执行。</p>
-<p>假设需要定义一个“登录拦截器”，实现“如果用户已经登录，则放行，如果未登录，则拦截，不允许向后执行”。</p>
-<ol>
-<li><p>需要自定义<code>cn.tedu.spring.LoginInterceptor</code>拦截器类，实现<code>HandlerInterceptor</code> (低版本可以通过报错实现方法，高版本不会报错，需要手动实现方法)</p>
-</li>
-<li><p>拦截器需要在Spring的配置文件中进行配置才可以使用：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置拦截器链 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置第1个拦截器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 拦截的路径 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/index.do"</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 拦截器类 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"cn.tedu.spring.LoginInterceptor"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果需要实现“验证登录以决定是否拦截或者放行”的功能，需要重写拦截器类中的<code>preHandle()</code>方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"LoginInterceptor.preHandle()"</span>);</span><br><span class="line">    <span class="comment">// 获取HttpSession对象</span></span><br><span class="line">    HttpSession session = request.getSession();</span><br><span class="line">    <span class="comment">// 判断Session中有没有登录的数据</span></span><br><span class="line">    <span class="keyword">if</span> (session.getAttribute(<span class="string">"username"</span>) == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 没有登录数据，即未登录，则重定向到登录页</span></span><br><span class="line">        <span class="comment">// http://localhost:8080/XX/index.do</span></span><br><span class="line">        <span class="comment">// http://localhost:8080/XX/user/password.do</span></span><br><span class="line">        String projectName = request.getServletContext().getContextPath();</span><br><span class="line">        response.sendRedirect(projectName + <span class="string">"/user/login.do"</span>);</span><br><span class="line">        <span class="comment">// 返回false表示拦截，不允许向后执行</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回true表示放行，允许向后执行</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>注意：即使调用了<code>response.sendRedirect()</code>进行重定向，如果要阻止继续向后运行，仍然需要<code>return false;</code>。</p>
-</blockquote>
-<ul>
-<li>在配置拦截器时，使用的是<code>&lt;mvc:mapping /&gt;</code>配置需要拦截的路径，每个拦截器都可以配置1~N个该节点。</li>
-<li>在配置路径时，还可以使用<code>*</code>作为通配符，例如配置为<code>&lt;mvc:mapping path=&quot;/product/*&quot; /&gt;</code>，则表示例如<code>/product/index.do</code>、<code>/product/add.do</code>、<code>/product/list.do</code>等路径都会被拦截！但是，1个<code>*</code>只能通配1层资源，例如<code>/product/*</code>就不会匹配上<code>/product/x/y.do</code>，如果需要通配若干层路径，可以使用2个<code>*</code>，即配置为<code>/product/**</code>，使用2个<code>*</code>是无视层级的，无论是<code>/product/list.do</code>，还是<code>/product/x/y.do</code>，甚至更多层级的，都可以通配！</li>
-<li>另外，还可以添加<code>&lt;mvc:exclude-mapping /&gt;</code>用于配置例外路径，也就是“白名单”，被添加在白名单中的路径将不被拦截器处理，与<code>&lt;mvc:mapping /&gt;</code>的配置方式完全相同，可以有多个配置白名单的节点，在配置时，路径中也可以使用通配符。</li>
-<li>在配置整个<code>&lt;mvc:interceptor&gt;</code>节点时，其子级的节点必须先配置<code>&lt;mvc:mapping /&gt;</code>，再配置<code>&lt;mvc:exclude-mapping /&gt;</code>，最后配置<code>&lt;bean&gt;</code>，不可以颠倒顺序！</li>
-</ul>
-<h3 id="3-在SpringMVC中统一处理异常"><a href="#3-在SpringMVC中统一处理异常" class="headerlink" title="3. 在SpringMVC中统一处理异常"></a>3. 在SpringMVC中统一处理异常</h3><p>在Java中，异常的继承体系是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Throwable</span><br><span class="line">    Error</span><br><span class="line">        OutOfMemoryError</span><br><span class="line">    Exception</span><br><span class="line">        SQLException</span><br><span class="line">        IOException</span><br><span class="line">            FileNotFoundException</span><br><span class="line">        RuntimeException</span><br><span class="line">            NullPointerException</span><br><span class="line">            ClassCastException</span><br><span class="line">            ArithmeticException</span><br><span class="line">            NumberFormatException</span><br><span class="line">            IndexOutOfBoundsException</span><br><span class="line">                ArrayIndexOutOfBoundsException</span><br><span class="line">                StringIndexOutOfBoundsException</span><br></pre></td></tr></table></figure></p>
-<p>在Exception中，RuntimeException及其子孙类异常是比较特殊的异常，完全不受Java处理异常的语法约束，因为这些异常可能出现的频率极高，并且，这些异常是可以通过更加严谨的编程来杜绝异常的发生的！</p>
-<p>常见的处理异常的做法是捕获(try…catch)或者声明抛出(throw/throws)，在实际处理时，如果当前类适合处理异常，就应该使用try…catch捕获并处理，如果当前类不适合处理异常，则应该声明抛出，然后续调用这个方法的角色进行处理。</p>
-<p>在服务器端的项目中，通常适合处理异常的都是控制器，但是，某些异常可能在多个不同的功能中都会出现，在处理不同的请求时采取相同的代码进行处理，就会导致代码冗余，不便于统一管理，所以，在SpringMVC框架中就提供了统一处理异常的机制。</p>
-<p><strong>可以在控制器类中添加统一处理异常的方法，关于该方法：</strong></p>
-<ol>
-<li>应该使用<code>public</code>权限；</li>
-<li>返回值的意义与处理请求的方法完全相同；</li>
-<li>方法名称可以自定义；</li>
-<li>方法中必须包含异常类型的参数，且参数的类型能包括所有可能需要处理的异常，例如可能处理<code>NullPointerException</code>，则参数的类型可以是<code>NullPointerException</code>或者<code>RuntimeException</code>或者<code>Exception</code>甚至<code>Throwable</code>，如果同时还需要处理<code>NumberFormatException</code>，参数类型就不可以是<code>NullPointerException</code>，简单来说，写<code>Throwable</code>绝对错不了；</li>
-<li>与处理请求的方法不同，不可以随心所欲的添加参数，如果需要转发数据，只能添加<code>HttpServletRequest</code>参数，不可以使用<code>ModelMap</code>；</li>
-<li>必须添加<code>@ExceptionHandler</code>注解。</li>
-</ol>
-<p>所以，处理请求的方法可以是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handleException</span><span class="params">(Throwable ex, HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ex <span class="keyword">instanceof</span> NullPointerException) &#123;</span><br><span class="line">        request.setAttribute(<span class="string">"errorMessage"</span>, <span class="string">"空指针异常！"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ex <span class="keyword">instanceof</span> ArrayIndexOutOfBoundsException) &#123;</span><br><span class="line">        request.setAttribute(<span class="string">"errorMessage"</span>, <span class="string">"数据下标越界异常异常！"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        request.setAttribute(<span class="string">"errorMessage"</span>, <span class="string">"未知异常："</span> + ex.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>一旦添加了该方法，当前类中任何处理请求的方法都不必处理相关异常，等同于这些方法把异常抛出了，将由以上方法进行统一处理！</p>
-</blockquote>
-<blockquote>
-<p>需要注意的是：该方法只能处理当前类处理请求时出现的异常，如果其他控制器类的方法抛出了异常，是不会被处理的！可以把该处理异常的方法放在所有控制器类公共的父类中！</p>
-</blockquote>
-<p><code>@ExceptionHandler</code> 该注解可以指定需要被处理的异常的种类！参数可以是数组，即同时指定多种异常都将被该方法进行处理！</p>
-<h3 id="拦截器-Interceptor-和过滤器-Filter-的区别"><a href="#拦截器-Interceptor-和过滤器-Filter-的区别" class="headerlink" title="拦截器(Interceptor)和过滤器(Filter)的区别"></a>拦截器(Interceptor)和过滤器(Filter)的区别</h3><p>拦截器和过滤器都是可以设置在若干种不同的请求处理之前的，都可以实现“拦截”和“放行”的做法，项目中，都可以存在若干个拦截器或者过滤器形成拦截器链或者过滤器链。</p>
-<p>过滤器是JavaEE中的组件，拦截器是SpringMVC中的组件，只要是使用Java语言做服务器端开发都可以使用过滤器，但是，只有使用了SpringMVC框架才可以使用拦截器，并且，如果使用SpringMVC时，<code>DispatcherServlet</code>映射的路径是<code>*.do</code>，则只有以<code>.do</code>为后缀的请求才可能被拦截器处理，也就是说，只有被<code>DispatcherServlet</code>映射到的路径才可能被拦截器处理。</p>
-<p>过滤器是执行在所有<code>Servlet</code>组件之前的，而拦截器是执行在<code>DispatcherServlet</code>之后、且在各Controller控制器之前及之后的组件！</p>
-<p>过滤器是需要在<strong>web.xml</strong>中进行配置的，其过滤的路径只能通过<code>&lt;url-pattern&gt;</code>节点配置1个路径，配置非常不灵活，拦截器可以通过若干个<code>&lt;mvc:mapping /&gt;</code>节点配置若干个黑名单，还可以通过若干个<code>&lt;mvc:exclude-mapping /&gt;</code>节点配置若干个白名单，配置就非常灵活！</p>
-<p>虽然拦截器和过滤器可以实现的的功能几乎相同，且拦截器的配置更加灵活，但是，由于执行时间节点的差异，拦截器也并不能完全取代过滤器！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2045,7 +1925,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
